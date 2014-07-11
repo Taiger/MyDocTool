@@ -10,7 +10,7 @@ module.exports = function (grunt) {
       // Metadata.
       pkg: grunt.file.readJSON('package.json'),
       banner: '/*!\n' +
-              ' * BrantElectric v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+              ' * Style Guide v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
               ' * Copyright 2014-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
               ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
               ' */\n',
@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         cssmin: {
           add_banner: {
             options: {
-              banner: '/* My minified css file */'
+              banner: '/* Minified css file */'
             },
             combine: {
               files: {
@@ -41,23 +41,11 @@ module.exports = function (grunt) {
                 strictMath: true,
                 sourceMap: true,
                 outputSourceFiles: true,
-                sourceMapURL: 'main.css.map',
-                sourceMapFilename: 'css/main.css.map'
+                sourceMapURL: 'style.css.map',
+                sourceMapFilename: 'css/style.css.map'
               },
               files: {
-                'css/main.css': 'less/main.less'
-              }
-            },
-            compileTheme: {
-              options: {
-                strictMath: true,
-                sourceMap: true,
-                outputSourceFiles: true,
-                sourceMapURL: 'main-theme.css.map',
-                sourceMapFilename: 'css/main-theme.css.map'
-              },
-              files: {
-                'css/main-theme.css': 'less/theme.less'
+                'css/style.css': 'less/style.less'
               }
             },
             minify: {
@@ -66,14 +54,13 @@ module.exports = function (grunt) {
                 report: 'min'
               },
               files: {
-                'css/main.min.css': 'css/main.css',
-                'css/main-theme.min.css': 'css/main-theme.css'
+                'css/style.min.css': 'css/style.css'
               }
             }
         },
     });
-     // the default task (running "grunt" in console) is "watch"
-     grunt.registerTask('default', ['watch']);
-
+     // the default task (running "grunt" in console) is "less"
+     grunt.registerTask('default', ['less']);
+     grunt.registerTask('run', ['watch']);
      grunt.registerTask('deploy', ['less','cssmin']);
 };
