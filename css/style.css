@@ -6772,33 +6772,6 @@ All classes should be namespaced off of "sg-".
 
 */
 /* -------------------------------------------------------------------------
-STYLETILES
----------------------------------------------------------------------------- */
-.sg-color--a .sg-color-swatch {
-  background: #88ffda;
-}
-.sg-color--b .sg-color-swatch {
-  background: #4dd3c9;
-}
-.sg-color--c .sg-color-swatch {
-  background: #339db0;
-}
-.sg-color--d .sg-color-swatch {
-  background: #2078aa;
-}
-.sg-color--e .sg-color-swatch {
-  background: #3a517a;
-}
-.sg-color--f .sg-color-swatch {
-  background: #384355;
-}
-.sg-font-primary {
-  font-family: "HelveticaNeue", "Helvetica", Arial, sans-serif;
-}
-.sg-font-secondary {
-  font-family: Georgia, Times, "Times New Roman", serif;
-}
-/* -------------------------------------------------------------------------
  Styleguide Layout
 ---------------------------------------------------------------------------- */
 .sg-header {
@@ -6996,11 +6969,32 @@ STYLETILES
   display: block;
   padding-top: 1em;
 }
-/*.sg-display {
-    border: 3px solid #efefef;
-    padding: 5px 10px;
-}*/
-/* Styleguide Colors
+/* Styleguide Markup
+---------------------------------------------------------------------------- */
+.sg-doc {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1em;
+}
+.sg-markup-controls {
+  overflow: hidden;
+  padding-top: 1.5em;
+}
+.sg-source {
+  position: relative;
+}
+.sg-source pre {
+  border: 1px solid #ddd;
+  color: #fff;
+  overflow-x: scroll;
+  padding: .5em .3em;
+}
+.sg-source pre code {
+  background: transparent;
+}
+/* -------------------------------------------------------------------------
+STYLETILES
+---------------------------------------------------------------------------- */
+/* Styletile Colors
 ---------------------------------------------------------------------------- */
 .sg-color {
   background: #fff;
@@ -7035,32 +7029,158 @@ STYLETILES
 .sg-color-swatch:hover span {
   opacity: 1;
 }
-/* Styleguide Fonts
+.sg-styletile .sg-color1 .sg-color-swatch {
+  background: #428bca;
+}
+.sg-styletile .sg-color1 .sg-color-swatch .sg-animated:after {
+  content: "#428bca";
+}
+.sg-styletile .sg-color1 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-color1 .sg-color-swatch .sg-color-varname:after {
+  content: "brand-primary ";
+}
+.sg-styletile .sg-color2 .sg-color-swatch {
+  background: #5cb85c;
+}
+.sg-styletile .sg-color2 .sg-color-swatch .sg-animated:after {
+  content: "#5cb85c";
+}
+.sg-styletile .sg-color2 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-color2 .sg-color-swatch .sg-color-varname:after {
+  content: "brand-success ";
+}
+.sg-styletile .sg-color3 .sg-color-swatch {
+  background: #5bc0de;
+}
+.sg-styletile .sg-color3 .sg-color-swatch .sg-animated:after {
+  content: "#5bc0de";
+}
+.sg-styletile .sg-color3 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-color3 .sg-color-swatch .sg-color-varname:after {
+  content: "brand-info ";
+}
+.sg-styletile .sg-color4 .sg-color-swatch {
+  background: #f0ad4e;
+}
+.sg-styletile .sg-color4 .sg-color-swatch .sg-animated:after {
+  content: "#f0ad4e";
+}
+.sg-styletile .sg-color4 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-color4 .sg-color-swatch .sg-color-varname:after {
+  content: "brand-warning ";
+}
+.sg-styletile .sg-color5 .sg-color-swatch {
+  background: #d9534f;
+}
+.sg-styletile .sg-color5 .sg-color-swatch .sg-animated:after {
+  content: "#d9534f";
+}
+.sg-styletile .sg-color5 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-color5 .sg-color-swatch .sg-color-varname:after {
+  content: "brand-danger ";
+}
+.sg-styletile .sg-colorg1 .sg-color-swatch {
+  background: #222222;
+}
+.sg-styletile .sg-colorg1 .sg-color-swatch .sg-animated:after {
+  content: "#222222";
+}
+.sg-styletile .sg-colorg1 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-colorg1 .sg-color-swatch .sg-color-varname:after {
+  content: "gray-darker ";
+}
+.sg-styletile .sg-colorg2 .sg-color-swatch {
+  background: #333333;
+}
+.sg-styletile .sg-colorg2 .sg-color-swatch .sg-animated:after {
+  content: "#333333";
+}
+.sg-styletile .sg-colorg2 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-colorg2 .sg-color-swatch .sg-color-varname:after {
+  content: "gray-dark ";
+}
+.sg-styletile .sg-colorg3 .sg-color-swatch {
+  background: #555555;
+}
+.sg-styletile .sg-colorg3 .sg-color-swatch .sg-animated:after {
+  content: "#555555";
+}
+.sg-styletile .sg-colorg3 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-colorg3 .sg-color-swatch .sg-color-varname:after {
+  content: "gray ";
+}
+.sg-styletile .sg-colorg4 .sg-color-swatch {
+  background: #777777;
+}
+.sg-styletile .sg-colorg4 .sg-color-swatch .sg-animated:after {
+  content: "#777777";
+}
+.sg-styletile .sg-colorg4 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-colorg4 .sg-color-swatch .sg-color-varname:after {
+  content: "gray-light ";
+}
+.sg-styletile .sg-colorg5 .sg-color-swatch {
+  background: #eeeeee;
+}
+.sg-styletile .sg-colorg5 .sg-color-swatch .sg-animated:after {
+  content: "#eeeeee";
+}
+.sg-styletile .sg-colorg5 .sg-color-swatch .sg-color-varname {
+  font-size: 8px;
+}
+.sg-styletile .sg-colorg5 .sg-color-swatch .sg-color-varname:after {
+  content: "gray-lighter ";
+}
+/* Styletile Fonts
 ---------------------------------------------------------------------------- */
 .sg-font {
   font-size: 1.4em;
   padding: 0 0 .2em 0;
 }
-/* Styleguide Markup
----------------------------------------------------------------------------- */
-.sg-doc {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 1em;
+.sg-font-base {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.sg-markup-controls {
-  overflow: hidden;
-  padding-top: 1.5em;
+.sg-font-base:before {
+  content: 'font-family-base: "Helvetica Neue", Helvetica, Arial, sans-serif';
+  display: block;
 }
-.sg-source {
-  position: relative;
+.sg-font-serif {
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
-.sg-source pre {
-  border: 1px solid #ddd;
-  color: #fff;
-  overflow-x: scroll;
-  padding: .5em .3em;
+.sg-font-serif:before {
+  content: 'font-family-serif: Georgia, "Times New Roman", Times, serif';
+  display: block;
 }
-.sg-source pre code {
-  background: transparent;
+.sg-font-sans-serif {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.sg-font-sans-serif:before {
+  content: 'font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif';
+  display: block;
+}
+.sg-font-monospace {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+.sg-font-monospace:before {
+  content: 'font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace';
+  display: block;
 }
 /*# sourceMappingURL=style.css.map */

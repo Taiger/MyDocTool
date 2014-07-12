@@ -1,0 +1,110 @@
+/* -------------------------------------------------------------------------
+STYLETILES
+---------------------------------------------------------------------------- */
+// MIXINS for styletiles
+// Color swatch output
+._sgcolor(@id:1; @color:white; @thevarname: 'default'){
+  
+  .sg-color@{id} {
+    .sg-color-swatch {
+        background: @color;
+      
+    .sg-animated:after {
+      content: "@{color}";
+    }
+    .sg-color-varname {
+      font-size: 8px;
+        &:after {
+          content: "@{thevarname} ";
+        }
+      }
+    }
+  }
+}
+
+// Font output
+._sgfont(@fontid:'base'; @fontfam:'base'; @thevarname: 'font-family-base'){
+  .sg-font-@{fontid} {
+    font-family: @fontfam;
+      &:before {
+        content: '@{thevarname}: @{fontfam}';
+        display: block;
+      }
+    }
+  
+
+}
+
+/* Styletile Colors
+---------------------------------------------------------------------------- */
+.sg-color {
+  background: #fff;
+  border: 1px solid #bbb;
+  display: inline-block;
+  height: 89px;
+  margin: 0 .5em .5em 0;
+  padding: 5px;
+  position: relative;
+  width: 89px;
+}
+
+.sg-color-swatch {
+  display: block;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.sg-color-swatch span {
+  background: #000;
+  background: rgba(0,0,0,.7);
+  bottom: 0;
+  color: #fff;
+  font-size: .8em;
+  margin: 0;
+  opacity: 0;
+  padding: 5px 0;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.sg-color-swatch:hover span {
+  opacity: 1;
+}
+
+// DISPLAY Color Swatch 
+.sg-styletile {
+
+  // Colors
+  ._sgcolor(1, @brand-primary, 'brand-primary');
+  ._sgcolor(2, @brand-success, 'brand-success');
+  ._sgcolor(3, @brand-info, 'brand-info');
+  ._sgcolor(4, @brand-warning, 'brand-warning');
+  ._sgcolor(5, @brand-danger, 'brand-danger');
+
+  // Colors Grays
+  ._sgcolor(g1, @gray-darker, 'gray-darker');
+  ._sgcolor(g2, @gray-dark, 'gray-dark');
+  ._sgcolor(g3, @gray, 'gray');
+  ._sgcolor(g4, @gray-light, 'gray-light');
+  ._sgcolor(g5, @gray-lighter, 'gray-lighter');
+}
+
+
+/* Styletile Fonts
+---------------------------------------------------------------------------- */
+.sg-font {
+  font-size: 1.4em;
+  padding: 0 0 .2em 0;
+}
+
+// DISPLAY Fonts
+
+._sgfont(base; @font-family-base; 'font-family-base');
+._sgfont(serif; @font-family-serif; 'font-family-serif');
+._sgfont(sans-serif; @font-family-sans-serif; 'font-family-sans-serif');
+._sgfont(monospace; @font-family-monospace; 'font-family-monospace');
+
+
