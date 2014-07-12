@@ -1,5 +1,7 @@
-// Core variables and mixins
-@import "/drupal/custom/variables.less";// Modify this for custom colors, font-sizes, etc
+// Drupal stylesheets for AF1
+@import "/drupal/customthemes/af1/variables.less"; // Base custom colors, font-sizes, etc
+// Drupal stylesheets for ASP3
+@import "/drupal/customthemes/asp3/variables.less"; // Site-specific theming
 
 // CORE LIBRARY BELOW
 @import "/vendor/bootstrap/less/mixins.less";
@@ -18,7 +20,7 @@
 @import "/vendor/bootstrap/less/forms.less";
 @import "/vendor/bootstrap/less/buttons.less";
 
-// Components
+// Core Components
 @import "/vendor/bootstrap/less/component-animations.less";
 @import "/vendor/bootstrap/less/dropdowns.less";
 @import "/vendor/bootstrap/less/button-groups.less";
@@ -41,12 +43,17 @@
 @import "/vendor/bootstrap/less/wells.less";
 @import "/vendor/bootstrap/less/close.less";
 
-// Components w/ JavaScript
+// Core Components w/ JavaScript
 @import "/vendor/bootstrap/less/modals.less";
 @import "/vendor/bootstrap/less/tooltip.less";
 @import "/vendor/bootstrap/less/popovers.less";
-@import "/vendor/bootstrap/less/carousel.less";
+@import "/vendor/bootstrap/less/carousel.less"; // TODO remove
 
-// Utility classes
+// Core Utility classes
 @import "/vendor/bootstrap/less/utilities.less";
 @import "/vendor/bootstrap/less/responsive-utilities.less";
+
+// Specific
+@import "/drupal/bootstraptheme/overrides.less";// Bootstrap base theme file
+//@import "/drupal/customthemes/af1/overrides.less";// AF1 base theme file
+//@import "/drupal/customthemes/asp3/overrides.less";// ASP3 site-specific theming

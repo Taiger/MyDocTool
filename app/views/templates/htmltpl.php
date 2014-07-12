@@ -9,19 +9,30 @@
   <link rel="stylesheet" href="drupal/system/system.base.css">
   <link rel="stylesheet" href="drupal/field/field.css">
 
-  <!--  Bootstrap -->
-  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css">
   <link rel="stylesheet" href="vendor/bootstrap-accessibility-plugin/plugins/dist/css/bootstrap-accessibility-theme.css">
 
-  <!--  Drupal Bootstrap Base Theme -->
-  <link rel="stylesheet" href="drupal/bootstraptheme/overrides.css">
-
-  <!-- Style Guide Styles - namespaced to avoid conflicts -->
-  <link rel="stylesheet" href="css/sg-style.css">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="vendor/prism/themes/prism.css">
 
+  <!-- processed from less/style.less -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- CLIENTSIDE PREPROCESSING: uncomment to enable  
+  <link rel="stylesheet/less" type="text/css" href="less/style.less">
+  <script>
+  /*documentation: http://lesscss.org/usage/#using-less-in-the-browser*/
+    less = {
+      env: "development",
+      logLevel: 2,
+      async: false,
+      fileAsync: false,
+      poll: 1000,
+      functions: {},
+      dumpLineNumbers: "all"
+    };
+  </script>
+  <script src="vendor/less.js/dist/less-1.7.3.min.js"></script>-->
+
+ 
 
 </head>
 <body>
