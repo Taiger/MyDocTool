@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="vendor/prism/themes/prism.css">
 
   <!-- processed from less/style.less -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="dist/css/style.css">
 
   <!-- CLIENTSIDE PREPROCESSING: uncomment to enable  
   <link rel="stylesheet/less" type="text/css" href="less/style.less">

@@ -121,7 +121,7 @@
       $result .= htmlspecialchars_decode(read_file($file));
       $result .= '</div>';
       if($showsource) {
-          $result .= '<div class="sg-markup-controls"><a class="sg-btn sg-btn--source" href="#">View Source</a></div>';
+          //$result .= '<div class="sg-markup-controls"><a class="sg-btn sg-btn--source" href="#">View Source</a></div>';
           $result .= '<div class="sg-source sg-animated">';
           $result .= '<pre class="language-markup linenums"><code>';
           $result .= htmlspecialchars(read_file($file));

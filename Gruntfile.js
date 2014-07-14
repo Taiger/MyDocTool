@@ -22,7 +22,7 @@ module.exports = function (grunt) {
             },
             combine: {
               files: {
-                'css/main.min.css': ['css/main.css']
+                'dist/css/main.min.css': ['dist/css/main.css']
               }
             },
           },
@@ -42,10 +42,10 @@ module.exports = function (grunt) {
                 sourceMap: true,
                 outputSourceFiles: true,
                 sourceMapURL: 'style.css.map',
-                sourceMapFilename: 'css/style.css.map'
+                sourceMapFilename: 'dist/css/style.css.map'
               },
               files: {
-                'css/style.css': 'less/style.less'
+                'dist/css/style.css': 'less/style.less'
               }
             },
             minify: {
@@ -54,7 +54,7 @@ module.exports = function (grunt) {
                 report: 'min'
               },
               files: {
-                'css/style.min.css': 'css/style.css'
+                'dist/css/style.min.css': 'dist/css/style.css'
               }
             }
         },
