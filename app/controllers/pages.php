@@ -16,12 +16,12 @@ class Pages extends CI_Controller {
   $data['body_class'] = $page . '-page';
   $data['title'] = ucfirst($page);
   $data['styles'] = array();
-  
+
   // Pattern Links
   $data['styletile_links'] = $this->markup_model->listMarkupAsLinks('styletiles');
   $data['atom_links'] = $this->markup_model->listMarkupAsLinks('atoms');
   $data['molecule_links'] = $this->markup_model->listMarkupAsLinks('molecules');
-  $data['organism_links'] = $this->markup_model->listMarkupAsLinks('organisms');
+  $data['organism_links'] = $this->markup_model->listMarkupAsLinks('components');
   $data['template_links'] = $this->markup_model->listMarkupAsLinks('templates');
   $data['pagelayout_links'] = $this->markup_model->listMarkupAsLinks('pages');
   $data['header_links'] = $data['styletile_links'] . $data['atom_links'] . $data['molecule_links'];
@@ -35,10 +35,11 @@ class Pages extends CI_Controller {
     $data['styletiles'] = $this->markup_model->getAllStyletiles();
     $data['atoms'] = $this->markup_model->getAllofType('atoms');
     $data['molecules'] = $this->markup_model->getAllofType('molecules');
-    $data['organisms'] = $this->markup_model->getAllofType('organisms');
+    $data['components'] = $this->markup_model->getAllofType('components');
 
     // Apply to templates
-    $data['pagetpl'] = $this->load->view('templates/pagetpl_home', $data, TRUE);
+    $data['content'] = $this->load->view('pages/home', $data, TRUE);
+    $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);
 
   } else {

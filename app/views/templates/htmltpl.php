@@ -37,69 +37,6 @@
 </head>
 <body>
 
-<header id="top" class="sg-header sg-container">
-  <div class="container">
-<nav role="navigation" class="navbar">
-
-        <div class="navbar-header">
-          <h1 class="sg-logo"><a href="/" class="navbar-brand">STYLE <span>GUIDE</span></a></h1>
-
-        </div>
-
-
-          <ul class="nav navbar-nav navbar-right sg-header-nav">
-            <li><a href="/">All</a></li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Atoms <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <?php if(isset($atom_links)) echo $atom_links; ?>
-                </ul>
-            </li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Molecules <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <?php if(isset($molecule_links)) echo $molecule_links; ?>
-                </ul>
-            </li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organisms <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <?php if(isset($organism_links)) echo $organism_links; ?>
-                </ul>
-            </li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Templates <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <?php if(isset($template_links)) echo $template_links; ?>
-                </ul>
-            </li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <?php if(isset($pagelayout_links)) echo $pagelayout_links; ?>
-                </ul>
-            </li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Style Tiles <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <?php if(isset($styletile_links)) echo $styletile_links; ?>
-                </ul>
-            </li>
-
-          </ul>
-
-     
-    </nav>
-  </div><!-- /.container -->
-</header>
-
-
 <?php if(isset($pagetpl)) echo $pagetpl; ?>
 
   <!-- SCRIPTS -->

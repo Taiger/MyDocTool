@@ -107,7 +107,6 @@
     }
     
     foreach ($files as $file) {
-      $result .= '<hr>';
       $result .= '<div class="sg-markup sg-section">';
       $result .= '<div class="sg-display">';
       $result .= '<h1 class="sg-h1"><a id="sg-'.$item.'" class="sg-anchor">'.$title.'</a></h1>';
@@ -123,6 +122,7 @@
 
       $result .= htmlspecialchars_decode(read_file($file));
       $result .= '</div>';
+      $result .= '<hr>';
       if($showsource) {
           //$result .= '<div class="sg-markup-controls"><a class="sg-btn sg-btn--source" href="#">View Source</a></div>';
           $result .= '<div class="sg-source sg-animated">';
