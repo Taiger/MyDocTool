@@ -14,7 +14,7 @@ class Pages extends CI_Controller {
   // Defaults
   $data['current_page'] = $page;
   $data['body_class'] = $page . '-page';
-  $data['title'] = ucfirst($page); // Capitalize the first letter
+  $data['title'] = ucfirst($page);
   $data['styles'] = array();
   // Pattern Links
   $data['styletile_links'] = $this->markup_model->listMarkupAsLinks('styletiles');
@@ -32,9 +32,9 @@ class Pages extends CI_Controller {
     
     // Pattern Markup
     $data['styletiles'] = $this->markup_model->getAllStyletiles();
-    $data['atoms'] = $this->markup_model->getAll('atoms');
-    $data['molecules'] = $this->markup_model->getAll('molecules');
-    $data['organisms'] = $this->markup_model->getAll('organisms');
+    $data['atoms'] = $this->markup_model->getAllofType('atoms');
+    $data['molecules'] = $this->markup_model->getAllofType('molecules');
+    $data['organisms'] = $this->markup_model->getAllofType('organisms');
 
     // Apply to templates
     $data['pagetpl'] = $this->load->view('templates/pagetpl_home', $data, TRUE);
@@ -51,28 +51,6 @@ class Pages extends CI_Controller {
     $this->load->view('templates/htmltpl', $data);
 
   }
-
-
-/*    $data['styles']= array('home'=>'/css/cover.css');
-  } elseif($page == 'helpfulhints') {
-    $data['styles']= array('helpfulhints'=>'/css/blog.css');
-  }*/
-
-  // MASTHEAD ON EVERY PAGE
-  //$data['masthead'] = $this->load->view('templates/masthead', $data, true);
-
-  // NO FOOTERBAR ON HOMEPAGE
- /* if($page != 'home'){
-    $data['footerbar'] = $this->load->view('templates/footerbar', $data, true);
-  }*/
-
-  //$data['content'] = $this->load->view('patterns/'.$page, $data);
-  //$this->load->view('templates/htmltpl', $data);
-
-/*  $this->load->view('templates/header', $data);
-  $this->load->view('patterns/'.$page, $data);
-  $this->load->view('templates/footer', $data);
-*/
 
   
   }

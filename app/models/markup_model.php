@@ -34,7 +34,7 @@
   }
 
   // Display markup view & source by type
-  public function getAll($type, $showsource = TRUE) {
+  public function getAllofType($type, $showsource = TRUE) {
     $result = '';
     $files = array();
     $handle = opendir('patterns/'.$type);
