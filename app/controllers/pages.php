@@ -16,6 +16,7 @@ class Pages extends CI_Controller {
   $data['body_class'] = $page . '-page';
   $data['title'] = ucfirst($page);
   $data['styles'] = array();
+  
   // Pattern Links
   $data['styletile_links'] = $this->markup_model->listMarkupAsLinks('styletiles');
   $data['atom_links'] = $this->markup_model->listMarkupAsLinks('atoms');
