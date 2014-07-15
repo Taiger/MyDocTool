@@ -106,6 +106,10 @@
   <script src="vendor/jquery/dist/jquery.min.js"></script>
   <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="vendor/bootstrap-accessibility-plugin/plugins/js/bootstrap-accessibility.min.js"></script>
+
+  <!-- Styleguide toggling -->
+  <script src="js/sg-scripts.js"></script>
+
   <!-- syntax highlighting -->
   <script src="vendor/prism/components/prism-core.min.js"></script>
   <script src="vendor/prism/components/prism-markup.min.js"></script>

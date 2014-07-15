@@ -22,6 +22,7 @@
       return '<li><small> No '.$type.' patterns yet.</small></li>';
     }
 
+    // Sort alphabetically
     sort($files);
     foreach ($files as $file){
         $filename = preg_replace("/\.html$/i", "", $file); 
@@ -32,7 +33,7 @@
     return $result;
   }
 
-  // Display markup view & source
+  // Display markup view & source by type
   public function getAll($type, $showsource = TRUE) {
     $result = '';
     $files = array();
@@ -48,28 +49,31 @@
       return '<p>No '.$type.' patterns yet.</p>';
     }
 
+    // Sort alphabetically
     sort($files);
     foreach ($files as $file) {
         $filename = preg_replace("/\.html$/i", "", $file);
         $title = preg_replace("/\-/i", " ", $filename);
-        $documentation = 'doc/'.$type.'/'.$file;
 
         $result .= '<div class="sg-markup sg-section">';
         $result .= '<div class="sg-display">';
         $result .= '<h2 class="sg-h2"><a href="'.$filename.' "id="'.$filename.'" class="sg-anchor">'.$title.' <span class="glyphicon glyphicon-chevron-right"></a></h2>';
 
-        if (file_exists($documentation)) {
+        // TODO Add documentation support
+        //$documentation = 'doc/'.$type.'/'.$file;
+        /*//
+          if (file_exists($documentation)) {
           $result .= '<div class="sg-doc">';
           $result .= '<h3 class="sg-h3">Usage</h3>';
           $result .= htmlspecialchars_decode(file_get_contents($documentation));
           $result .= '</div>';
-        }
+        }*/
 
         $result .= htmlspecialchars_decode(file_get_contents('patterns/'.$type.'/'.$file));
         $result .= '</div>';
         if($showsource) {
-            $result .= '<div class="sg-markup-controls"><a class="sg-btn sg-btn--source" href="#">View Source</a></div>';
-            $result .= '<div class="sg-source">';
+            $result .= '<div class="sg-markup-controls"><a class="sg-btn sg-btn--source" href="'.$filename.' ">View Source</a></div>';
+            $result .= '<div class="sg-source sg-expandable">';
             $result .= '<pre class="language-markup"><code>';
             $result .= htmlspecialchars(file_get_contents('patterns/'.$type.'/'.$file));
             $result .= '</code></pre>';
@@ -88,7 +92,6 @@
     $files = array(); // in case multiple matches
     $title = preg_replace("/\-/i", " ", $item);
     $title = ucwords($title);
-    //$documentation = 'doc/'.$type.'/'.$file; // TODO add this
 
     $filename = $item . '.html';
     $allfiles = get_filenames('patterns', TRUE); // returns array of full file paths contained in child directories
@@ -102,8 +105,6 @@
     if(empty($files)){
       return '<p>No pattern found of the name <strong>'.$item.'</strong>.</p>';
     }
-
-
     
     foreach ($files as $file) {
       $result .= '<div class="sg-markup sg-section">';
@@ -111,6 +112,7 @@
       $result .= '<h1 class="sg-h1"><a id="sg-'.$item.'" class="sg-anchor">'.$title.'</a></h1>';
 
       // TODO add documentation support
+      //$documentation = 'doc/'.$type.'/'.$file;
       /*    if (file_exists($documentation)) {
             $result .= '<div class="sg-doc">';
             $result .= '<h3 class="sg-h3">Usage</h3>';
