@@ -9,7 +9,23 @@
 
         
           <ul class="nav navbar-nav navbar-right sg-header-nav">
-            <li><a href="/">All</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">General Docs<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/">Coming soon</a></li>
+                  <?php //if(isset($atom_links)) echo $atom_links; ?>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tech Docs<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/">Coming soon</a></li>
+                  <?php //if(isset($atom_links)) echo $atom_links; ?>
+                </ul>
+            </li>
+
+            <li><a href="/">All Patterns</a></li>
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Atoms <span class="caret"></span></a>
