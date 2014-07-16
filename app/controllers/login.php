@@ -34,8 +34,7 @@ class Login extends CI_Controller {
       $data['title'] = ucfirst($page); // Capitalize the first letter
 
       // Display
-      //$this->load->view('login', $data);
-/**/      $data['content'] = $this->load->view('login', $data, TRUE);
+      $data['content'] = $this->load->view('login', $data, TRUE);
       $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
       $this->load->view('templates/htmltpl', $data);
      
@@ -91,8 +90,8 @@ class Login extends CI_Controller {
       $data['current_page'] = $page;
       $data['body_class'] = $page . '-page';
       $data['body_class'] .= ' form-page';
-      $data['title'] = ucfirst($page); // Capitalize the first letter
-      //$data['styles'] = array('login'=> '/css/login.css');
+      $data['title'] = ucfirst($page);
+      $data['isLoggedIn'] = $this->session->userdata('isLoggedIn');
 
       // Display
       $data['content'] = $this->load->view('loginsuccess', $data, TRUE);

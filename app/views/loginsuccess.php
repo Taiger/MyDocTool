@@ -3,6 +3,6 @@
         
         <h3>Login was successfull!</h3>
 
-        <p><?php echo anchor('login', 'Back to login page.'); ?></p>
+        <p><?php echo anchor('/', 'To the Homepage!'); ?></p>
       </div>
     </div>

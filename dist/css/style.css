@@ -6820,6 +6820,12 @@ All classes should be namespaced off of "sg-".
     text-align: center;
   }
 }
+.sg-header .navbar-toggle {
+  background-color: rgba(238, 238, 238, 0.27);
+}
+.sg-header .navbar-toggle .icon-bar {
+  background-color: #9c9c9c;
+}
 .sg-info,
 .sg-base-styles {
   padding-bottom: 24px;

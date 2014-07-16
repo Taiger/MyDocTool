@@ -4,8 +4,8 @@
           <h1 class="sg-logo"><a href="/" class="navbar-brand">PATTERNS &amp;<span> DOCS</span></a></h1>
 
         </div>
-        <button class="navbar-toggle sg-navbar-toggle" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-<nav role="navigation" class="navbar navbar-collapse collapse">
+        <button class="navbar-toggle sg-navbar-toggle" type="button" data-toggle="collapse" data-target="#sg-primary-navbar-collapse-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+<nav id="sg-primary-navbar-collapse-1" role="navigation" class="navbar navbar-collapse collapse">
 
         
           <ul class="nav navbar-nav navbar-right sg-header-nav">
