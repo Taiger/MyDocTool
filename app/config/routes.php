@@ -38,21 +38,25 @@
 |
 */
 
+// ACCESS
 $route['login'] = 'login';
-$route['logout'] = 'login/logout_user';
 $route['login/(:any)'] = 'login/$1';
-//$route['login/user_login'] = 'login/user_login';
+$route['logout'] = 'login/logout_user';
 $route['register'] = 'login/register_user';
-//$route['default_controller'] = "login";
-//$route['docs/(:any)'] = 'docs/view/$1';
-//$route['docs/create'] = 'docs/create';
-//$route['docs/edit/(:any)'] = 'docs/edit/$1';
-//$route['docs/delete/(:any)'] = 'docs/delete/$1';
 
+// DOCS
+$route['guide'] = 'docs/view/index';
+$route['guide/create'] = 'docs/create';
+$route['guide/edit/(:any)'] = 'docs/edit/$1';
+$route['guide/delete/(:any)'] = 'docs/delete/$1';
+$route['guide/general'] = 'docs/view/index';
+$route['guide/tech'] = 'docs/view/index';
+$route['guide/(:any)'] = 'docs/view/$1';
+//$route['guide/(:any)/(:any)'] = 'docs/view/$1/$2'; //(not working)NOT NEEDED?
+
+// PATTERNS
 $route['(:any)'] = 'patterns/view/$1';
-//$route['default_controller'] = "patterns/view/allpatterns";
 $route['default_controller'] = "patterns/view";
-$route['404_override'] = '';
 //$route['404_override'] = '';
 
 

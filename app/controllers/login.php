@@ -34,7 +34,7 @@ class Login extends CI_Controller {
       $data['title'] = ucfirst($page); // Capitalize the first letter
 
       // Display
-      $data['content'] = $this->load->view('login', $data, TRUE);
+      $data['content'] = $this->load->view('pages/login', $data, TRUE);
       $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
       $this->load->view('templates/htmltpl', $data);
      

@@ -129,8 +129,8 @@
           $result .= '<pre class="language-markup linenums"><code>';
           $result .= htmlspecialchars(read_file($file));
           $result .= '</code></pre>';
+          $result .= '</div>';
         }
-      $result .= '</div>';
       $result .= '</div>';
     }
 
