@@ -60,7 +60,7 @@ class Login extends CI_Controller {
         }
     }
 
-    // TODO add registeration
+    // TODO finish adding registration (if needed)
     function register_user() {
       $this->load->helper(array('form', 'url'));
       $this->load->library('form_validation');
@@ -81,7 +81,7 @@ class Login extends CI_Controller {
         $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
         $this->load->view('templates/htmltpl', $data);
       } else {
-        // TODO add new user
+        // TODO check and clean data. add new user to database.
       }
     }
 
