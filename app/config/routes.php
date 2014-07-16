@@ -38,8 +38,20 @@
 |
 */
 
-$route['(:any)'] = 'pages/view/$1';
-$route['default_controller'] = "pages/view";
+$route['login'] = 'login';
+$route['logout'] = 'login/logout_user';
+$route['login/(:any)'] = 'login/$1';
+//$route['login/user_login'] = 'login/user_login';
+$route['register'] = 'login/register_user';
+//$route['default_controller'] = "login";
+//$route['docs/(:any)'] = 'docs/view/$1';
+//$route['docs/create'] = 'docs/create';
+//$route['docs/edit/(:any)'] = 'docs/edit/$1';
+//$route['docs/delete/(:any)'] = 'docs/delete/$1';
+
+$route['(:any)'] = 'patterns/view/$1';
+//$route['default_controller'] = "patterns/view/allpatterns";
+$route['default_controller'] = "patterns/view";
 $route['404_override'] = '';
 //$route['404_override'] = '';
 

@@ -1,13 +1,13 @@
   <?php
-  class Markup_model extends CI_Model {
+  class Pattern_model extends CI_Model {
 
-  public function __construct() {
+/*  public function __construct() {
     $this->load->helper('file');
-  }
+  }*/
 
   // MENU
-  // Display title of each markup samples as a link
-  public function listMarkupAsLinks($type) {
+  // Display title of each pattern as a link
+  public function listPatternsAsLinks($type) {
     $result = '';
     $files = array();
     $handle = opendir('patterns/'.$type);
@@ -33,7 +33,7 @@
     return $result;
   }
 
-  // Display markup view & source by type
+  // Display pattern view & source by type
   public function getAllofType($type, $showsource = TRUE) {
     $result = '';
     $files = array();
@@ -85,7 +85,7 @@
     return $result;
   }
 
-  // Display markup view & source for single file. Used for individual pages.
+  // Display pattern view & source for single file. Used for individual pages.
   public function getItem($item, $showsource = TRUE) {
 
     $result = '';
@@ -138,7 +138,7 @@
   }
 
 
-  // Display markup view & source
+  // Display Styletiles
   public function getAllStyletiles() {
     $result = '';
     $files = array();

@@ -68,7 +68,12 @@ All classes should be namespaced off of "sg-".
   padding-bottom: 24px;
 }
 
-
+.sg-footer {
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  border-top: 1px solid #e5e5e5;
+}
 /* -------------------------------------------------------------------------
  Styleguide Utility Classes
 ---------------------------------------------------------------------------- */
@@ -88,29 +93,35 @@ All classes should be namespaced off of "sg-".
 
 /* Styleguide Branding
 ---------------------------------------------------------------------------- */
-.sg-logo {
-  float: left;
-  font-size: 1.5em;
-  font-weight: normal;
-  margin: 0;
-  padding: 0;
-}
 
 .sg-logo a {
-    padding-left: 0;
+  padding-left: 15px;
 }
-
-  .sg-logo span {
-    font-weight: bold;
-  }
-
-@media screen and (max-width: 650px) {
+@media screen and (min-width: 768px) {
   .sg-logo {
-    float: none;
-    padding-bottom: .5em;
-    text-align: center;
+    float: left;
+    font-size: 1.5em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+  }
+  .sg-logo a {
+    padding-left: 0;
   }
 }
+
+.sg-logo span {
+  font-weight: bold;
+}
+
+
+.sg-logo {
+  float: none;
+  padding-bottom: .5em;
+  text-align: center;
+}
+
+
 
 /* Styleguide Navigation
 ---------------------------------------------------------------------------- */
@@ -118,20 +129,6 @@ All classes should be namespaced off of "sg-".
   float: right;
 }
 
-.js .sg-submit-btn {
-  display: none;
-}
-
-.operamini .sg-nav {
-  display: none;
-}
-
-@media screen and (max-width: 650px) {
-  .sg-nav{
-    display: inline;
-    float: none;
-  }
-}
 
 /* Styleguide Headings
 ---------------------------------------------------------------------------- */
@@ -245,4 +242,46 @@ All classes should be namespaced off of "sg-".
   height: auto;
   display: block;
   opacity: 1;
+}
+
+/* Pages */
+
+/* Login form */
+
+/*body {
+  padding-bottom: 40px;
+  background-color: #eee;
+}*/
+
+.form-signin {
+  /*max-width: 330px;*/
+  padding: 15px;
+  margin: 0 auto;
+
+  .form-signin-heading,
+  .checkbox {
+    margin-bottom: 10px;
+  }
+  .checkbox {
+    font-weight: normal;
+  }
+  .form-control {
+    position: relative;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-control:focus {
+    z-index: 2;
+  }
+  input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 }

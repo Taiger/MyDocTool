@@ -1,13 +1,13 @@
 <header id="top" class="sg-header sg-container">
   <div class="container">
-<nav role="navigation" class="navbar">
-
         <div class="navbar-header">
-          <h1 class="sg-logo"><a href="/" class="navbar-brand">STYLE <span>GUIDE</span></a></h1>
+          <h1 class="sg-logo"><a href="/" class="navbar-brand">PATTERNS &amp;<span> DOCS</span></a></h1>
 
         </div>
+        <button class="navbar-toggle sg-navbar-toggle" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+<nav role="navigation" class="navbar navbar-collapse collapse">
 
-        <div class="navbar-collapse collapse">
+        
           <ul class="nav navbar-nav navbar-right sg-header-nav">
             <li><a href="/">All</a></li>
 
@@ -54,7 +54,7 @@
             </li>
 
           </ul>
-        </div>
+        
      
     </nav>
   </div><!-- /.container -->
@@ -65,3 +65,15 @@
     <?php if(isset($content)) echo $content; ?>
 
   </div><!--/.sg-body-->
+
+  <footer class="footer sg-footer">
+    <ul class="nav nav-pills pull-right">
+      <li>
+        <?php if(isset($isLoggedIn) && $isLoggedIn == TRUE) {
+          echo '<a href="/logout">Logout</a>';
+        } else {
+          echo '<a href="/login">Login</a>';
+        } ?>
+      </li>
+    </ul>
+  </footer>
