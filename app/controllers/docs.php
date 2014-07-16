@@ -21,6 +21,8 @@ class Docs extends CI_Controller {
 
     // If an index page at guide/ or guide/tech or guide/general
     if($page == 'index') {
+      // Cannot edit index pages
+      unset($data['edit_links']['edit']);
       $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
       $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
       $data['content'] = $this->load->view('pages/guideindex', $data, TRUE);
