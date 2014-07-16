@@ -8,10 +8,11 @@
       <?php endif; ?>
 
     <div class="form-signin">
-      <?php echo form_open('login'); ?>
+      <?php echo form_open('login/login_user'); ?>
       <h2 class="form-signin-heading">Please sign in</h2>
 
-      <input id="username" name="username" type="text" autofocus="" required="" placeholder="Username" class="form-control">
+
+       <input id="username" name="username" type="text" autofocus="" required="" placeholder="Username" class="form-control">
       <br>
       <input id="password" name="password" type="password" required="" placeholder="Password" class="form-control">
       <br>

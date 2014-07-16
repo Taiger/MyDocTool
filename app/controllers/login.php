@@ -70,14 +70,14 @@ class Login extends CI_Controller {
       $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
       if ($this->form_validation->run() == FALSE) {
-        $page = 'registeration';
+        $page = 'registration';
         $data['current_page'] = $page;
         $data['body_class'] = $page . '-page';
         $data['body_class'] .= ' form-page';
         $data['title'] = ucfirst($page); // Capitalize the first letter
 
         // Display Registration form
-        $data['content'] = $this->load->view('login', $data, TRUE);
+        $data['content'] = $this->load->view('pages/register', $data, TRUE);
         $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
         $this->load->view('templates/htmltpl', $data);
       } else {
@@ -94,7 +94,7 @@ class Login extends CI_Controller {
       $data['isLoggedIn'] = $this->session->userdata('isLoggedIn');
 
       // Display
-      $data['content'] = $this->load->view('loginsuccess', $data, TRUE);
+      $data['content'] = $this->load->view('pages/loginsuccess', $data, TRUE);
       $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
       $this->load->view('templates/htmltpl', $data);
     }

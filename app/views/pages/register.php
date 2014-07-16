@@ -4,6 +4,7 @@
     <div class="form-signin">
       <?php echo form_open('login/register_user'); ?>
       <h2 class="form-signin-heading">Register</h2>
+      <h3>DISABLED FOR NOW.</h3>
 
       <input type="text" autofocus="" required="" placeholder="Username" class="form-control">
       <br>
@@ -13,7 +14,7 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label> -->
 
-      <button type="submit" value="Submit" class="btn btn-md btn-primary">Register</button>
+      <button type="submit" value="Submit" class="btn btn-md btn-primary disabled">Register</button>
 
       <?php echo form_close(); ?>
     </div>

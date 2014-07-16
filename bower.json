@@ -1,0 +1,27 @@
+{
+  "name": "styleguide",
+  "version": "0.1.0",
+  "authors": [
+    "Tai Travis <tai@newsparkdesigns.com>"
+  ],
+  "description": "Styleguide and documentation site",
+  "main": "bower.json",
+  "license": "Restricted",
+  "homepage": "annenbergfoudation.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-accessibility-plugin": "https://github.com/paypal/bootstrap-accessibility-plugin.git#~1.0.2",
+    "bootstrap": "~3.2.0",
+    "ckeditor": "~4.4.3",
+    "less.js": "~1.7.3",
+    "prism": "gh-pages"
+  }
+}
