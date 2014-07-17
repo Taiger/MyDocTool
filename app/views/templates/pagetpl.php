@@ -84,8 +84,8 @@
 
   <footer class="footer sg-footer">
     <ul class="nav nav-pills pull-right">
-      <?php if(isset($edit_links) && $isLoggedIn) {
-        foreach($edit_links as $name => $link) {
+      <?php if(isset($admin_links) && $isLoggedIn) {
+        foreach($admin_links as $name => $link) {
           echo '<li><a href="'.$link.'">'.ucwords(preg_replace('/_/i', ' ', $name)).'</a></li>';
         } } ?>
       <li>

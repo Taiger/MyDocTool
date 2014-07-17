@@ -41,7 +41,6 @@ class Login extends CI_Controller {
     }
 
     function login_user() {
-      //die('login_user');
         // Create an instance of the user model
         $this->load->model('user_model');
 

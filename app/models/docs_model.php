@@ -5,11 +5,6 @@ class docs_model extends CI_Model {
     $this->load->helper('file');
   }*/
 
-  // MENU
-
-  public function index() {
-    //
-  }
   /*
    * Accepts $content as clean string, $filename as 'my_file_name.html' and optional $type
    * If valid returns filename and path if valid as a string message.

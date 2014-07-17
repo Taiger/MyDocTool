@@ -12,23 +12,13 @@ class Docs extends CI_Controller {
     // Type could be third url
 
     // Defaults
-    $data['current_page'] = $page;
-    $data['body_class'] = $page . '-page';
-    $data['title'] = ucfirst($page);
-    $data['isLoggedIn'] = $this->session->userdata('isLoggedIn');
-    $data['isAdmin'] = $this->session->userdata('isAdmin');
-    $data['edit_links'] = array();
-    $data['edit_links']['edit'] = 'edit'. '/' .$page;
-
-    // Code Ignitor Help Link
-    if($data['isAdmin']){
-      $data['edit_links']['styleguide_dev_help'] = '/user_guide';
-    }
+    $data = $this->wrapper_model->pageDefaults(array(), $page);
+    $data['admin_links']['edit'] = 'edit'. '/' .$page;
 
     // If an index page at guide/ or guide/tech or guide/general
     if($page == 'index') {
       // Cannot edit index pages
-      unset($data['edit_links']['edit']);
+      unset($data['admin_links']['edit']);
       $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
       $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
       $data['content'] = $this->load->view('pages/guideindex', $data, TRUE);
@@ -48,13 +38,15 @@ class Docs extends CI_Controller {
     $this->load->library('form_validation');
 
     $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span>
+      <button type="button" class="close" data-dismiss="alert">
       <span class="sr-only">Close</span></button>', '</div>');
     $this->form_validation->set_rules('text', 'text', 'required');
     $this->form_validation->set_rules('title', 'Title', 'callback_valid_filename_check'); // callback below
 
     // Run form validation
     if ($this->form_validation->run() === FALSE) {
+        // Defaults
+      $data = $this->wrapper_model->pageDefaults(array(), $page);
       $data['title'] = '<br/>Add to the Information Directory';
       $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
 
@@ -122,12 +114,17 @@ class Docs extends CI_Controller {
   public function editdoc($page) {
     if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
       $this->load->library('form_validation');
+
+      $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert">
+      <span class="sr-only">Close</span></button>', '</div>');
+
+
       /*$content, $filename, $type = 'general'*/
       // $this->docs_model->listFilesAsLinks('general');
       // $this->docs_model->getItem('filename');
       //
-      $data = array();
-
+      $data = $this->wrapper_model->pageDefaults(array(), 'editdoc');
       // ensure the filename is safe
       $item = $this->security->xss_clean($page);
       // populate the form textarea
