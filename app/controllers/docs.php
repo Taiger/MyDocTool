@@ -63,11 +63,13 @@ class Docs extends CI_Controller {
       //$data['content'] = $this->docs_model->create($page, $type);
 
     // Grab the email and password from the form POST
-      $title = $this->input->post('title');
+      // Code Ignitor does not clean these by default
+      $title = $this->security->xss_clean($this->input->post('title'));
       $text  = $this->security->xss_clean($this->input->post('text'));
       $type  = $this->security->xss_clean($this->input->post('type'));
 
-      $thefile = preg_replace('/\s/i', '_', strtolower($this->security->sanitize_filename($title)));
+      // CI function replaces spaces with dashes and makes lowercase
+      $thefile = url_title(strtolower($this->security->sanitize_filename($title)), '-', TRUE);
       $filename = $thefile . '.html';
 
     $textcontent = $text; // RAW INPUT

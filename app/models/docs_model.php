@@ -83,7 +83,7 @@ class docs_model extends CI_Model {
     sort($files);
     foreach ($files as $file){
       $filename = preg_replace("/\.html$/i", "", $file); 
-      $title = preg_replace("/\_/i", " ", $filename);
+      $title = preg_replace("/\-/i", " ", $filename);
       $title = ucwords($title);
       $result .= '<li><a href="'.$filename.'">'.$title.'</a></li>' . "\n";
     }

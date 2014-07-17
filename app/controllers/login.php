@@ -46,8 +46,8 @@ class Login extends CI_Controller {
         $this->load->model('user_model');
 
         // Grab the email and password from the form POST
-        $username = $this->input->post('username');
-        $pass  = $this->input->post('password');
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $pass  = $this->security->xss_clean($this->input->post('password'));
 
         //Ensure values exist for username and pass, and validate the user's credentials
         if( ($username && $pass) && ($this->user_model->validate_user($username,$pass) == true)) {
