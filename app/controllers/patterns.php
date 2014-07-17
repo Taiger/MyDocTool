@@ -16,6 +16,13 @@ class Patterns extends CI_Controller {
   $data['body_class'] = $page . '-page';
   $data['title'] = ucfirst($page);
   $data['isLoggedIn'] = $this->session->userdata('isLoggedIn');
+  $data['isAdmin'] = $this->session->userdata('isAdmin');
+  $data['edit_links'] = array();
+  //$data['edit_links']['edit'] = 'edit'. '/' .$page;
+  // Code Ignitor Help Link
+  if($data['isAdmin']){
+    $data['edit_links']['styleguide_dev_help'] = '/user_guide';
+  }
 
 
   // Pattern Links

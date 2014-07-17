@@ -46,13 +46,15 @@ $route['register'] = 'login/register_user';
 
 // DOCS
 $route['guide'] = 'docs/view/index';
-$route['guide/create'] = 'docs/create';
-$route['guide/edit/(:any)'] = 'docs/edit/$1';
-$route['guide/delete/(:any)'] = 'docs/delete/$1';
+$route['guide/create'] = 'docs/createdoc';
+$route['guide/createdoc'] = 'docs/createdoc';
+$route['guide/editdoc'] = 'docs/editdoc';
+$route['guide/edit/(:any)'] = 'docs/editdoc/$1';
+$route['guide/delete/(:any)'] = 'docs/deletedoc/$1';
 $route['guide/general'] = 'docs/view/index';
 $route['guide/tech'] = 'docs/view/index';
+$route['guide/(:any)/(:any)'] = 'docs/view/$2/$1';
 $route['guide/(:any)'] = 'docs/view/$1';
-//$route['guide/(:any)/(:any)'] = 'docs/view/$1/$2'; //(not working)NOT NEEDED?
 
 // PATTERNS
 $route['(:any)'] = 'patterns/view/$1';

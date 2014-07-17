@@ -11,23 +11,36 @@ class Docs_model extends CI_Model {
     //
   }
   public function create($content, $filename, $type = 'general') {
-    if ( ! write_file('/docs/' . $type . '/' . $filename . '.html', $content)) {
-      return FALSE;
-    }
-    else {
-      return TRUE;
+    // Check for session
+    if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
+      /*$content, $filename, $type = 'general'*/
+      if ( ! write_file('/docs/' . $type . '/' . $filename, $content)) {
+        return FALSE;
+      } else {
+        return TRUE;
+      }    
+    } else {
+      redirect('/login');
     }
   }
   public function getItem($item, $type = 'any') {
     $files = array(); // in case multiple matches
+    $allfiles = array();
     $filename = $item . '.html';
+    $location = 'docs/';
 
-    // any type? or specific type only (like Tech or General)
-    if($type == 'any'){
-      $allfiles = get_filenames('docs', TRUE);
-    } else {
-      $allfiles = get_filenames('docs/' . $type, TRUE);
+    // if specific type only (like Tech or General)
+    if($type !== 'any'){
+      $location .= $type . '/';
     }
+    
+    $allfiles = get_filenames($location, TRUE);
+    
+    // if no files are found return false
+    if(empty($allfiles)){
+      return 'Sorry, no files found of type '.$type.'.';
+    }
+
     // list all child files
     foreach ($allfiles as $filepath) {
       if(preg_match('/'.$filename.'/i', $filepath)){
@@ -35,7 +48,7 @@ class Docs_model extends CI_Model {
       }
     }
     if(empty($files)){
-      return 'I am not finding ' . $filename . '. Sorry about that.';
+      return 'I am not finding ' .$filename. '. Sorry about that.';
     } else {
       // Return first match
       return htmlspecialchars_decode(read_file($files[0]));
