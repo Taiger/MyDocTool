@@ -1,6 +1,6 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-  <h2><?php print $title; ?></h2>
+  <h2><?php //print $title; ?></h2>
 
   <?php echo validation_errors(); ?>
 
@@ -10,7 +10,7 @@
   <h2><?php if(isset($editing_message)) echo $editing_message; ?></h2>
 
 
-  <textarea id="ckedit1" class="form-control" name="text" placeholder="Content" value="<?php set_value('text'); ?>" ></textarea>
+  <textarea id="ckedit1" class="form-control" name="text" placeholder="Content" ><?php if(isset($form_default_text)) echo $form_default_text; ?></textarea>
 
   <br />
 

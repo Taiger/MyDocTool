@@ -46,12 +46,16 @@ class Docs extends CI_Controller {
   public function createdoc() {
     $this->load->helper('form');
     $this->load->library('form_validation');
-    $data['title'] = '<br/>Add to the Information Directory';
 
+    $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span></button>', '</div>');
     $this->form_validation->set_rules('text', 'text', 'required');
     $this->form_validation->set_rules('title', 'Title', 'callback_valid_filename_check'); // callback below
 
+    // Run form validation
     if ($this->form_validation->run() === FALSE) {
+      $data['title'] = '<br/>Add to the Information Directory';
       $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
 
       // Create Form
@@ -60,16 +64,16 @@ class Docs extends CI_Controller {
         $data['form_default_text'] = $this->security->xss_clean($this->input->post('text'));
       }
 
-      $data['content'] = $this->load->view('pages/createdoc', $data, TRUE);
+      $data['content'] = $this->load->view('pages/form_doc_create', $data, TRUE);
     // Show
       $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
       $this->load->view('templates/htmltpl', $data);
     } else {
 
-      //$data['content'] = $this->docs_model->create($page, $type);
+      // Valid POST
 
-    // Grab the email and password from the form POST
-      // Code Ignitor does not clean these by default
+      // Grab the email and password from the form POST
+      // Code Ignitor does not clean post data by default.
       $title = $this->security->xss_clean($this->input->post('title'));
       $text  = $this->security->xss_clean($this->input->post('text'));
       $type  = $this->security->xss_clean($this->input->post('type'));
@@ -78,33 +82,36 @@ class Docs extends CI_Controller {
       $thefile = url_title(strtolower($this->security->sanitize_filename($title)), '-', TRUE);
       $filename = $thefile . '.html';
 
-    $textcontent = $text; // RAW INPUT
 
-    // Save
-    $saved = $this->docs_model->create($textcontent, $filename, $type);
-    if($saved) {
-        // If saved
-      // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
-     redirect('/guide/' . $type . '/' . $thefile);
+      // Try to save
+      $saved = $this->docs_model->createItem($text, $filename, $type);
+      if($saved) {
+          // If saved
+        // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
+        // Just redirect to created page
+       redirect('/guide/' . $type . '/' . $thefile);
 
-   } else {
+      } else {
         // Otherwise show the login screen with an error message.
         //redirect('/guide');
-      echo 'Not able to create ' . $filename . '. It may be permissions related.';
-    }
+        echo 'Not able to create ' . $filename . '. It may be permissions related.';
+      }
   }
 }
-  public function valid_filename_check($str) {
+  public function valid_filename_check($thisname) {
     $invalid_filenames = array(
       'guide', 'general', 'tech',
       'index', 'create', 'createdoc', 'edit', 'editdoc', 'deletedoc',
       );
 
-    if (in_array($str, $invalid_filenames))
-    {
+    if (in_array($thisname, $invalid_filenames)) {
       $this->form_validation->set_message('valid_filename_check', '%s will not work as a path. Please try something else.');
       return FALSE;
-    } elseif(empty($str)) {
+    } elseif($exists = $this->docs_model->itemExists($thisname)) {
+      // doc already exists
+      $this->form_validation->set_message('valid_filename_check', '%s will not work as a path. Please try something else. <br>' . $exists); 
+      return FALSE;
+    } elseif(empty($thisname)) {
       $this->form_validation->set_message('valid_filename_check', 'Oops, the title field is empty.');
       return FALSE;
     }
@@ -114,13 +121,24 @@ class Docs extends CI_Controller {
   }
   public function editdoc($page) {
     if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
+      $this->load->library('form_validation');
       /*$content, $filename, $type = 'general'*/
-      // $this->docs_model->listFilesAsLinks('general')
+      // $this->docs_model->listFilesAsLinks('general');
+      // $this->docs_model->getItem('filename');
+      //
       $data = array();
 
-    // Show
-    $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
-    $this->load->view('templates/htmltpl', $data);
+      // ensure the filename is safe
+      $item = $this->security->xss_clean($page);
+      // populate the form textarea
+      $data['form_default_text'] = $this->docs_model->getItem($item);
+      
+      // Form
+      $data['content'] = $this->load->view('pages/form_doc_edit', $data, TRUE);
+
+      // Show
+      $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
+      $this->load->view('templates/htmltpl', $data);
 
     } else {
       redirect('/login');
