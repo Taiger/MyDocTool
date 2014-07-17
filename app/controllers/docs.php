@@ -42,22 +42,28 @@ class Docs extends CI_Controller {
     $this->load->view('templates/htmltpl', $data);
 
   }
+
   public function createdoc() {
     $this->load->helper('form');
     $this->load->library('form_validation');
     $data['title'] = '<br/>Add to the Information Directory';
 
-    $this->form_validation->set_rules('title', 'Title', 'required');
     $this->form_validation->set_rules('text', 'text', 'required');
+    $this->form_validation->set_rules('title', 'Title', 'callback_valid_filename_check'); // callback below
 
     if ($this->form_validation->run() === FALSE) {
-    $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
+      $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
 
-    // Create Form
-    $data['content'] = $this->load->view('pages/createdoc', $data, TRUE);
+      // Create Form
+      if($this->input->post('text')){
+        // make sure to repopulate the form textarea after an error (from the callback)
+        $data['form_default_text'] = $this->security->xss_clean($this->input->post('text'));
+      }
+
+      $data['content'] = $this->load->view('pages/createdoc', $data, TRUE);
     // Show
-    $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
-    $this->load->view('templates/htmltpl', $data);
+      $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
+      $this->load->view('templates/htmltpl', $data);
     } else {
 
       //$data['content'] = $this->docs_model->create($page, $type);
@@ -84,10 +90,28 @@ class Docs extends CI_Controller {
    } else {
         // Otherwise show the login screen with an error message.
         //redirect('/guide');
-    echo 'Not able to create ' . $filename . '. It may be permissions related.';
+      echo 'Not able to create ' . $filename . '. It may be permissions related.';
+    }
   }
 }
-}
+  public function valid_filename_check($str) {
+    $invalid_filenames = array(
+      'guide', 'general', 'tech',
+      'index', 'create', 'createdoc', 'edit', 'editdoc', 'deletedoc',
+      );
+
+    if (in_array($str, $invalid_filenames))
+    {
+      $this->form_validation->set_message('valid_filename_check', '%s will not work as a path. Please try something else.');
+      return FALSE;
+    } elseif(empty($str)) {
+      $this->form_validation->set_message('valid_filename_check', 'Oops, the title field is empty.');
+      return FALSE;
+    }
+     else {
+      return TRUE;
+    }
+  }
   public function editdoc($page) {
     if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
       /*$content, $filename, $type = 'general'*/

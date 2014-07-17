@@ -2,7 +2,14 @@
     <div class="col-md-6 col-md-offset-3">
 <h2><?php print $title; ?></h2>
 
-<?php echo validation_errors(); ?>
+
+<?php if(validation_errors()): ?>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <?php echo validation_errors(); ?>
+  </div>
+<?php endif; ?>
+
 
 <?php echo form_open('guide/createdoc', array('class' => 'sg-guide-createnew')); ?>
 
@@ -23,7 +30,7 @@
 
   <input class="form-control" type="input" id="title" name="title" autofocus placeholder="Title" value="<?php set_value('title'); ?>" /><br />
 
-  <textarea id="ckedit1" class="form-control" id="text" name="text" placeholder="Content" value="<?php set_value('text'); ?>" ></textarea><br />
+  <textarea id="ckedit1" class="form-control" id="text" name="text" placeholder="Content" ><?php if(isset($form_default_text)) echo $form_default_text; ?></textarea><br />
 
   <input type="submit" name="submit" value="Create New Doc" class="btn btn-lg btn-primary btn-block" />
 
