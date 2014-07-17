@@ -4,17 +4,17 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('guide/create', array('class' => 'sg-guide-createnew')); ?>
+<?php echo form_open('guide/createdoc', array('class' => 'sg-guide-createnew')); ?>
 
 <div class="control-group">
-  <label for="radios" class="control-label">Category: </label>
+  <label for="type" class="control-label">Category: </label>
   <div class="form-control">
-    <label for="radios-0" class="radio radio-inline">
-      <input type="radio" checked="checked" value="general" id="radios-0" name="radios">
+    <label for="type-0" class="radio radio-inline">
+      <input type="radio" checked="checked" value="general" id="type-0" name="type">
       General
     </label>
-    <label for="radios-1" class="radio radio-inline">
-      <input type="radio" value="tech" id="radios-1" name="radios">
+    <label for="type-1" class="radio radio-inline">
+      <input type="radio" value="tech" id="type-1" name="type">
       Tech
     </label>
   </div>

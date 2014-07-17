@@ -64,19 +64,20 @@ class Docs extends CI_Controller {
 
     // Grab the email and password from the form POST
       $title = $this->input->post('title');
-      $text  = $this->input->post('text');
+      $text  = $this->security->xss_clean($this->input->post('text'));
+      $type  = $this->security->xss_clean($this->input->post('type'));
 
-      $filename = preg_replace('/\s/i', '_', strtolower($this->security->sanitize_filename($title))) . '.html';
+      $thefile = preg_replace('/\s/i', '_', strtolower($this->security->sanitize_filename($title)));
+      $filename = $thefile . '.html';
 
     $textcontent = $text; // RAW INPUT
-    $type = 'general'; // DEFAULT // TODO SUPPORT BOTH TYPES
 
     // Save
     $saved = $this->docs_model->create($textcontent, $filename, $type);
-    if($saved === TRUE) {
+    if($saved) {
         // If saved
       // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
-     redirect('/guide/' . $filename);
+     redirect('/guide/' . $type . '/' . $thefile);
 
    } else {
         // Otherwise show the login screen with an error message.
