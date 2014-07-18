@@ -7,7 +7,11 @@ class Docs extends CI_Controller {
     parent::__construct();
     $this->load->model('docs_model');
   }
-
+  /*
+   * Accepts $page as string and optional $type as string 
+   * If $page == index returns doc index page
+   * Otherwise returns page loaded with html
+   */
   public function view($page = 'index', $type = 'any') {
     // Type could be third url param
 
@@ -30,7 +34,12 @@ class Docs extends CI_Controller {
     $this->load->view('templates/htmltpl', $data);
 
   }
-  // Create New Documentation Page Form
+  /*
+   * -Create New Documentation Page Form
+   * Accepts no params. Created new documentation page. If not logged in, redirects to login page.
+   * If Doc is created redirects to newly created doc
+   * Otherwise returns an error message
+   */
   public function createdoc() {
         // Check for session
     if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
@@ -82,9 +91,8 @@ class Docs extends CI_Controller {
        redirect('/guide/' . $type . '/' . $thefile);
 
      } else {
-        // Otherwise show the login screen with an error message.
-        //redirect('/guide');
-      echo 'Not able to create ' . $filename . '. It may be permissions related.';
+        // Permission issue
+      echo '<p>Not able to create ' . $filename . '. It may be permissions related. Use the back button on your browser and save your changes to a local file.</p>';
     }
   }
   } else {
@@ -93,6 +101,7 @@ class Docs extends CI_Controller {
     }
 }
 // Callback for creating a new documentation page
+// Accepts name to check for and returns TRUE or FALSE
 public function valid_filename_check($thisname) {
   // Check for filenames that either exist as a path or are used another way.
   $disallowed_filenames = array(
@@ -118,7 +127,13 @@ public function valid_filename_check($thisname) {
     return TRUE;
   }
 }
-// Edit a documentation html page
+
+/*
+* -Edit a documentation html page
+* Accepts $file_to_edit as 'my_file'. Redirects to login page if not logged in.
+* If Doc is edited redirects to newly created doc
+* Otherwise returns an error message
+*/
 public function editdoc($file_to_edit) {
     // Loggedin admin?
   if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
@@ -131,6 +146,7 @@ public function editdoc($file_to_edit) {
       // file exists?
     $exists = $this->docs_model->itemExists($item);
     if($exists == FALSE) {
+      // No file to edit
       show_404();
     }
  
@@ -169,9 +185,10 @@ public function editdoc($file_to_edit) {
        redirect('/guide/' . $type . '/' . $item);
 
      } else {
-        // Otherwise show the login screen with an error message.
-        //redirect('/guide');
-       echo 'Not able to create ' . $filename . '. It may be permissions related.. or something else..';
+        // Otherwise show message with message how to retain changes.
+        //link back to edit page will erase changes?
+        // <a class="btn btn-small" href="'.base_path().'guide/edit/' . $item.'">Return to edit page</a>
+       echo '<p>Not able to edit ' . $filename . '. It may be permissions related. Use the back button on your browser and save your changes to a local file.</p>';
     }
   }
 

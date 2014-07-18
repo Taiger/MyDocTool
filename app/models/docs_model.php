@@ -1,10 +1,6 @@
 <?php
 class docs_model extends CI_Model {
 
-/*  public function __construct() {
-    $this->load->helper('file');
-  }*/
-
   /*
    * Accepts $content as clean string, $filename as 'my_file_name.html' and optional $type
    * If created returns TRUE
@@ -22,6 +18,11 @@ class docs_model extends CI_Model {
         return TRUE;
       }    
   }
+  /*
+   * Accepts $item as $filename like 'my_file_name' and optional $type
+   * If found returns html content of first html file found
+   * Otherwise returns error message for display
+   */
   public function getItem($item, $type = 'any') {
     $files = array(); // in case multiple matches
     $allfiles = array();
@@ -77,7 +78,11 @@ class docs_model extends CI_Model {
     // no docs html file with that name
     return FALSE;
   }
-
+  /*
+   * Accepts $item like 'my_file_name'
+   * If deleted returns message string
+   * Otherwise returns FALSE
+   */
   public function itemDelete($item) {
     $exists = $this->itemExists($item);
     if($exists){
@@ -87,8 +92,11 @@ class docs_model extends CI_Model {
       return FALSE;
     }
   }
-
-  // Display title of each doc file as a link
+  /*
+   * Accepts $type as directories under docs directory
+   * Returns html list with filename and link to file
+   * Otherwise returns html list with message not found
+   */
   public function listFilesAsLinks($type = 'general') {
     $result = '';
     $files = array();
