@@ -13,7 +13,7 @@ class Docs extends CI_Controller {
 
     // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), $page);
-    $data['admin_links']['edit'] = 'edit'. '/' .$page;
+    $data['admin_links']['edit'] = $data['base_url'].'guide/edit/' .$page;
 
     // If an index page at guide/ or guide/tech or guide/general
     if($page == 'index') {
@@ -76,8 +76,8 @@ class Docs extends CI_Controller {
 
 
       // Try to save
-      $saved = $this->docs_model->createItem($text, $filename, $type);
-      if($saved) {
+      //$saved = $this->docs_model->createItem($text, $filename, $type);
+      if($this->docs_model->createItem($text, $filename, $type)) {
           // If saved
         // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
         // Just redirect to created page
@@ -151,18 +151,19 @@ public function editdoc($file_to_edit) {
         //Save changes
       $text  = $this->security->xss_clean($this->input->post('text'));
       $filename = $item . '.html';
+
       // Try to save
       $saved = $this->docs_model->createItem($text, $filename, $type);
-      if($saved) {
+      if($saved == TRUE) {
         // If saved
         // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
         // Just redirect to created page
-       redirect('/guide/' . $type . '/' . $thefile);
+       redirect('/guide/' . $type . '/' . $item);
 
      } else {
         // Otherwise show the login screen with an error message.
         //redirect('/guide');
-       echo 'Not able to create ' . $filename . '. It may be permissions related.';
+       echo 'Not able to create ' . $filename . '. It may be permissions related.. or something else..';
     }
   }
 
