@@ -22,14 +22,17 @@ class Docs extends CI_Controller {
     if($page == 'index') {
       $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
       $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
-      $data['content'] = $this->load->view('pages/guideindex', $data, TRUE);
+      // Load in nodetpl
+      $data['nodetpl'] = $this->load->view('pages/guideindex', $data, TRUE);
     } else {
-      // Load a single page
       $data['admin_links']['edit'] = $data['base_url'].'guide/edit/' .$page;
-      $data['content'] = $this->docs_model->getItem($page, $type);
+      $data['admin_links']['delete'] = $data['base_url'].'guide/delete/' .$page;
+      // Load a single page in a nodetpl
+      $data['nodetpl'] = $this->docs_model->getItem($page, $type);
     }
     
-    // Show
+    // Show in nodetpl template
+    $data['content'] = $this->load->view('templates/node12tpl', $data, TRUE);
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);
 
@@ -197,20 +200,48 @@ public function editdoc($file_to_edit) {
   redirect('/login');
 }
 }
+/*
+* -Delete a documentation html page
+* Accepts $file_to_edit as 'my_file'. Redirects to login page if not logged in.
+* If Doc is edited redirects to newly created doc
+* Otherwise returns an error message
+*/
 public function deletedoc($file_to_delete) {
-  // Defaults
-  $data = $this->wrapper_model->pageDefaults(array(), 'editdoc');
-  $data['content'] = '<h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a href="'.base_path() . '/guide/deletedoc_yes/'.$file_to_delete.'"> Yes </a><a href=""> No </a>';
-  // Show
-  $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
-  $this->load->view('templates/htmltpl', $data);
-}
-public function deletedoc_yes($file_to_delete) {
-  $deleted = itemDelete($file_to_delete);
-  if($deleted){
-    echo $deleted;
+    // Loggedin admin?
+  if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
+    // Defaults
+    $data = $this->wrapper_model->pageDefaults(array(), 'deletedoc');
+    $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3"><h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a class="btn btn-sm btn-primary" href="'.base_url('/guide/deletedoc_yes/'.$file_to_delete).'"> Yes </a> <a class="btn btn-sm btn-default" href="'.base_url('/guide/'.$file_to_delete).'"> No </a></div></div>';
+    // Show
+    $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
+    $this->load->view('templates/htmltpl', $data);
   } else {
-    echo 'Hmm, I could not delete '. $file_to_delete;
+    // not logged in
+    redirect('/login');
   }
 }
+/*
+ * Directly delete the file. Only ran from link in deletedoc message above.
+ */
+public function deletedoc_yes($file_to_delete) {
+    // Loggedin admin?
+  if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
+    $data = $this->wrapper_model->pageDefaults(array(), 'deletedoc');
+    // Try to delete the file
+    $deleted = $this->docs_model->itemDelete($file_to_delete);
+    if($deleted){
+      $data['content'] =  $deleted;
+    } else {
+      $data['content'] = 'Hmm, I could not delete '. $file_to_delete . ' Either its a permissions issue or it does not exist.';
+    }
+    $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3">'.$data['content'].'</div></div>';
+    // Show
+    $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
+    $this->load->view('templates/htmltpl', $data);
+  } else {
+    // not logged in
+    redirect('/login');
+  }
+}
+
 }

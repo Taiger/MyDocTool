@@ -6831,7 +6831,7 @@ All classes should be namespaced off of "sg-".
   padding-bottom: 24px;
 }
 .sg-footer {
-  margin: 0;
+  margin: 40px 0 0 0;
   padding: 0;
   background-color: #eee;
   border-top: 1px solid #e5e5e5;

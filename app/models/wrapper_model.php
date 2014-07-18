@@ -28,6 +28,7 @@
 
       // Code Ignitor Help Link
       if($data['isAdmin']){
+        $data['admin_links']['create_doc'] = $data['base_url'].'guide/create';
         $data['admin_links']['codeignitor_help'] = '/user_guide';
       }
 
