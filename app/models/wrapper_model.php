@@ -17,6 +17,8 @@
       if(empty($data)){
         $data = array();
       }
+
+      $data['base_url'] = base_url();
       $data['current_page'] = $page;
       $data['body_class'] = $page . '-page';
       $data['title'] = ucfirst($page);

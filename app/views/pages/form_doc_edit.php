@@ -2,12 +2,13 @@
     <div class="col-md-12">
   <h2><?php //print $title; ?></h2>
 
+  <h1>Edit Page</h1>
+  <div><em>Now editing file <?php echo $file_to_edit; ?>.html </em><a class="" href="<?php echo $base_url .'guide/'. $file_to_edit; ?>">cancel</a></div>
+  <hr>
+
   <?php echo validation_errors(); ?>
 
-  <?php echo form_open('guide/editdoc', array('class' => 'sg-guide-edit')); ?>
-
-
-  <h2><?php if(isset($editing_message)) echo $editing_message; ?></h2>
+  <?php echo form_open('guide/edit/' . $file_to_edit, array('class' => 'sg-guide-edit')); ?>
 
 
   <textarea id="ckedit1" class="form-control" name="text" placeholder="Content" ><?php if(isset($form_default_text)) echo $form_default_text; ?></textarea>

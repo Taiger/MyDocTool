@@ -62,17 +62,21 @@ class docs_model extends CI_Model {
   }
   /*
    * Accepts $item like 'my_file_name'
-   * If valid returns filename and path if valid as a string message.
+   * If valid returns array containing already exists message and type(category)
    * Otherwise returns FALSE
    */
   public function itemExists($item) {
+    $result = array();
     $filename = $item . '.html';
     $location = 'docs/';
     $allfiles = get_filenames($location, TRUE);
     foreach ($allfiles as $filepath) {
       if(preg_match('/'.$filename.'/i', $filepath)){
         $filepath = preg_split('/docs/i', $filepath);
-        return 'Filename already exists at docs' . $filepath[1] . '<br>Titles must be unique regardless of category.';
+        $loc = explode('/', $filepath[1]);
+        $result['message'] = 'Filename already exists at docs' . $filepath[1] . '<br>Titles must be unique regardless of category.';
+        $result['type'] = $loc[1];
+        return $result;
       }
     }
     // no docs html file with that name
