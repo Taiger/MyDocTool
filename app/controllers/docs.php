@@ -46,7 +46,7 @@ class Docs extends CI_Controller {
     // Run form validation
     if ($this->form_validation->run() === FALSE) {
         // Defaults
-      $data = $this->wrapper_model->pageDefaults(array(), $page);
+      $data = $this->wrapper_model->pageDefaults(array(), 'createdoc');
       $data['title'] = '<br/>Add to the Information Directory';
       $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
 
@@ -171,10 +171,20 @@ public function editdoc($file_to_edit) {
   redirect('/login');
 }
 }
-public function deletedoc($page) {
-
-
-
+public function deletedoc($file_to_delete) {
+  // Defaults
+  $data = $this->wrapper_model->pageDefaults(array(), 'editdoc');
+  $data['content'] = '<h3>Are you sure you want to delete ' . $file_to_delete . '.html permanitely? </h3><a href=""> Yes </a><a href=""> No </a>';
+  // Show
+  $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
+  $this->load->view('templates/htmltpl', $data);
 }
-
+public function deletedoc_yes($file_to_delete) {
+  $deleted = itemDelete($file_to_delete);
+  if($deleted){
+    echo $deleted;
+  } else {
+    echo 'Hmm, I could not delete '. $file_to_delete;
+  }
+}
 }

@@ -51,6 +51,7 @@ $route['guide/createdoc'] = 'docs/createdoc';
 $route['guide/editdoc'] = 'docs/editdoc';
 $route['guide/edit/(:any)'] = 'docs/editdoc/$1';
 $route['guide/delete/(:any)'] = 'docs/deletedoc/$1';
+$route['guide/deletedoc_yes/(:any)'] = 'docs/deletedoc_yes/$1';
 $route['guide/general'] = 'docs/view/index';
 $route['guide/tech'] = 'docs/view/index';
 $route['guide/(:any)/(:any)'] = 'docs/view/$2/$1';

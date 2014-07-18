@@ -70,24 +70,30 @@ class docs_model extends CI_Model {
     $filename = $item . '.html';
     $location = 'docs/';
     $allfiles = get_filenames($location, TRUE);
-    foreach ($allfiles as $filepath) {
-      if(preg_match('/'.$filename.'/i', $filepath)){
-        $filepath = preg_split('/docs/i', $filepath);
+    foreach ($allfiles as $fullpath) {
+      if(preg_match('/'.$filename.'/i', $fullpath)){
+        $filepath = preg_split('/docs/i', $fullpath);
         $loc = explode('/', $filepath[1]);
         $result['message'] = 'Filename already exists at docs' . $filepath[1] . '<br>Titles must be unique regardless of category.';
         $result['type'] = $loc[1];
+        $result['fullpath'] = $fullpath;
         return $result;
       }
     }
     // no docs html file with that name
     return FALSE;
   }
-  public function update($item = 'ipsum', $type = 'any') {
-    //
+
+  public function itemDelete($item) {
+    $exists = $this->itemExists($item);
+    if($exists){
+      unlink($exists['fullpath']);
+      return 'Deleted '. $item;
+    } else {
+      return FALSE;
+    }
   }
-  public function delete($item = 'ipsum', $type = 'any') {
-    //
-  }
+
   // Display title of each doc file as a link
   public function listFilesAsLinks($type = 'general') {
     $result = '';
