@@ -7,12 +7,10 @@ class docs_model extends CI_Model {
 
   /*
    * Accepts $content as clean string, $filename as 'my_file_name.html' and optional $type
-   * If valid returns filename and path if valid as a string message.
+   * If created returns TRUE
    * Otherwise returns FALSE
    */
   public function createItem($content, $filename, $type = 'general') {
-    // Check for session
-    if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
       // only two types supported right now
       if($type != 'general' && $type != 'tech'){
         return FALSE;
@@ -23,10 +21,6 @@ class docs_model extends CI_Model {
       } else {
         return TRUE;
       }    
-    } else {
-      // not logged in or not admin
-      redirect('/login');
-    }
   }
   public function getItem($item, $type = 'any') {
     $files = array(); // in case multiple matches

@@ -9,21 +9,19 @@ class Docs extends CI_Controller {
   }
 
   public function view($page = 'index', $type = 'any') {
-    // Type could be third url
+    // Type could be third url param
 
     // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), $page);
-    $data['admin_links']['edit'] = $data['base_url'].'guide/edit/' .$page;
 
     // If an index page at guide/ or guide/tech or guide/general
     if($page == 'index') {
-      // Cannot edit index pages
-      unset($data['admin_links']['edit']);
       $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
       $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
       $data['content'] = $this->load->view('pages/guideindex', $data, TRUE);
     } else {
       // Load a single page
+      $data['admin_links']['edit'] = $data['base_url'].'guide/edit/' .$page;
       $data['content'] = $this->docs_model->getItem($page, $type);
     }
     
@@ -32,8 +30,10 @@ class Docs extends CI_Controller {
     $this->load->view('templates/htmltpl', $data);
 
   }
-
+  // Create New Documentation Page Form
   public function createdoc() {
+        // Check for session
+    if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
     $this->load->helper('form');
     $this->load->library('form_validation');
 
@@ -45,7 +45,7 @@ class Docs extends CI_Controller {
 
     // Run form validation
     if ($this->form_validation->run() === FALSE) {
-        // Defaults
+      // Defaults
       $data = $this->wrapper_model->pageDefaults(array(), 'createdoc');
       $data['title'] = '<br/>Add to the Information Directory';
       $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
@@ -56,14 +56,13 @@ class Docs extends CI_Controller {
         $data['form_default_text'] = $this->security->xss_clean($this->input->post('text'));
       }
 
+      // Show
       $data['content'] = $this->load->view('pages/form_doc_create', $data, TRUE);
-    // Show
       $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
       $this->load->view('templates/htmltpl', $data);
     } else {
 
       // Valid POST
-
       // Grab the email and password from the form POST
       // Code Ignitor does not clean post data by default.
       $title = $this->security->xss_clean($this->input->post('title'));
@@ -76,11 +75,10 @@ class Docs extends CI_Controller {
 
 
       // Try to save
-      //$saved = $this->docs_model->createItem($text, $filename, $type);
       if($this->docs_model->createItem($text, $filename, $type)) {
           // If saved
         // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
-        // Just redirect to created page
+        // Just redirect to newly created page
        redirect('/guide/' . $type . '/' . $thefile);
 
      } else {
@@ -89,28 +87,38 @@ class Docs extends CI_Controller {
       echo 'Not able to create ' . $filename . '. It may be permissions related.';
     }
   }
+  } else {
+      // not logged in or not admin
+      redirect('/login');
+    }
 }
+// Callback for creating a new documentation page
 public function valid_filename_check($thisname) {
-  $invalid_filenames = array(
+  // Check for filenames that either exist as a path or are used another way.
+  $disallowed_filenames = array(
     'guide', 'general', 'tech',
-    'index', 'create', 'createdoc', 'edit', 'editdoc', 'deletedoc',
+    'index', 'create', 'createdoc', 'edit', 'editdoc', 'deletedoc', 'deletedoc_yes',
+    'any',
     );
 
-  if (in_array($thisname, $invalid_filenames)) {
-    $this->form_validation->set_message('valid_filename_check', '%s will not work as a path. Please try something else.');
+  if (in_array($thisname, $disallowed_filenames)) {
+    // MESSAGE: try again
+    $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else.');
     return FALSE;
   } elseif($exists = $this->docs_model->itemExists($thisname)) {
-      // doc already exists
-    $this->form_validation->set_message('valid_filename_check', '%s will not work as a path. Please try something else. <br>' . $exists[0]); 
+    // MESSAGE: doc already exists
+    $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else. <br>' . $exists[0]); 
     return FALSE;
   } elseif(empty($thisname)) {
+    // MESSAGE: title field is empty
     $this->form_validation->set_message('valid_filename_check', 'Oops, the title field is empty.');
     return FALSE;
-  }
-  else {
+  } else {
+    // YES!
     return TRUE;
   }
 }
+// Edit a documentation html page
 public function editdoc($file_to_edit) {
     // Loggedin admin?
   if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
@@ -168,13 +176,14 @@ public function editdoc($file_to_edit) {
   }
 
 } else {
+  // not logged in
   redirect('/login');
 }
 }
 public function deletedoc($file_to_delete) {
   // Defaults
   $data = $this->wrapper_model->pageDefaults(array(), 'editdoc');
-  $data['content'] = '<h3>Are you sure you want to delete ' . $file_to_delete . '.html permanitely? </h3><a href=""> Yes </a><a href=""> No </a>';
+  $data['content'] = '<h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a href="'.base_path() . '/guide/deletedoc_yes/'.$file_to_delete.'"> Yes </a><a href=""> No </a>';
   // Show
   $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
   $this->load->view('templates/htmltpl', $data);
