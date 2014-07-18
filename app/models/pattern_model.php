@@ -1,9 +1,8 @@
-  <?php
-  class Pattern_model extends CI_Model {
-
-/*  public function __construct() {
-    $this->load->helper('file');
-  }*/
+<?php
+class Pattern_model extends CI_Model {
+    public function __construct() {
+      parent::__construct();
+    }
 
   // MENU
   // Display title of each pattern as a link

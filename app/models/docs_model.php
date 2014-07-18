@@ -1,6 +1,8 @@
 <?php
 class docs_model extends CI_Model {
-
+  public function __construct() {
+    parent::__construct();
+  }
   /*
    * Accepts $content as clean string, $filename as 'my_file_name.html' and optional $type
    * If created returns TRUE

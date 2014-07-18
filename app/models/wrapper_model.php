@@ -3,9 +3,14 @@
  * contains universal methods for building page elements
  */
   class wrapper_model extends CI_Model {
-      /*public function __construct() {
+      public function __construct() {
         parent::__construct();
-      }*/
+      }
+        /*        
+        // Methods are needed to generate menu items
+        $this->load->model('docs_model');
+        $this->load->model('patterns');*/
+
     // Build out $data variable that is used in page templates. Accepts
     public function pageDefaults($data = array(), $page = 'unknown') {
 
