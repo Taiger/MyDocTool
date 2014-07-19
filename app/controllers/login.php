@@ -10,7 +10,7 @@ http://ericterpstra.com/2013/03/a-sample-codeigniter-application-with-login-and-
 */
 class Login extends CI_Controller {
 
-  function index() {
+  public function index() {
 
       if( $this->session->userdata('isLoggedIn') ) {
           redirect('/');
@@ -19,28 +19,21 @@ class Login extends CI_Controller {
       }
   }
 
-  function show_login($show_error = false ) {
+  public function show_login($show_error = false ) {
 
+    $page = 'login';
+    // Defaults
+    $data = $this->wrapper_model->pageDefaults(array(), $page);
     $data['error'] = $show_error;
 
-    //print_r($this->session->all_userdata());
-
-    $this->load->helper(array('form', 'url'));
-
-      $page = 'login';
-      $data['current_page'] = $page;
-      $data['body_class'] = $page . '-page';
-      $data['body_class'] .= ' form-page';
-      $data['title'] = ucfirst($page); // Capitalize the first letter
-
-      // Display
-      $data['content'] = $this->load->view('pages/login', $data, TRUE);
-      $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
-      $this->load->view('templates/htmltpl', $data);
+    // Display
+    $data['content'] = $this->load->view('pages/login', $data, TRUE);
+    $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
+    $this->load->view('templates/htmltpl', $data);
      
     }
 
-    function login_user() {
+    public function login_user() {
         // Create an instance of the user model
         $this->load->model('user_model');
 
@@ -60,7 +53,7 @@ class Login extends CI_Controller {
     }
 
     // TODO finish adding registration (if needed)
-    function register_user() {
+    public function register_user() {
       $this->load->helper(array('form', 'url'));
       $this->load->library('form_validation');
 
@@ -70,10 +63,8 @@ class Login extends CI_Controller {
 
       if ($this->form_validation->run() == FALSE) {
         $page = 'registration';
-        $data['current_page'] = $page;
-        $data['body_class'] = $page . '-page';
-        $data['body_class'] .= ' form-page';
-        $data['title'] = ucfirst($page); // Capitalize the first letter
+        // Defaults
+        $data = $this->wrapper_model->pageDefaults(array(), $page);
 
         // Display Registration form
         $data['content'] = $this->load->view('pages/register', $data, TRUE);
@@ -84,13 +75,10 @@ class Login extends CI_Controller {
       }
     }
 
-    function login_success() {
+    public function login_success() {
       $page = 'successful';
-      $data['current_page'] = $page;
-      $data['body_class'] = $page . '-page';
-      $data['body_class'] .= ' form-page';
-      $data['title'] = ucfirst($page);
-      $data['isLoggedIn'] = $this->session->userdata('isLoggedIn');
+      // Defaults
+      $data = $this->wrapper_model->pageDefaults(array(), $page);
 
       // Display
       $data['content'] = $this->load->view('pages/loginsuccess', $data, TRUE);
@@ -98,12 +86,12 @@ class Login extends CI_Controller {
       $this->load->view('templates/htmltpl', $data);
     }
 
-    function logout_user() {
+    public function logout_user() {
       $this->session->sess_destroy();
       $this->index();
     }
 
-    function showphpinfo() {
+    public function showphpinfo() {
         echo phpinfo();
     }
 }

@@ -17,6 +17,7 @@ class Docs extends CI_Controller {
 
     // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), $page);
+    $data['menus']['docs'] = 'enabled';
 
     // If an index page at guide/ or guide/tech or guide/general
     if($page == 'index') {
@@ -59,6 +60,7 @@ class Docs extends CI_Controller {
     if ($this->form_validation->run() === FALSE) {
       // Defaults
       $data = $this->wrapper_model->pageDefaults(array(), 'createdoc');
+      $data['menus']['docs'] = 'enabled';
       $data['title'] = '<br/>Add to the Information Directory';
       $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
 
@@ -144,6 +146,7 @@ public function editdoc($file_to_edit) {
 
       // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), 'editdoc');
+    $data['menus']['docs'] = 'enabled';
       // Being careful.
     $item = $this->security->xss_clean($file_to_edit);
       // file exists?
@@ -211,6 +214,7 @@ public function deletedoc($file_to_delete) {
   if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
     // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), 'deletedoc');
+    $data['menus']['docs'] = 'enabled';
     $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3"><h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a class="btn btn-sm btn-primary" href="'.base_url('/guide/deletedoc_yes/'.$file_to_delete).'"> Yes </a> <a class="btn btn-sm btn-default" href="'.base_url('/guide/'.$file_to_delete).'"> No </a></div></div>';
     // Show
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
@@ -226,7 +230,9 @@ public function deletedoc($file_to_delete) {
 public function deletedoc_yes($file_to_delete) {
     // Loggedin admin?
   if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
+    // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), 'deletedoc');
+    $data['menus']['docs'] = 'enabled';
     // Try to delete the file
     $deleted = $this->docs_model->itemDelete($file_to_delete);
     if($deleted){

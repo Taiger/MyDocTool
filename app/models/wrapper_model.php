@@ -7,17 +7,14 @@
         parent::__construct();
       }
 
-    // Build out $data variable that is used in page templates. Accepts
-    public function pageDefaults($data = array(), $page = 'unknown') {
-
-      if($page == 'unknown'){
-        $page = explode('/', 'test');
-        $last = count($page);
-        $page = $page[$last];
-      }
-      if(empty($data)){
-        $data = array();
-      }
+    // Build out $data arrays used in page templates.
+    //Accepts $passed_data array to be merged with defaults and $page as a string
+    //
+    public function pageDefaults(array $passed_data, $page) {
+      // $passed_data array is merged with $data defaults at the end of this method
+      $data = array();
+      // Make sure $page is a string
+      $page = (string)$page;
 
       $data['base_url'] = base_url(); // includes ending slash
       $data['current_page'] = $page;
@@ -33,32 +30,43 @@
         $data['admin_links']['codeignitor_help'] = '/user_guide';
       }
 
-      // MENUS
-      $data['menus'] = array();
-      $data['menus']['default'] = array();
-      $data['menus']['default']['all_patterns'] = $data['base_url'] . 'allpatterns';
-      $data['menus']['default']['all_documentation'] = $data['base_url'] . 'guide';
-      // DOCS
-      $data['menus']['docs'] = array();
-      // PATTERNS
-      $data['menus']['patterns'] = array();
+      // LINKS FOR DEFAULT MENU
+      $default_menu_links = array(
+        'all_documentation' => $data['base_url'] . '/guide',
+        'all_patterns' => $data['base_url'] . '/allpatterns',
+        );
+      // DEFAULT MENUS
+      $data['menus'] = array(
+        array(
+          'default' => array($this->buildMenu($default_menu_links)),
+          'docs' => array(),
+          'patterns' => array(),
+          ));
+
+      // MENU STATE DEFAULTS (menus shown conditionally in pagetpl.php)
+      $data['menus']['default']['state'] = TRUE;
+      $data['menus']['docs']['state'] = FALSE;
+      $data['menus']['patterns']['state'] = FALSE;
+
+      // MERGE WITH PASSED DATA
+      if(!empty($passed_data)){
+        $data = array_merge($data, $passed_data);
+      }
 
       return $data;
     }
   /*
    * -Builds menu. 
-   * Accepts optional $classes_array but is a dropdown-menu by default.
-   * Returns menu
+   * Accepts $links array as $linkname => $href and Accepts optional second param as array of classes for ul element
+   * Returns full menu
    */
-  public function buildMenu($classes_array = array('nav','navbar-nav','navbar-right','sg-header-nav'), $menu_array) {
+  public function buildMenu( array $links, $classes_array = array('nav','navbar-nav')) {
     $classes = implode(' ', $classes_array);
-    //listFilesAsLinks
     $result = '<ul class="'.$classes.'" role="menu">';
-    $types = array('general','tech'); // Available doc types
-    foreach($types as $type){
-      $result .= '<li><a href="'.$filename.'">'.$title.'</a></li>' . "\n";
+    foreach($links as $linkname => $link){
+      $result .= '<li><a href="'.$linkname.'">'.$link.'</a></li>' . "\n";
     }
-    $result = '</ul>';
+    $result .= '</ul>';
     return $result;
   }
   }
