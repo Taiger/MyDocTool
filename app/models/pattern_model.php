@@ -4,34 +4,6 @@ class Pattern_model extends CI_Model {
       parent::__construct();
     }
 
-  // MENU
-  // Display title of each pattern as a link
-  public function listPatternsAsLinks($type) {
-    $result = '';
-    $files = array();
-    $handle = opendir('patterns/'.$type);
-    while (false !== ($file = readdir($handle))){
-        if(stristr($file,'.html')) {
-            $files[] = $file;
-        }
-    }
-
-    // if no files are found return false
-    if(empty($files)){
-      return '<li><small> No '.$type.' patterns yet.</small></li>';
-    }
-
-    // Sort alphabetically
-    sort($files);
-    foreach ($files as $file){
-        $filename = preg_replace("/\.html$/i", "", $file); 
-        $title = preg_replace("/\-/i", " ", $filename);
-        $title = ucwords($title);
-        $result .= '<li><a href="'.$filename.'">'.$title.'</a></li>' . "\n";
-    }
-    return $result;
-  }
-
   // Display pattern view & source by type
   public function getAllofType($type, $showsource = TRUE) {
     $result = '';
@@ -174,6 +146,53 @@ class Pattern_model extends CI_Model {
         $result .= '</div>';
     }
 
+    return $result;
+  }
+ 
+  /*
+   * -Builds links list by pattern type
+   * Accepts required $type
+   * Returns li with title of each pattern as a link
+   */
+  public function listPatternsAsLinks($type) {
+    $result = '';
+    $files = array();
+    $handle = opendir('patterns/'.$type);
+    while (false !== ($file = readdir($handle))){
+        if(stristr($file,'.html')) {
+            $files[] = $file;
+        }
+    }
+
+    // if no files are found return false
+    if(empty($files)){
+      return '<li><small> No '.$type.' patterns yet.</small></li>';
+    }
+
+    // Sort alphabetically
+    sort($files);
+    foreach ($files as $file){
+        $filename = preg_replace("/\.html$/i", "", $file); 
+        $title = preg_replace("/\-/i", " ", $filename);
+        $title = ucwords($title);
+        $result .= '<li><a href="'.$filename.'">'.$title.'</a></li>' . "\n";
+    }
+    return $result;
+  }
+  /*
+   * -Builds menu. 
+   * Accepts optional $classes_array but is a dropdown-menu by default.
+   * Returns menu
+   */
+  public function buildMenu($classes_array = array('dropdown-menu')) {
+    $classes = implode(' ', $classes_array);
+    //listFilesAsLinks
+    $result = '<ul class="'.$classes.'" role="menu">';
+    $types = array('atoms', 'molecules', 'components', 'templates', 'pages', 'style_tiles'); // Available pattern types
+    foreach($types as $type){
+      $result .= $this->listPatternsAsLinks($type);
+    }
+    $result = '</ul>';
     return $result;
   }
 

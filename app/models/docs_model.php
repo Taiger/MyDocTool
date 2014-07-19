@@ -124,4 +124,33 @@ class docs_model extends CI_Model {
     }
     return $result;
   }
+  /*
+   * -Builds menu. 
+   * Accepts optional $classes_array but is a dropdown-menu by default.
+   * Returns menu
+   */
+  public function buildMenu($classes_array = array('dropdown-menu')) {
+    $classes = implode(' ', $classes_array);
+    //listFilesAsLinks
+    $result = '<ul class="'.$classes.'" role="menu">';
+    $types = array('general','tech'); // Available doc types
+    foreach($types as $type){
+      $result .= $this->listFilesAsLinks($type);
+    }
+    $result = '</ul>';
+    return $result;
+  }
+  /*
+
+      $data['menus']['docs']['general_docs'] = array();
+      $data['menus']['docs']['tech_docs'] = array();
+
+      $data['menus']['patterns']['atoms'] = array();
+      $data['menus']['patterns']['molecules'] = array();
+      $data['menus']['patterns']['components'] = array();
+      $data['menus']['patterns']['templates'] = array();
+      $data['menus']['patterns']['pages'] = array();
+      $data['menus']['patterns']['style_tiles'] = array();
+
+  */
 }

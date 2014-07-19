@@ -6,10 +6,6 @@
       public function __construct() {
         parent::__construct();
       }
-        /*        
-        // Methods are needed to generate menu items
-        $this->load->model('docs_model');
-        $this->load->model('patterns');*/
 
     // Build out $data variable that is used in page templates. Accepts
     public function pageDefaults($data = array(), $page = 'unknown') {
@@ -23,7 +19,7 @@
         $data = array();
       }
 
-      $data['base_url'] = base_url();
+      $data['base_url'] = base_url(); // includes ending slash
       $data['current_page'] = $page;
       $data['body_class'] = $page . '-page';
       $data['title'] = ucfirst($page);
@@ -37,7 +33,32 @@
         $data['admin_links']['codeignitor_help'] = '/user_guide';
       }
 
+      // MENUS
+      $data['menus'] = array();
+      $data['menus']['default'] = array();
+      $data['menus']['default']['all_patterns'] = $data['base_url'] . 'allpatterns';
+      $data['menus']['default']['all_documentation'] = $data['base_url'] . 'guide';
+      // DOCS
+      $data['menus']['docs'] = array();
+      // PATTERNS
+      $data['menus']['patterns'] = array();
+
       return $data;
     }
-
+  /*
+   * -Builds menu. 
+   * Accepts optional $classes_array but is a dropdown-menu by default.
+   * Returns menu
+   */
+  public function buildMenu($classes_array = array('nav','navbar-nav','navbar-right','sg-header-nav'), $menu_array) {
+    $classes = implode(' ', $classes_array);
+    //listFilesAsLinks
+    $result = '<ul class="'.$classes.'" role="menu">';
+    $types = array('general','tech'); // Available doc types
+    foreach($types as $type){
+      $result .= '<li><a href="'.$filename.'">'.$title.'</a></li>' . "\n";
+    }
+    $result = '</ul>';
+    return $result;
+  }
   }
