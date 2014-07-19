@@ -9,7 +9,7 @@
 
       <ul class="nav navbar-nav navbar-right sg-header-nav">
 
-        <?php if($menus['defaults'] == TRUE)?>
+        <?php //if($menus['defaults'] == TRUE)?>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">General Docs<span class="caret"></span></a>
