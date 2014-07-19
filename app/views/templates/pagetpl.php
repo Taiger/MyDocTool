@@ -9,7 +9,7 @@
 
       <ul class="nav navbar-nav navbar-right sg-header-nav">
 
-        <?php //if($menus['defaults'] == TRUE)?>
+        <?php if($menus['docs']['state'] == TRUE): ?>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">General Docs<span class="caret"></span></a>
@@ -26,6 +26,9 @@
             <?php //if(isset($atom_links)) echo $atom_links; ?>
           </ul>
         </li>
+
+      <?php endif; ?>
+      <?php if($menus['patterns']['state'] == TRUE): ?>
 
         <li><a href="/">All Patterns</a></li>
 
@@ -70,6 +73,8 @@
             <?php if(isset($styletile_links)) echo $styletile_links; ?>
           </ul>
         </li>
+
+        <?php endif; ?>
 
       </ul>
 
