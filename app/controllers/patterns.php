@@ -11,7 +11,7 @@ class Patterns extends CI_Controller {
 
   // Defaults
   $data = $this->wrapper_model->pageDefaults(array(), $page);
-  $data['menus']['patterns'] = 'enabled';
+  $data['menus']['patterns']['state'] = TRUE;
 
   // Pattern Links
   $data['styletile_links'] = $this->pattern_model->listPatternsAsLinks('styletiles');
