@@ -6,9 +6,14 @@
 Based on:
 https://github.com/ericterpstra/ci_sock/tree/master/part_one/application
 http://ericterpstra.com/2013/03/a-sample-codeigniter-application-with-login-and-session/
-
 */
 class Login extends CI_Controller {
+
+  public function __construct() {
+    parent::__construct();
+    $this->load->helper('form');
+    $this->load->model('user_model');
+  }
 
   public function index() {
 
@@ -34,8 +39,6 @@ class Login extends CI_Controller {
     }
 
     public function login_user() {
-        // Create an instance of the user model
-        $this->load->model('user_model');
 
         // Grab the email and password from the form POST
         $username = $this->security->xss_clean($this->input->post('username'));
@@ -54,7 +57,6 @@ class Login extends CI_Controller {
 
     // TODO finish adding registration (if needed)
     public function register_user() {
-      $this->load->helper(array('form', 'url'));
       $this->load->library('form_validation');
 
       $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]|xss_clean');
