@@ -17,7 +17,7 @@ class Patterns extends CI_Controller {
   $data['styletile_links'] = $this->pattern_model->listPatternsAsLinks('styletiles');
   $data['atom_links'] = $this->pattern_model->listPatternsAsLinks('atoms');
   $data['molecule_links'] = $this->pattern_model->listPatternsAsLinks('molecules');
-  $data['organism_links'] = $this->pattern_model->listPatternsAsLinks('components');
+  $data['component_links'] = $this->pattern_model->listPatternsAsLinks('components');
   $data['template_links'] = $this->pattern_model->listPatternsAsLinks('templates');
   $data['pagelayout_links'] = $this->pattern_model->listPatternsAsLinks('pages');
   $data['header_links'] = $data['styletile_links'] . $data['atom_links'] . $data['molecule_links'];
