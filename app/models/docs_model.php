@@ -120,7 +120,7 @@ class docs_model extends CI_Model {
       $filename = preg_replace("/\.html$/i", "", $file); 
       $title = preg_replace("/\-/i", " ", $filename);
       $title = ucwords($title);
-      $result .= '<li><a href="'.$filename.'">'.$title.'</a></li>' . "\n";
+      $result .= '<li><a href="/guide/'.$filename.'">'.$title.'</a></li>' . "\n";
     }
     return $result;
   }

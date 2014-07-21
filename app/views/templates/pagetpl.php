@@ -1,86 +1,103 @@
 <header id="top" class="sg-header sg-container">
   <div class="container">
-    <div class="navbar-header">
-      <h1 class="sg-logo"><a href="/" class="navbar-brand">PATTERNS &amp;<span> DOCS</span></a></h1>
 
+
+    <div class="sg-navbar-header">
+      <a class="sg-navbar-brand logo" href="/">
+        <h1 class="sg-logo">PATTERNS &amp;<span> DOCS</span></h1>
+      </a>
     </div>
+
     <button class="navbar-toggle sg-navbar-toggle" type="button" data-toggle="collapse" data-target="#sg-primary-navbar-collapse-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-    <nav id="sg-primary-navbar-collapse-1" role="navigation" class="navbar navbar-collapse collapse">
+    <nav id="sg-primary-navbar-collapse-1" role="navigation" class="navbar sg-navbar navbar-collapse collapse">
+
+
 
       <ul class="nav navbar-nav navbar-right sg-header-nav">
 
-        <?php if($menus['docs']['state'] == TRUE): ?>
+        
+        <?php if($menus['default']['state'] == TRUE): ?>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">General Docs<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/">Coming soon</a></li>
-            <?php //if(isset($atom_links)) echo $atom_links; ?>
-          </ul>
-        </li>
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tech Docs<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/">Coming soon</a></li>
-            <?php //if(isset($atom_links)) echo $atom_links; ?>
-          </ul>
+        <li class="sg-menu-default">
+          <a href="/allpatterns" >All Patterns</a>
         </li>
 
       <?php endif; ?>
       <?php if($menus['patterns']['state'] == TRUE): ?>
 
-        <li><a href="/">All Patterns</a></li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Atoms <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <?php if(isset($atom_links)) echo $atom_links; ?>
-          </ul>
-        </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Atoms <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <?php if(isset($atom_links)) echo $atom_links; ?>
+        </ul>
+      </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Molecules <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <?php if(isset($molecule_links)) echo $molecule_links; ?>
-          </ul>
-        </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Molecules <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <?php if(isset($molecule_links)) echo $molecule_links; ?>
+        </ul>
+      </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Components <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <?php if(isset($component_links)) echo $component_links; ?>
-          </ul>
-        </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Components <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <?php if(isset($component_links)) echo $component_links; ?>
+        </ul>
+      </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Templates <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <?php if(isset($template_links)) echo $template_links; ?>
-          </ul>
-        </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Templates <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <?php if(isset($template_links)) echo $template_links; ?>
+        </ul>
+      </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <?php if(isset($pagelayout_links)) echo $pagelayout_links; ?>
-          </ul>
-        </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <?php if(isset($pagelayout_links)) echo $pagelayout_links; ?>
+        </ul>
+      </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Style Tiles <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <?php if(isset($styletile_links)) echo $styletile_links; ?>
-          </ul>
-        </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Style Tiles <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <?php if(isset($styletile_links)) echo $styletile_links; ?>
+        </ul>
+      </li>
 
-        <?php endif; ?>
+    <?php endif; ?>
+    <?php if($menus['default']['state'] == TRUE): ?>
 
-      </ul>
+    <li class="sg-menu-default">
+      <a href="/guide" >All Documentation</a>
+    </li>
+
+  <?php endif; ?>
+  <?php if($menus['docs']['state'] == TRUE): ?>
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">General Topics <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <?php if(isset($general_links)) echo $general_links; ?>
+    </ul>
+  </li>
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tech Topics <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <?php if(isset($tech_links)) echo $tech_links; ?>
+    </ul>
+  </li>
+
+<?php endif; ?>
+</ul>
 
 
-    </nav>
-  </div><!-- /.container -->
+</nav>
+</div><!-- /.container -->
 </header>
 
 <div class="sg-body container">

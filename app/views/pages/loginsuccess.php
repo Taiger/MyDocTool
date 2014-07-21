@@ -3,6 +3,6 @@
         
         <h3>Login was successfull!</h3>
 
-        <p><?php echo anchor('/', 'To the Homepage!'); ?></p>
+        <p>Go to <?php echo anchor('/allpatterns', 'All Patterns'); ?> or <?php echo anchor('/guide', 'All Documentation'); ?></p>
       </div>
     </div>

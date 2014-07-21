@@ -18,11 +18,13 @@ class Docs extends CI_Controller {
     // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), $page);
     $data['menus']['docs']['state'] = TRUE;
+    $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
+    $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
 
     // If an index page at guide/ or guide/tech or guide/general
     if($page == 'index') {
-      $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
-      $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
+      //$data['general_links'] = $this->docs_model->listFilesAsLinks('general');
+      //$data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
       // Load in nodetpl
       $data['nodetpl'] = $this->load->view('pages/guideindex', $data, TRUE);
     } else {
@@ -61,6 +63,8 @@ class Docs extends CI_Controller {
       // Defaults
       $data = $this->wrapper_model->pageDefaults(array(), 'createdoc');
       $data['menus']['docs']['state'] = TRUE;
+      $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
+      $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
       $data['title'] = '<br/>Add to the Information Directory';
       $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
 
@@ -147,6 +151,8 @@ public function editdoc($file_to_edit) {
       // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), 'editdoc');
     $data['menus']['docs']['state'] = TRUE;
+    $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
+    $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
       // Being careful.
     $item = $this->security->xss_clean($file_to_edit);
       // file exists?
@@ -215,6 +221,8 @@ public function deletedoc($file_to_delete) {
     // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), 'deletedoc');
     $data['menus']['docs']['state'] = TRUE;
+    $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
+    $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
     $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3"><h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a class="btn btn-sm btn-primary" href="'.base_url('/guide/deletedoc_yes/'.$file_to_delete).'"> Yes </a> <a class="btn btn-sm btn-default" href="'.base_url('/guide/'.$file_to_delete).'"> No </a></div></div>';
     // Show
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
@@ -233,6 +241,8 @@ public function deletedoc_yes($file_to_delete) {
     // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), 'deletedoc');
     $data['menus']['docs']['state'] = TRUE;
+    $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
+    $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
     // Try to delete the file
     $deleted = $this->docs_model->itemDelete($file_to_delete);
     if($deleted){

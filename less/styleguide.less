@@ -10,9 +10,9 @@ All classes should be namespaced off of "sg-".
 
 /* -------------------------------------------------------------------------
  Styleguide Layout
----------------------------------------------------------------------------- */
+ ---------------------------------------------------------------------------- */
 
-.sg-header {
+ .sg-header {
   background: #000;
   color: #fff;
 }
@@ -22,9 +22,9 @@ All classes should be namespaced off of "sg-".
 
 .sg-header-nav li a:hover,
 .sg-header-nav li a:focus {
-    background-color: #262626;
-    color: white;
-    outline: none;
+  background-color: #262626;
+  color: white;
+  outline: none;
 }
 
 /* sg dropdown menu */
@@ -56,6 +56,12 @@ All classes should be namespaced off of "sg-".
   border: 1px solid #282828;
 }
 
+// Default menu shows on all pages
+.sg-menu-default {
+  a {
+    font-weight: bold;
+  }
+}
 
 @media screen and (max-width: 650px) {
   .sg-header {
@@ -63,12 +69,6 @@ All classes should be namespaced off of "sg-".
   }
 }
 
-.sg-header .navbar-toggle {
-  background-color: rgba(238, 238, 238, 0.27);
-  .icon-bar {
-    background-color: #9c9c9c;
-  }
-}
 .sg-info, .sg-base-styles {
   padding-bottom: 24px;
 }
@@ -81,31 +81,70 @@ All classes should be namespaced off of "sg-".
 }
 /* -------------------------------------------------------------------------
  Styleguide Utility Classes
----------------------------------------------------------------------------- */
-.sg-container {
+ ---------------------------------------------------------------------------- */
+ .sg-container {
   border: 2px solid #ebebeb;
   position: relative;
 }
 
 .sg-animated {
   -webkit-transition: all 0.6s ease-out;  
-     -moz-transition: all 0.6s ease-out;
-      -ms-transition: all 0.6s ease-out;
-          transition: all 0.6s ease-out;
+  -moz-transition: all 0.6s ease-out;
+  -ms-transition: all 0.6s ease-out;
+  transition: all 0.6s ease-out;
 }
 
 
 
 /* Styleguide Branding
 ---------------------------------------------------------------------------- */
-
+/* TODO REFACTOR THIS SECTION */
+.sg-navbar-header {
+  display: inline-block;
+  float: left;
+  padding-top: 15px;
+}
+.sg-logo {
+  font-size: 20px
+}
 .sg-logo a {
+  font-size: 20px;
   padding-left: 15px;
+  display: block;
+  /* TODO reformat */
+  position: relative;
+  z-index: 1;
+}
+.sg-navbar-brand {
+ display: inline-block;
+ font-size: 18px;
+ line-height: 20px;
+}
+.sg-navbar {
+  float: right;
+}
+.sg-navbar-toggle {
+  background-color: #eee;
+  margin-top: 27px;
+
+  .icon-bar {
+    background-color: #777;
+  }
+}
+
+.sg-navbar {
+  text-align: center;
+  width: 100%;
+  float: right;
+  margin-bottom: 0;
 }
 @media screen and (min-width: 768px) {
+  .sg-navbar {
+  text-align: left;
+  width: auto;
+  float: none;
+}
   .sg-logo {
-    float: left;
-    font-size: 1.5em;
     font-weight: normal;
     margin: 0;
     padding: 0;
@@ -121,7 +160,6 @@ All classes should be namespaced off of "sg-".
 
 
 .sg-logo {
-  float: none;
   padding-bottom: .5em;
   text-align: center;
 }
@@ -133,7 +171,6 @@ All classes should be namespaced off of "sg-".
 .sg-nav{
   float: right;
 }
-
 
 /* Styleguide Headings
 ---------------------------------------------------------------------------- */
@@ -187,11 +224,30 @@ All classes should be namespaced off of "sg-".
   overflow: hidden;
 }
 
-  .sg-anchor {
-    display: block;
-    padding-top: 1em;
-  }
+.sg-anchor {
+  display: block;
+  padding-top: 1em;
+}
 
+// Lists
+.sg-list-group {
+  list-style: none;
+  padding: 10px 0;
+}
+.sg-list-group a {
+  color: #333;
+  display: block;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 4px 12px;
+}
+.sg-list-group li:nth-child(2n+1) a {
+  background-color: #f8f8f8;
+}
+
+.sg-panel-default-split div:first-child  {
+  border-right: 1px solid #ddd;
+}
 
 /* Styleguide Markup
 ---------------------------------------------------------------------------- */
@@ -238,9 +294,9 @@ All classes should be namespaced off of "sg-".
   display: none;
   opacity: 0;
   -webkit-transition: all 0.4s ease-in;  
-     -moz-transition: all 0.4s ease-in;
-      -ms-transition: all 0.4s ease-in;
-          transition: all 0.4s ease-in;
+  -moz-transition: all 0.4s ease-in;
+  -ms-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
 }
 
 .sg-expanded {
@@ -256,37 +312,37 @@ All classes should be namespaced off of "sg-".
 /*body {
   padding-bottom: 40px;
   background-color: #eee;
-}*/
+  }*/
 
-.form-signin {
-  /*max-width: 330px;*/
-  padding: 15px;
-  margin: 0 auto;
+  .form-signin {
+    /*max-width: 330px;*/
+    padding: 15px;
+    margin: 0 auto;
 
-  .form-signin-heading,
-  .checkbox {
-    margin-bottom: 10px;
+    .form-signin-heading,
+    .checkbox {
+      margin-bottom: 10px;
+    }
+    .checkbox {
+      font-weight: normal;
+    }
+    .form-control {
+      position: relative;
+      height: auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .form-control:focus {
+      z-index: 2;
+    }
+    input[type="email"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
-  .checkbox {
-    font-weight: normal;
-  }
-  .form-control {
-    position: relative;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-  }
-  .form-control:focus {
-    z-index: 2;
-  }
-  input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-}
