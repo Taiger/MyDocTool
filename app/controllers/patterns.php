@@ -6,14 +6,13 @@ class Patterns extends CI_Controller {
     parent::__construct();
     $this->load->model('pattern_model');
   }
-    public function index() {
-      redirect('/allpatterns');
-    }
+
   public function view($page = 'allpatterns') {
 
   // Defaults
   $data = $this->wrapper_model->pageDefaults(array(), $page);
   $data['menus']['patterns']['state'] = TRUE;
+
 
   // Pattern Links
   $data['styletile_links'] = $this->pattern_model->listPatternsAsLinks('styletiles');
@@ -44,9 +43,11 @@ class Patterns extends CI_Controller {
     //
     $data['title'] = 'Pattern ' . $page;
     $data['body_class'] = $page . '-page';
+    $data['admin_links']['edit'] = $data['base_url'].'pattern/edit/' .$page;
+    $data['admin_links']['delete'] = $data['base_url'].'pattern/delete/' .$page;
 
     // Show
-    $data['content'] = $this->pattern_model->getItem($page);
+    $data['content'] = $this->pattern_model->showItem($page);
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);
 
@@ -84,7 +85,12 @@ class Patterns extends CI_Controller {
       //$data['general_links'] = $this->pattern_model->listPatternsAsLinks('atom');
       //$data['tech_links'] = $this->pattern_model->listPatternsAsLinks('component');
       $data['title'] = '<br/>Create New';
-      $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
+      // ACE Editor for HTML
+      $data['scripts'] = array(
+        'aceeditor' => '//cdn.jsdelivr.net/ace/1.1.4/min/ace.js',
+        'acesyntax' => '//cdn.jsdelivr.net/ace/1.1.4/min/ext-beautify.js',
+        'acesyntaxhtml' => '//cdn.jsdelivr.net/ace/1.1.4/min/mode-html.js',
+        'add_aceeditor' => '/js/sg-acecustom.js');
 
       // Create Form
       if($this->input->post('text')){
@@ -115,7 +121,7 @@ class Patterns extends CI_Controller {
           // If saved
         // echo 'Successfully created '. $filename . ' at '  . $type . '.';
         // Just redirect to newly created page
-       redirect('/' . $type . '/' . $thefile);
+       redirect('/' . $thefile);
 
      } else {
         // Permission issue
@@ -143,7 +149,10 @@ public function valid_filename_check($thisname) {
     return FALSE;
   } elseif($exists = $this->pattern_model->itemExists($thisname)) {
     // MESSAGE: pattern already exists
-    $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else. <br>' . $exists[0]);
+    if(is_array($exists)) {
+      $exists = $exists[0];
+    }
+    $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else. <br>' . $exists);
     return FALSE;
   } elseif(empty($thisname)) {
     // MESSAGE: title field is empty
@@ -169,8 +178,10 @@ public function editpat($file_to_edit) {
       // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), 'editpat');
     $data['menus']['patterns']['state'] = TRUE;
-    $data['general_links'] = $this->pattern_model->listFilesAsLinks('general');
-    $data['tech_links'] = $this->pattern_model->listFilesAsLinks('tech');
+
+    //$data['general_links'] = $this->pattern_model->listPatternsAsLinks('general');
+    //$data['tech_links'] = $this->pattern_model->listPatternsAsLinks('tech');
+
       // Being careful.
     $item = $this->security->xss_clean($file_to_edit);
       // file exists?
@@ -191,10 +202,16 @@ public function editpat($file_to_edit) {
     // Run form validation
     if ($this->form_validation->run() === FALSE) {
       $data['file_to_edit'] = $item;
-      $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
+      $data['scripts'] = array(
+        'aceeditor' => '//cdn.jsdelivr.net/ace/1.1.4/min/ace.js',
+        'acesyntax' => '//cdn.jsdelivr.net/ace/1.1.4/min/ext-beautify.js',
+        'acesyntaxhtml' => '//cdn.jsdelivr.net/ace/1.1.4/min/mode-html.js',
+        'add_aceeditor' => '/js/sg-acecustom.js');
+
       $editing_message = 'Editing ' . $item . '.html';
       // populate the form textarea
       $data['form_default_text'] = $this->pattern_model->getItem($item);
+      //die(print_r($data['form_default_text']));
       // Form
       $data['content'] = $this->load->view('pages/form_edit', $data, TRUE);
       // Show

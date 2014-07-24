@@ -27,6 +27,7 @@
       // Code Ignitor Help Link
       if($data['isAdmin']){
         $data['admin_links']['create_doc'] = $data['base_url'].'guide/create';
+        $data['admin_links']['create_pattern'] = $data['base_url'].'pattern/create';
         $data['admin_links']['codeignitor_help'] = '/user_guide';
       }
 
@@ -56,7 +57,7 @@
       return $data;
     }
   /*
-   * -Builds menu. 
+   * -Builds menu.
    * Accepts $links array as $linkname => $href and Accepts optional second param as array of classes for ul element
    * Returns full menu
    */

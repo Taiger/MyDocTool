@@ -58,7 +58,7 @@ $route['guide/(:any)/(:any)'] = 'docs/view/$2/$1';
 $route['guide/(:any)'] = 'docs/view/$1';
 
 // pattern
-$route['pattern'] = 'patterns/view/index';
+$route['pattern'] = 'patterns/view/allpatterns';
 $route['pattern/create'] = 'patterns/createpat';
 $route['pattern/createpat'] = 'patterns/createpat';
 $route['pattern/editpat'] = 'patterns/editpat';

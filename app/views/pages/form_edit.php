@@ -10,8 +10,11 @@
 
   <?php echo form_open('pattern/edit/' . $file_to_edit, array('class' => 'sg-edit')); ?>
 
+  <div style="height:300px; width:100%; position:relative;">
+    <pre style="height:300px; width:100%; position:absolute;" id="aceeditor"></pre><br />
+  </div>
 
-  <textarea id="ckedit1" class="form-control" name="text" placeholder="Content" ><?php if(isset($form_default_text)) echo $form_default_text; ?></textarea>
+  <textarea id="text" class="form-control" name="text" placeholder="Content" ><?php if(isset($form_default_text)) echo $form_default_text; ?></textarea>
 
   <br />
 

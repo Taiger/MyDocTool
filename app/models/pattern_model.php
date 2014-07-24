@@ -57,7 +57,7 @@ class Pattern_model extends CI_Model {
   }
 
   // Display pattern view & source for single file. Used for individual pages.
-  public function getItem($item, $showsource = TRUE) {
+  public function showItem($item, $showsource = TRUE) {
 
     $result = '';
     $files = array(); // in case multiple matches
@@ -107,7 +107,43 @@ class Pattern_model extends CI_Model {
 
     return $result;
   }
+ /*
+   * Accepts $item as $filename like 'my_file_name' and optional $type
+   * If found returns html content of first html file found
+   * Otherwise returns error message for display
+   */
+  public function getItem($item, $type = 'any') {
+    $files = array(); // in case multiple matches
+    $allfiles = array();
+    $filename = $item . '.html';
+    $location = 'patterns/';
 
+    // if specific type only (like Tech or General)
+    if($type !== 'any'){
+      $location .= $type . '/';
+    }
+
+    $allfiles = get_filenames($location, TRUE);
+
+    // if no files are found return false
+    if(empty($allfiles)){
+      return 'Sorry, no files found of type '.$type.'.';
+    }
+
+    // list all child files
+    foreach ($allfiles as $filepath) {
+      if(preg_match('/'.$filename.'/i', $filepath)){
+        $files[] = $filepath;
+      }
+    }
+    if(empty($files)){
+      return 'I am not finding ' .$filename. '. Sorry about that.';
+    } else {
+      // Return first match
+      return htmlspecialchars_decode(read_file($files[0]));
+    }
+
+  }
 
   // Display Styletiles
   public function getAllStyletiles() {
@@ -203,9 +239,10 @@ class Pattern_model extends CI_Model {
    */
   public function createItem($content, $filename, $type = 'atoms') {
       // only two types supported right now
-      if($type != 'general' && $type != 'tech'){
-        return FALSE;
+      if(in_array($type, array('atoms','molecules','components','templates','pages'))){
+        //return FALSE;
       }
+      //die(print_r(array($type,$filename,$content)));
       // Write to file
       if (write_file('patterns/' . $type . '/' . $filename, $content) == FALSE) {
         return FALSE;

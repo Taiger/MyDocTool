@@ -34,9 +34,13 @@
     </div>
     <br>
 
-    <input class="form-control" type="input" id="title" name="title" autofocus placeholder="Title" value="<?php set_value('title'); ?>" /><br />
+    <input class="form-control" type="input" id="title" name="title" placeholder="Title" value="<?php set_value('title'); ?>" /><br />
 
-    <textarea id="ckedit1" class="form-control" id="text" name="text" placeholder="Content" ><?php if(isset($form_default_text)) echo $form_default_text; ?></textarea><br />
+    <div style="height:300px; width:100%; position:relative;">
+      <pre style="height:300px; width:100%; position:absolute;" id="aceeditor"></pre><br />
+    </div>
+
+    <textarea id="text" class="form-control" id="text" name="text" placeholder="Content" ><?php if(isset($form_default_text)) echo $form_default_text; ?></textarea><br />
 
     <input type="submit" name="submit" value="Create New" class="btn btn-lg btn-primary btn-block" />
 
