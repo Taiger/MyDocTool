@@ -1,0 +1,46 @@
+<h1>How to install Grunt</h1>
+
+<p><em>This is up to date with Grunt v0.4.5. Nodejs related projects are fiercely developed and change quickly. If a newer version is out, use that documentation as the final say.</em></p>
+ <div ><img alt="Grunt logo" class="pull-right" src="http://gruntjs.com/img/grunt-logo.svg" />Grunt is the nodejs powered task runner. It is widely supported and incredibly useful.</div>
+
+<ol>
+ <li>Install NVM
+ <ul>
+  <li>Node Version Manager is the best way to install nodejs.&nbsp; Do not use aptidude, yum or similar to install nodejs as Linux repositiories are notoriously out of date. NVM is the solution.</li>
+  <li>The different ways to install it are well documented here: <a href="https://github.com/creationix/nvm">https://github.com/creationix/nvm</a></li>
+ </ul>
+ </li>
+ <li>Install Grunt CLI
+ <ul>
+  <li>Procedure is documented here: <a href="http://gruntjs.com/getting-started">http://gruntjs.com/getting-started</a></li>
+  <li>
+  <pre>
+<code class="lang-shell">npm install -g grunt-cli</code></pre>
+  </li>
+  <li>This makes Grunt available on the server. The Grunt task runner is installed in any subfolder project using NPM, so we do that next.</li>
+ </ul>
+ </li>
+ <li>Install Grunt Task Runner using package.json
+ <ul>
+  <li>Create package.json for project dependencies (<a href="https://www.npmjs.org/doc/package.json.html">https://www.npmjs.org/doc/package.json.html</a>). The Grunt Task runner is included.</li>
+  <li>
+  <p class="language-markup">To install node modules run:<br />
+  npm install<br />
+  in the same directory as package.json file.</p>
+  </li>
+  <li>
+  <pre>
+npm install</pre>
+  </li>
+ </ul>
+ </li>
+ <li>Grunt Tasks using Gruntfile.js
+ <ul>
+  <li>Grunt tasks are contained in a Gruntfile.js file. The format is well documented: http://gruntjs.com/getting-started</li>
+  <li>Tasks are run relative to this file. This is important if you need to create a cron tab or alias for a task. For example, an alias to process less files to css files would be similar to this:</li>
+  <li><code>alias p1build=&quot;pushd &#39;/path/to/gruntfilejs; grunt build; popd;&#39;&quot;</code></li>
+ </ul>
+ </li>
+</ol>
+
+<p>&nbsp;</p>
