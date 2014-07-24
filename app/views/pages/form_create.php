@@ -5,7 +5,7 @@
         <?php echo validation_errors(); ?>
 
 
-    <?php echo form_open('pattern/createpat', array('class' => 'sg-guide-createnew')); ?>
+    <?php echo form_open('pattern/createpat', array('class' => 'sg-createnew')); ?>
 
     <div class="control-group">
       <label for="type" class="control-label">Category: </label>

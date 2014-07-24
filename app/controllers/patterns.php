@@ -6,7 +6,9 @@ class Patterns extends CI_Controller {
     parent::__construct();
     $this->load->model('pattern_model');
   }
-
+    public function index() {
+      redirect('/allpatterns');
+    }
   public function view($page = 'allpatterns') {
 
   // Defaults
@@ -52,14 +54,14 @@ class Patterns extends CI_Controller {
 
 
   }
-/* === copied functionality from docs controller below ===
+/* === copied functionality from Docs controller below ===
  * TODO make into generic functionality
  */
 
 /*
    * -Create New Pattern Page Form
-   * Accepts no params. Created new documentation page. If not logged in, redirects to login page.
-   * If Doc is created redirects to newly created doc
+   * Accepts no params. Created new pattern page. If not logged in, redirects to login page.
+   * If pattern is created redirects to newly created pattern
    * Otherwise returns an error message
    */
   public function createpat() {
@@ -77,7 +79,7 @@ class Patterns extends CI_Controller {
     // Run form validation
     if ($this->form_validation->run() === FALSE) {
       // Defaults
-      $data = $this->wrapper_model->pageDefaults(array(), 'createdoc');
+      $data = $this->wrapper_model->pageDefaults(array(), 'createpat');
       $data['menus']['patterns']['state'] = TRUE;
       //$data['general_links'] = $this->pattern_model->listPatternsAsLinks('atom');
       //$data['tech_links'] = $this->pattern_model->listPatternsAsLinks('component');
@@ -111,7 +113,7 @@ class Patterns extends CI_Controller {
       // Try to save
       if($this->pattern_model->createItem($text, $filename, $type)) {
           // If saved
-        // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
+        // echo 'Successfully created '. $filename . ' at '  . $type . '.';
         // Just redirect to newly created page
        redirect('/' . $type . '/' . $thefile);
 
@@ -125,13 +127,13 @@ class Patterns extends CI_Controller {
       redirect('/login');
     }
 }
-// Callback for creating a new documentation page
+// Callback for creating a new pattern page
 // Accepts name to check for and returns TRUE or FALSE
 public function valid_filename_check($thisname) {
   // Check for filenames that either exist as a path or are used another way.
   $disallowed_filenames = array(
     'guide', 'general', 'tech',
-    'index', 'create', 'createdoc', 'edit', 'editdoc', 'deletedoc', 'deletedoc_yes',
+    'index', 'create', 'createdoc', 'edit', 'editdoc', 'deletedoc', 'deletedoc_yes', 'createpat', 'editpat', 'deletepat', 'deletepat_yes',
     'any',
     );
 
@@ -140,7 +142,7 @@ public function valid_filename_check($thisname) {
     $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else.');
     return FALSE;
   } elseif($exists = $this->pattern_model->itemExists($thisname)) {
-    // MESSAGE: doc already exists
+    // MESSAGE: pattern already exists
     $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else. <br>' . $exists[0]);
     return FALSE;
   } elseif(empty($thisname)) {
@@ -154,18 +156,18 @@ public function valid_filename_check($thisname) {
 }
 
 /*
-* -Edit a documentation html page
+* -Edit a pattern html page
 * Accepts $file_to_edit as 'my_file'. Redirects to login page if not logged in.
-* If Doc is edited redirects to newly created doc
+* If Pattern is edited redirects to newly created pattern
 * Otherwise returns an error message
 */
-public function editdoc($file_to_edit) {
+public function editpat($file_to_edit) {
     // Loggedin admin?
   if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
     $this->load->library('form_validation');
 
       // Defaults
-    $data = $this->wrapper_model->pageDefaults(array(), 'editdoc');
+    $data = $this->wrapper_model->pageDefaults(array(), 'editpat');
     $data['menus']['patterns']['state'] = TRUE;
     $data['general_links'] = $this->pattern_model->listFilesAsLinks('general');
     $data['tech_links'] = $this->pattern_model->listFilesAsLinks('tech');
@@ -194,7 +196,7 @@ public function editdoc($file_to_edit) {
       // populate the form textarea
       $data['form_default_text'] = $this->pattern_model->getItem($item);
       // Form
-      $data['content'] = $this->load->view('pages/form_doc_edit', $data, TRUE);
+      $data['content'] = $this->load->view('pages/form_edit', $data, TRUE);
       // Show
       $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
       $this->load->view('templates/htmltpl', $data);
@@ -208,9 +210,9 @@ public function editdoc($file_to_edit) {
       $saved = $this->pattern_model->createItem($text, $filename, $type);
       if($saved == TRUE) {
         // If saved
-        // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
+        // echo 'Successfully created '. $filename . ' at ' /' . $type . '.';
         // Just redirect to created page
-       redirect('/guide/' . $type . '/' . $item);
+       redirect('/' . $item);
 
      } else {
         // Otherwise show message with message how to retain changes.
@@ -228,18 +230,18 @@ public function editdoc($file_to_edit) {
 /*
 * -Delete a documentation html page
 * Accepts $file_to_edit as 'my_file'. Redirects to login page if not logged in.
-* If Doc is edited redirects to newly created doc
+* If pat is edited redirects to newly created pat
 * Otherwise returns an error message
 */
-public function deletedoc($file_to_delete) {
+public function deletepat($file_to_delete) {
     // Loggedin admin?
   if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
     // Defaults
-    $data = $this->wrapper_model->pageDefaults(array(), 'deletedoc');
-    $data['menus']['docs']['state'] = TRUE;
+    $data = $this->wrapper_model->pageDefaults(array(), 'deletepat');
+    $data['menus']['patterns']['state'] = TRUE;
     $data['general_links'] = $this->pattern_model->listFilesAsLinks('general');
     $data['tech_links'] = $this->pattern_model->listFilesAsLinks('tech');
-    $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3"><h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a class="btn btn-sm btn-primary" href="'.base_url('/guide/deletedoc_yes/'.$file_to_delete).'"> Yes </a> <a class="btn btn-sm btn-default" href="'.base_url('/guide/'.$file_to_delete).'"> No </a></div></div>';
+    $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3"><h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a class="btn btn-sm btn-primary" href="'.base_url('/guide/deletepat_yes/'.$file_to_delete).'"> Yes </a> <a class="btn btn-sm btn-default" href="'.base_url('/guide/'.$file_to_delete).'"> No </a></div></div>';
     // Show
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);
@@ -249,14 +251,14 @@ public function deletedoc($file_to_delete) {
   }
 }
 /*
- * Directly delete the file. Only ran from link in deletedoc message above.
+ * Directly delete the file. Only ran from link in delete pattern message above.
  */
-public function deletedoc_yes($file_to_delete) {
+public function deletepat_yes($file_to_delete) {
     // Loggedin admin?
   if($this->session->userdata('isLoggedIn') && $this->session->userdata('isAdmin')){
     // Defaults
-    $data = $this->wrapper_model->pageDefaults(array(), 'deletedoc');
-    $data['menus']['docs']['state'] = TRUE;
+    $data = $this->wrapper_model->pageDefaults(array(), 'deletepat');
+    $data['menus']['patterns']['state'] = TRUE;
     $data['general_links'] = $this->pattern_model->listFilesAsLinks('general');
     $data['tech_links'] = $this->pattern_model->listFilesAsLinks('tech');
     // Try to delete the file
