@@ -79,9 +79,9 @@ class Patterns extends CI_Controller {
       // Defaults
       $data = $this->wrapper_model->pageDefaults(array(), 'createdoc');
       $data['menus']['patterns']['state'] = TRUE;
-      $data['general_links'] = $this->pattern_model->listFilesAsLinks('atom');
-      $data['tech_links'] = $this->pattern_model->listFilesAsLinks('component');
-      $data['title'] = '<br/>Create New Pattern';
+      //$data['general_links'] = $this->pattern_model->listPatternsAsLinks('atom');
+      //$data['tech_links'] = $this->pattern_model->listPatternsAsLinks('component');
+      $data['title'] = '<br/>Create New';
       $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
 
       // Create Form

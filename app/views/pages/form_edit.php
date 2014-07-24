@@ -3,12 +3,12 @@
   <h2><?php //print $title; ?></h2>
 
   <h1>Edit Page</h1>
-  <div><em>Now editing file <?php echo $file_to_edit; ?>.html </em><a class="" href="<?php echo $base_url .'guide/'. $file_to_edit; ?>">cancel</a></div>
+  <div><em>Now editing file <?php echo $file_to_edit; ?>.html </em><a class="" href="<?php echo $base_url . $file_to_edit; ?>">cancel</a></div>
   <hr>
 
   <?php echo validation_errors(); ?>
 
-  <?php echo form_open('patterns/edit/' . $file_to_edit, array('class' => 'sg-guide-edit')); ?>
+  <?php echo form_open('pattern/edit/' . $file_to_edit, array('class' => 'sg-edit')); ?>
 
 
   <textarea id="ckedit1" class="form-control" name="text" placeholder="Content" ><?php if(isset($form_default_text)) echo $form_default_text; ?></textarea>
