@@ -282,7 +282,7 @@ class Pattern_model extends CI_Model {
     $exists = $this->itemExists($item);
     if($exists){
       unlink($exists['fullpath']);
-      return 'Deleted '. $item;
+      return 'Deleted '. $item . '.html';
     } else {
       return FALSE;
     }

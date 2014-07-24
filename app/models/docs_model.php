@@ -18,7 +18,7 @@ class docs_model extends CI_Model {
         return FALSE;
       } else {
         return TRUE;
-      }    
+      }
   }
   /*
    * Accepts $item as $filename like 'my_file_name' and optional $type
@@ -35,9 +35,9 @@ class docs_model extends CI_Model {
     if($type !== 'any'){
       $location .= $type . '/';
     }
-    
+
     $allfiles = get_filenames($location, TRUE);
-    
+
     // if no files are found return false
     if(empty($allfiles)){
       return 'Sorry, no files found of type '.$type.'.';
@@ -55,7 +55,7 @@ class docs_model extends CI_Model {
       // Return first match
       return htmlspecialchars_decode(read_file($files[0]));
     }
-    
+
   }
   /*
    * Accepts $item like 'my_file_name'
@@ -89,7 +89,7 @@ class docs_model extends CI_Model {
     $exists = $this->itemExists($item);
     if($exists){
       unlink($exists['fullpath']);
-      return 'Deleted '. $item;
+      return 'Deleted '. $item . '.html';
     } else {
       return FALSE;
     }
@@ -117,7 +117,7 @@ class docs_model extends CI_Model {
     // Sort alphabetically
     sort($files);
     foreach ($files as $file){
-      $filename = preg_replace("/\.html$/i", "", $file); 
+      $filename = preg_replace("/\.html$/i", "", $file);
       $title = preg_replace("/\-/i", " ", $filename);
       $title = ucwords($title);
       $result .= '<li><a href="/guide/'.$filename.'">'.$title.'</a></li>' . "\n";
@@ -125,7 +125,7 @@ class docs_model extends CI_Model {
     return $result;
   }
   /*
-   * -Builds menu. 
+   * -Builds menu.
    * Accepts optional $classes_array but is a dropdown-menu by default.
    * Returns menu
    */

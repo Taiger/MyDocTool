@@ -111,7 +111,7 @@ class Docs extends CI_Controller {
 }
 // Callback for creating a new documentation page
 // Accepts name to check for and returns TRUE or FALSE
-public function valid_filename_check($thisname == FALSE) {
+public function valid_filename_check($thisname = FALSE) {
   if($thisname == FALSE){
     $this->form_validation->set_message('valid_filename_check', 'Oops, the title field is empty.');
     return FALSE;
@@ -128,8 +128,11 @@ public function valid_filename_check($thisname == FALSE) {
     $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else.');
     return FALSE;
   } elseif($exists = $this->docs_model->itemExists($thisname)) {
-    // MESSAGE: doc already exists
-    $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else. <br>' . $exists[0]);
+    // MESSAGE: pattern already exists
+    if(is_array($exists)) {
+      $exists = $exists[0];
+    }
+    $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else. <br>' . $exists);
     return FALSE;
   } else {
     // YES!
