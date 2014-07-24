@@ -8,7 +8,7 @@ class Docs extends CI_Controller {
     $this->load->model('docs_model');
   }
   /*
-   * Accepts $page as string and optional $type as string 
+   * Accepts $page as string and optional $type as string
    * If $page == index returns doc index page
    * Otherwise returns page loaded with html
    */
@@ -33,7 +33,7 @@ class Docs extends CI_Controller {
       // Load a single page in a nodetpl
       $data['nodetpl'] = $this->docs_model->getItem($page, $type);
     }
-    
+
     // Show in nodetpl template
     $data['content'] = $this->load->view('templates/node12tpl', $data, TRUE);
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
@@ -111,7 +111,11 @@ class Docs extends CI_Controller {
 }
 // Callback for creating a new documentation page
 // Accepts name to check for and returns TRUE or FALSE
-public function valid_filename_check($thisname) {
+public function valid_filename_check($thisname == FALSE) {
+  if($thisname == FALSE){
+    $this->form_validation->set_message('valid_filename_check', 'Oops, the title field is empty.');
+    return FALSE;
+  }
   // Check for filenames that either exist as a path or are used another way.
   $disallowed_filenames = array(
     'guide', 'general', 'tech',
@@ -125,11 +129,7 @@ public function valid_filename_check($thisname) {
     return FALSE;
   } elseif($exists = $this->docs_model->itemExists($thisname)) {
     // MESSAGE: doc already exists
-    $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else. <br>' . $exists[0]); 
-    return FALSE;
-  } elseif(empty($thisname)) {
-    // MESSAGE: title field is empty
-    $this->form_validation->set_message('valid_filename_check', 'Oops, the title field is empty.');
+    $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else. <br>' . $exists[0]);
     return FALSE;
   } else {
     // YES!
@@ -161,7 +161,7 @@ public function editdoc($file_to_edit) {
       // No file to edit
       show_404();
     }
- 
+
     // Get type/category from filepath
     $type = $exists['type'];
 
