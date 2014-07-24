@@ -1,18 +1,19 @@
 /**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.html or http://ckeditor.com/license
+ *
+ * CKeditor config file
  */
 
  CKEDITOR.editorConfig = function( config ) {
-  // disable filter
+  // disable filter. We are ensuring safe html serverside anyhow.
   config.allowedContent=true;
-  // extra plugin
+  // add extra plugins
   config.extraPlugins = 'showblocks';
 
   // Bootstrap styles
   config.stylesSet = [
   /* Add Styleguide Styles */
   { name : 'Syntax Highlighting', element : 'pre', attributes: { 'class': 'language-markup' } },
+  { name : 'Default', element : 'pre', attributes: { 'class': '' } },
   /* Bootstrap Styles */
   /* Typography */
   { name : 'Paragraph Lead', element : 'p', attributes: { 'class': 'lead' } },
