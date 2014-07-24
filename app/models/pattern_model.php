@@ -76,7 +76,7 @@ class Pattern_model extends CI_Model {
     if(empty($files)){
       return '<p>No pattern found of the name <strong>'.$item.'</strong>.</p>';
     }
-    
+
     foreach ($files as $file) {
       $result .= '<div class="sg-markup sg-section">';
       $result .= '<div class="sg-display">';
@@ -148,7 +148,7 @@ class Pattern_model extends CI_Model {
 
     return $result;
   }
- 
+
   /*
    * -Builds links list by pattern type
    * Accepts required $type
@@ -172,7 +172,7 @@ class Pattern_model extends CI_Model {
     // Sort alphabetically
     sort($files);
     foreach ($files as $file){
-        $filename = preg_replace("/\.html$/i", "", $file); 
+        $filename = preg_replace("/\.html$/i", "", $file);
         $title = preg_replace("/\-/i", " ", $filename);
         $title = ucwords($title);
         $result .= '<li><a href="'.$filename.'">'.$title.'</a></li>' . "\n";
@@ -180,7 +180,7 @@ class Pattern_model extends CI_Model {
     return $result;
   }
   /*
-   * -Builds menu. 
+   * -Builds menu.
    * Accepts optional $classes_array but is a dropdown-menu by default.
    * Returns menu
    */
@@ -195,5 +195,61 @@ class Pattern_model extends CI_Model {
     $result = '</ul>';
     return $result;
   }
+
+  /*
+   * Accepts $content as clean string, $filename as 'my_file_name.html' and optional $type
+   * If created returns TRUE
+   * Otherwise returns FALSE
+   */
+  public function createItem($content, $filename, $type = 'atoms') {
+      // only two types supported right now
+      if($type != 'general' && $type != 'tech'){
+        return FALSE;
+      }
+      // Write to file
+      if (write_file('patterns/' . $type . '/' . $filename, $content) == FALSE) {
+        return FALSE;
+      } else {
+        return TRUE;
+      }
+  }
+  /*
+   * Accepts $item like 'my_file_name'
+   * If valid returns array containing already exists message and type(category)
+   * Otherwise returns FALSE
+   */
+  public function itemExists($item) {
+    $result = array();
+    $filename = $item . '.html';
+    $location = 'patterns/';
+    $allfiles = get_filenames($location, TRUE);
+    foreach ($allfiles as $fullpath) {
+      if(preg_match('/'.$filename.'/i', $fullpath)){
+        $filepath = preg_split('/patterns/i', $fullpath);
+        $loc = explode('/', $filepath[1]);
+        $result['message'] = 'Filename already exists at patterns' . $filepath[1] . '<br>Titles must be unique regardless of pattern type.';
+        $result['type'] = $loc[1];
+        $result['fullpath'] = $fullpath;
+        return $result;
+      }
+    }
+    // no docs html file with that name
+    return FALSE;
+  }
+  /*
+   * Accepts $item like 'my_file_name'
+   * If deleted returns message string
+   * Otherwise returns FALSE
+   */
+  public function itemDelete($item) {
+    $exists = $this->itemExists($item);
+    if($exists){
+      unlink($exists['fullpath']);
+      return 'Deleted '. $item;
+    } else {
+      return FALSE;
+    }
+  }
+
 
 }

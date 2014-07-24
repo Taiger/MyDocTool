@@ -57,7 +57,21 @@ $route['guide/tech'] = 'docs/view/index';
 $route['guide/(:any)/(:any)'] = 'docs/view/$2/$1';
 $route['guide/(:any)'] = 'docs/view/$1';
 
-// PATTERNS
+// pattern
+$route['pattern'] = 'patterns/view/index';
+$route['pattern/create'] = 'patterns/createpat';
+$route['pattern/createpat'] = 'patterns/createpat';
+$route['pattern/editpat'] = 'patterns/editpat';
+$route['pattern/edit/(:any)'] = 'patterns/editpat/$1';
+$route['pattern/delete/(:any)'] = 'patterns/deletedoc/$1';
+$route['pattern/deletepat_yes/(:any)'] = 'patterns/deletepat_yes/$1';
+$route['pattern/general'] = 'patterns/view/index';
+$route['pattern/tech'] = 'patterns/view/index';
+$route['pattern/(:any)/(:any)'] = 'patterns/view/$2/$1';
+$route['pattern/(:any)'] = 'patterns/view/$1';
+
+
+// TODO - Make generic
 $route['(:any)'] = 'patterns/view/$1';
 $route['default_controller'] = "patterns/view";
 //$route['404_override'] = '';
