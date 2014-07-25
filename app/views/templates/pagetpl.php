@@ -15,7 +15,7 @@
 
       <ul class="nav navbar-nav navbar-right sg-header-nav">
 
-        
+
         <?php if($menus['default']['state'] == TRUE): ?>
 
         <li class="sg-menu-default">
@@ -107,16 +107,27 @@
 </div><!--/.sg-body-->
 
 <footer class="footer sg-footer">
-  <ul class="nav nav-pills pull-right">
+  <ul class="sg-admin-links nav-pills pull-right">
     <?php if(isset($admin_links) && $isLoggedIn) {
+
       foreach($admin_links as $name => $link) {
-        echo '<li><a href="'.$link.'">'.ucwords(preg_replace('/_/i', ' ', $name)).'</a></li>';
-      } } ?>
+        $classes = 'btn btn-sm';
+/**/    if (preg_match('/^create/i', $name)){
+          $classes .= ' btn-success';
+        } elseif(preg_match('/^edit/i', $name)) {
+          $classes .= ' btn-warning';
+        } elseif ($name == 'delete') {
+          $classes .= ' btn-danger';
+        }
+        echo '<li><a class="'.$classes.'" href="'.$link.'">'.ucwords(preg_replace('/_/i', ' ', $name)).'</a></li>';
+      }
+    }
+    ?>
       <li>
         <?php if(isset($isLoggedIn) && $isLoggedIn == TRUE) {
-          echo '<a href="/logout">Logout</a>';
+          echo '<a class="btn btn-sm" href="/logout">Logout</a>';
         } else {
-          echo '<a href="/login">Login</a>';
+          echo '<a class="btn btn-sm" href="/login">Login</a>';
         } ?>
       </li>
     </ul>

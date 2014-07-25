@@ -6833,6 +6833,10 @@ All classes should be namespaced off of "sg-".
   background-color: #eee;
   border-top: 1px solid #e5e5e5;
 }
+.sg-admin-links,
+.sg-admin-links li {
+  list-style: none;
+}
 /* -------------------------------------------------------------------------
  Styleguide Utility Classes
  ---------------------------------------------------------------------------- */
