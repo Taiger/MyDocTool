@@ -8,6 +8,8 @@ class Patterns extends CI_Controller {
   }
 
   public function view($page = 'allpatterns') {
+    // Use cache. Time is in minutes.
+    $this->output->cache(5);
 
   // Defaults
   $data = $this->wrapper_model->pageDefaults(array(), $page);

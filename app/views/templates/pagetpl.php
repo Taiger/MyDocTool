@@ -109,10 +109,10 @@
 <footer class="footer sg-footer">
   <ul class="sg-admin-links nav-pills pull-right">
     <?php if(isset($admin_links) && $isLoggedIn) {
-
+      // Build admin links
       foreach($admin_links as $name => $link) {
         $classes = 'btn btn-sm';
-/**/    if (preg_match('/^create/i', $name)){
+        if (preg_match('/^create/i', $name)){
           $classes .= ' btn-success';
         } elseif(preg_match('/^edit/i', $name)) {
           $classes .= ' btn-warning';

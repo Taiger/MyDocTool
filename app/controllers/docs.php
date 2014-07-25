@@ -15,6 +15,9 @@ class Docs extends CI_Controller {
   public function view($page = 'index', $type = 'any') {
     // Type could be third url param
 
+    // Use cache. Time is in minutes.
+    $this->output->cache(5);
+
     // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), $page);
     $data['menus']['docs']['state'] = TRUE;
