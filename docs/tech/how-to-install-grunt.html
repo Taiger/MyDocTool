@@ -10,14 +10,54 @@
  <ul>
   <li>Node Version Manager is the best way to install nodejs.&nbsp; Do not use aptidude, yum or similar to install nodejs as Linux repositiories are notoriously out of date. NVM is the solution.</li>
   <li>The different ways to install it are well documented here: <a href="https://github.com/creationix/nvm">https://github.com/creationix/nvm</a></li>
+  <li>Once installed, and available in your path, you can use node in your project.</li>
+ </ul>
+ </li>
+ <li><strong>Install Nodejs</strong>
+ <ul>
+  <li>Use NVM to find the newest node version to use:
+  <ul>
+   <li>
+   <pre>
+nvm ls-remote</pre>
+   </li>
+  </ul>
+  </li>
+  <li>Install nodejs version:
+  <ul>
+   <li>
+   <pre>
+nvm install v0.10</pre>
+   </li>
+  </ul>
+  </li>
+  <li>Use this version in your project
+  <ul>
+   <li>
+   <pre>
+nvm use 0.10</pre>
+   </li>
+  </ul>
+  </li>
+  <li>Set this version as the default for other projects:
+  <ul>
+   <li>
+   <pre>
+nvm alias default 0.10</pre>
+   </li>
+  </ul>
+  </li>
  </ul>
  </li>
  <li><strong>Install Grunt CLI</strong>
  <ul>
-  <li>Procedure is documented here: <a href="http://gruntjs.com/getting-started">http://gruntjs.com/getting-started</a></li>
-  <li>
-  <pre>
+  <li>Procedure is documented here: <a href="http://gruntjs.com/getting-started">http://gruntjs.com/getting-started</a>
+  <ul>
+   <li>
+   <pre>
 <code class="lang-shell">npm install -g grunt-cli</code></pre>
+   </li>
+  </ul>
   </li>
   <li>This makes Grunt available on the server. The Grunt task runner is installed in any subfolder project using NPM, so we do that next.</li>
  </ul>
@@ -27,10 +67,21 @@
   <li>Create package.json for project dependencies (<a href="https://www.npmjs.org/doc/package.json.html">https://www.npmjs.org/doc/package.json.html</a>). The Grunt Task runner is included.</li>
   <li>
   <p class="language-markup">To install node modules run npm install in the same directory as package.json file.</p>
-  </li>
-  <li>
-  <pre>
+
+  <ul>
+   <li>
+   <pre>
 npm install</pre>
+   </li>
+  </ul>
+  </li>
+  <li>Alternately just install grunt directly:
+  <ul>
+   <li>
+   <pre>
+npm install grunt</pre>
+   </li>
+  </ul>
   </li>
  </ul>
  </li>
@@ -39,8 +90,30 @@ npm install</pre>
   <li>Grunt tasks are contained in a Gruntfile.js file. The format is well documented: <a href="http://gruntjs.com/getting-started">http://gruntjs.com/getting-started</a></li>
   <li>Tasks are run relative to this file. This is important if you need to create a cron tab or alias for a task. For example, an alias to process less files to css files would be similar to this:</li>
   <li><code>alias p1build=&quot;pushd &#39;/path/to/gruntfilejs; grunt build; popd;&#39;&quot;</code></li>
+  <li>
+  <p>Run the default task in Gruntfile</p>
+
+  <ul>
+   <li>
+   <pre>
+<code>grunt</code></pre>
+   </li>
+  </ul>
+  </li>
  </ul>
  </li>
 </ol>
+
+<h2>Possible Complications</h2>
+
+<p>If you are on an old version of Python, you may have trouble installing Node Version Manager (NVM). This is true on servers running Plesk, such as Media Temple.</p>
+
+<p>The solution is to install an alternate newser version of Python. You can use <a href="http://asp-sg.eggdude.com/guide/how-to-install-grunt-extra-help">this script to install alternate Python version for using nodejs</a>.</p>
+
+<p>Then run this command before installing NVM (Step 1 above):</p>
+
+<pre class="language-markup">
+ quot;export PYTH
+</pre>
 
 <p>&nbsp;</p>
