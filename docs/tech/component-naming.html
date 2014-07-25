@@ -1,0 +1,48 @@
+<h1>Component Naming</h1>
+
+<p><em>A hybrid approach</em></p>
+
+<p>Components are composed of Atoms (html elements) and sometimes Molecules (fields). Multiple Components are put together to form Templates. Templates are assigned to Pages.</p>
+
+<h2>Component Class Names</h2>
+
+<p>Components should be written in Capitol Casing or UpperCamelCase. This is to differentiate them from Drupal classes and Bootstrap classes, which both use dashes and lowercase.</p>
+
+<pre>
+ImageHero
+VideoHero
+CarouselHero
+</pre>
+
+<h2>Component Parts</h2>
+
+<p>Each component part, is named using double dashes extended from the base component. Component Parts are totally optional, as they don&#39;t always make sense. Note that is this is mot Molecules or Atoms, as they are always reusable.</p>
+
+<pre>
+ImageHero--head
+ImageHero--content
+ImageHero--footer</pre>
+
+<h2>Component Modifiers</h2>
+
+<p>A variation of Component is named by extending the base Component name with double underscores.</p>
+
+<pre>
+ImageHero__special
+ImageHero__secondary
+ImageHero__secondary--head</pre>
+
+<h2>Example</h2>
+
+<pre>
+Example markup</pre>
+
+<p><em>Further Reference</em></p>
+
+<p>These standards were inspired by:</p>
+
+<p><a href="http://bem.info/method/definitions/">BEM: Block Element Modifier</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
