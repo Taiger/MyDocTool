@@ -23,11 +23,11 @@ nvm ls-remote</pre>
    </li>
   </ul>
   </li>
-  <li>Install nodejs version:
+  <li>Install current nodejs version(v0.11.13 is most current right now):
   <ul>
    <li>
    <pre>
-nvm install v0.10</pre>
+nvm install v0.11.13</pre>
    </li>
   </ul>
   </li>
@@ -35,7 +35,7 @@ nvm install v0.10</pre>
   <ul>
    <li>
    <pre>
-nvm use 0.10</pre>
+nvm use v0.11.13</pre>
    </li>
   </ul>
   </li>
@@ -43,7 +43,7 @@ nvm use 0.10</pre>
   <ul>
    <li>
    <pre>
-nvm alias default 0.10</pre>
+nvm alias default v0.11.13</pre>
    </li>
   </ul>
   </li>
@@ -55,11 +55,11 @@ nvm alias default 0.10</pre>
   <ul>
    <li>
    <pre>
-<code class="lang-shell">npm install -g grunt-cli</code></pre>
+<code class="lang-shell">npm install -g grunt-cli --verbose</code></pre>
    </li>
   </ul>
   </li>
-  <li>This makes Grunt available on the server. The Grunt task runner is installed in any subfolder project using NPM, so we do that next.</li>
+  <li>This makes Grunt available on the server. It should be part in your $PATH not too. The seperate Grunt task runner is installed in any subfolder project using NPM, so we do that next.</li>
  </ul>
  </li>
  <li><strong>Install Grunt Task Runner using package.json</strong>
