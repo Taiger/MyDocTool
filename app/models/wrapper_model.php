@@ -70,4 +70,28 @@
     $result .= '</ul>';
     return $result;
   }
+  /*
+   * Clears the cache
+   * If anything deleted returns TRUE
+   * If only index.html exists but nothing else, returns string 'empty'
+   * Returns FALSE If deleting a file fails for some reason
+   */
+
+  public function clearCache() {
+    $result = array('already_empty');
+    $location = 'app/cache/';
+    $allCacheFiles = get_filenames($location, TRUE);
+
+    foreach ($allCacheFiles as $key => $fullpath) {
+      // don't delete index.html
+      if(preg_match('/index\.html$/i', $fullpath) == FALSE) {
+        //delete everything else
+        $result[] = unlink($fullpath);
+      }
+    }
+    if(in_array(FALSE, $result)) return FALSE;
+    return $result;
   }
+
+  // END CLASS
+}
