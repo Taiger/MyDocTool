@@ -247,6 +247,9 @@ class Pattern_model extends CI_Model {
       if (write_file('patterns/' . $type . '/' . $filename, $content) == FALSE) {
         return FALSE;
       } else {
+        // Try to set permissions or return FALSE
+        if(!chmod('patterns/' . $type . '/' . $filename, 0764)) return FALSE;
+        // We are good
         return TRUE;
       }
   }

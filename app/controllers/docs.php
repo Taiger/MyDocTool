@@ -16,7 +16,7 @@ class Docs extends CI_Controller {
     // Type could be third url param
 
     // Use cache. Time is in minutes.
-    $this->output->cache(5);
+    $this->output->cache(30);
 
     // Defaults
     $data = $this->wrapper_model->pageDefaults(array(), $page);
@@ -94,11 +94,11 @@ class Docs extends CI_Controller {
       $thefile = url_title(strtolower($this->security->sanitize_filename($title)), '-', TRUE);
       $filename = $thefile . '.html';
 
-
       // Try to save
       if($this->docs_model->createItem($text, $filename, $type)) {
-          // If saved
-        // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
+        // IF SAVED
+        // Silently clear cache
+        $this->wrapper_model->clearCache();
         // Just redirect to newly created page
        redirect('/guide/' . $type . '/' . $thefile);
 
@@ -132,9 +132,7 @@ public function valid_filename_check($thisname = FALSE) {
     return FALSE;
   } elseif($exists = $this->docs_model->itemExists($thisname)) {
     // MESSAGE: pattern already exists
-    if(is_array($exists)) {
-      $exists = $exists[0];
-    }
+      $exists = implode(' ',$exists);
     $this->form_validation->set_message('valid_filename_check', $thisname . ' will not work as a path. Please try something else. <br>' . $exists);
     return FALSE;
   } else {
@@ -197,9 +195,9 @@ public function editdoc($file_to_edit) {
       // Try to save
       $saved = $this->docs_model->createItem($text, $filename, $type);
       if($saved == TRUE) {
-        // If saved
-        // echo 'Successfully created '. $filename . ' at ' . '/docs/' . $type . '.';
-        // Just redirect to created page
+        // Silently clear cache
+        $this->wrapper_model->clearCache();
+        // Redirect to created page
        redirect('/guide/' . $type . '/' . $item);
 
      } else {
@@ -230,6 +228,7 @@ public function deletedoc($file_to_delete) {
     $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
     $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
     $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3"><h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a class="btn btn-sm btn-primary" href="'.base_url('/guide/deletedoc_yes/'.$file_to_delete).'"> Yes </a> <a class="btn btn-sm btn-default" href="'.base_url('/guide/'.$file_to_delete).'"> No </a></div></div>';
+
     // Show
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);
@@ -256,6 +255,10 @@ public function deletedoc_yes($file_to_delete) {
     } else {
       $data['content'] = 'Hmm, I could not delete '. $file_to_delete . ' Either its a permissions issue or it does not exist.';
     }
+    // Silently clear cache
+    $this->wrapper_model->clearCache();
+
+
     $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3">'.$data['content'].'</div></div>';
     // Show
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);

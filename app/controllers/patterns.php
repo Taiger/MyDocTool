@@ -9,7 +9,7 @@ class Patterns extends CI_Controller {
 
   public function view($page = 'allpatterns') {
     // Use cache. Time is in minutes.
-    $this->output->cache(5);
+    $this->output->cache(30);
 
   // Defaults
   $data = $this->wrapper_model->pageDefaults(array(), $page);
@@ -120,9 +120,9 @@ class Patterns extends CI_Controller {
 
       // Try to save
       if($this->pattern_model->createItem($text, $filename, $type)) {
-          // If saved
-        // echo 'Successfully created '. $filename . ' at '  . $type . '.';
-        // Just redirect to newly created page
+        // Silently clear cache
+        $this->wrapper_model->clearCache();
+        // Redirect to newly created page
        redirect('/' . $thefile);
 
      } else {
@@ -228,9 +228,9 @@ public function editpat($file_to_edit) {
       // Try to save
       $saved = $this->pattern_model->createItem($text, $filename, $type);
       if($saved == TRUE) {
-        // If saved
-        // echo 'Successfully created '. $filename . ' at ' /' . $type . '.';
-        // Just redirect to created page
+        // Silently clear cache
+        $this->wrapper_model->clearCache();
+        // Redirect to created page
        redirect('/' . $item);
 
      } else {
@@ -287,6 +287,9 @@ public function deletepat_yes($file_to_delete) {
     } else {
       $data['content'] = 'Hmm, I could not delete '. $file_to_delete . ' Either its a permissions issue or it does not exist.';
     }
+    // Silently clear cache
+    $this->wrapper_model->clearCache();
+
     $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3">'.$data['content'].'</div></div>';
     // Show
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
