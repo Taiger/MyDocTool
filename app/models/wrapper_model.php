@@ -8,7 +8,7 @@
       }
 
     // Build out $data arrays used in page templates.
-    //Accepts $passed_data array to be merged with defaults and $page as a string
+    // Accepts $passed_data array to be merged with defaults and $page as a string
     //
     public function pageDefaults(array $passed_data, $page) {
       // $passed_data array is merged with $data defaults at the end of this method
@@ -73,22 +73,23 @@
   /*
    * Clears the cache
    * If anything deleted returns TRUE
-   * If only index.html exists but nothing else, returns string 'empty'
+   * If only index.html exists but nothing else, returns string 'Already_Empty'
    * Returns FALSE If deleting a file fails for some reason
    */
 
   public function clearCache() {
-    $result = array('already_empty');
+    $result = array('Already_Empty');
     $location = 'app/cache/';
     $allCacheFiles = get_filenames($location, TRUE);
 
-    foreach ($allCacheFiles as $key => $fullpath) {
+    foreach ($allCacheFiles as $fullpath) {
       // don't delete index.html
       if(preg_match('/index\.html$/i', $fullpath) == FALSE) {
         //delete everything else
         $result[] = unlink($fullpath);
       }
     }
+    // fail if we can't delete a cache file
     if(in_array(FALSE, $result)) return FALSE;
     return $result;
   }

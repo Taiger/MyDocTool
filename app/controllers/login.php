@@ -35,10 +35,12 @@ class Login extends CI_Controller {
     $data['content'] = $this->load->view('pages/login', $data, TRUE);
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);
-     
+
     }
 
     public function login_user() {
+        // Silently clear file cache
+        $this->wrapper_model->clearCache();
 
         // Grab the email and password from the form POST
         $username = $this->security->xss_clean($this->input->post('username'));
@@ -48,7 +50,7 @@ class Login extends CI_Controller {
         if( ($username && $pass) && ($this->user_model->validate_user($username,$pass) == true)) {
             // If the user is valid, show to login success page
                redirect('/login/login_success');
-     
+
         } else {
             // Otherwise show the login screen with an error message.
             $this->show_login(true);
