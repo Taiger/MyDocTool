@@ -113,8 +113,8 @@ class Patterns extends CI_Controller {
       $text  = $this->security->xss_clean($this->input->post('text'));
       $type  = $this->security->xss_clean($this->input->post('type'));
 
-      // CI function replaces spaces with dashes and makes lowercase
-      $thefile = url_title(strtolower($this->security->sanitize_filename($title)), '-', TRUE);
+      // CI function replaces spaces with dashes
+      $thefile = url_title($this->security->sanitize_filename($title), '-', TRUE);
       $filename = $thefile . '.html';
 
 
