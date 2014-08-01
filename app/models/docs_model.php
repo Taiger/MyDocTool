@@ -29,6 +29,7 @@ class docs_model extends CI_Model {
    * Otherwise returns error message for display
    */
   public function getItem($item, $type = 'any') {
+    $results = '';
     $files = array(); // in case multiple matches
     $allfiles = array();
     $filename = $item . '.html';
@@ -56,10 +57,15 @@ class docs_model extends CI_Model {
       return 'I am not finding ' .$filename. '. Sorry about that.';
     } else {
       // Return first match
-      return htmlspecialchars_decode(read_file($files[0]));
+      $filecontents = read_file($files[0]);
+      $regex = '#<pre>(.*?)</pre>#';
+      // callback defined at end of this file
+      $results = preg_replace_callback($regex, 'docsCodeBlock', $filecontents);
+      return $results;
     }
-
   }
+
+
   /*
    * Accepts $item like 'my_file_name'
    * If valid returns array containing already exists message and type(category)
@@ -157,3 +163,13 @@ class docs_model extends CI_Model {
 
   */
 }
+
+// Callback used in getItem to display code blocks
+// $matches is an array of results
+  function docsCodeBlock($matches){
+    //die(print_r($matches));
+    foreach($matches as $code){
+      $clncode = str_replace(array('<pre>','</pre>','<code>','</code>'), '', $code);
+        return '<pre><code>' . htmlspecialchars($clncode) . '</code></pre>';
+      }
+  }
