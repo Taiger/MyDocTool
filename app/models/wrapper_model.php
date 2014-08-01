@@ -34,7 +34,7 @@
       // LINKS FOR DEFAULT MENU
       $default_menu_links = array(
         'all_documentation' => $data['base_url'] . '/guide',
-        'all_patterns' => $data['base_url'] . '/allpatterns',
+        'all_patterns' => $data['base_url'] . '/pattern',
         );
       // DEFAULT MENUS
       $data['menus'] = array(

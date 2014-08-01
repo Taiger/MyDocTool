@@ -19,7 +19,7 @@
         <?php if($menus['default']['state'] == TRUE): ?>
 
         <li class="sg-menu-default">
-          <a href="/allpatterns" >All Patterns</a>
+          <a href="/pattern/allpatterns" >All Patterns</a>
         </li>
 
       <?php endif; ?>

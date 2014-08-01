@@ -7064,6 +7064,13 @@ All classes should be namespaced off of "sg-".
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+/* Styleguide Patterns */
+/* Styleguide Patterns Edit Page */
+/* Ace html editor */
+.ace_search_field {
+  color: #333333;
+  font-family: verdana, sans-serif;
+}
 /* -------------------------------------------------------------------------
 STYLETILES
 ---------------------------------------------------------------------------- */

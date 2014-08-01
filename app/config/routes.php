@@ -72,7 +72,7 @@ $route['pattern/(:any)'] = 'patterns/view/$1';
 
 
 // TODO - Make generic
-$route['(:any)'] = 'patterns/view/$1';
+//$route['(:any)'] = 'patterns/view/$1';
 $route['default_controller'] = "patterns/view";
 //$route['404_override'] = '';
 
