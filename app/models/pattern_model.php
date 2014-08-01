@@ -43,10 +43,16 @@ class Pattern_model extends CI_Model {
         $result .= htmlspecialchars_decode(file_get_contents('patterns/'.$type.'/'.$file));
         $result .= '</div>';
         if($showsource) {
+            $thesource = file_get_contents('patterns/'.$type.'/'.$file);
+            $thesource = htmlentities($thesource);
+            // Preserve html comments
+            $thesource = str_replace('&amp;lt;!--', '&lt;!--', $thesource);
+            $thesource = str_replace('--&amp;gt;', '--&gt;', $thesource);
+
             $result .= '<div class="sg-markup-controls"><a class="sg-btn sg-btn--source" href="'.$filename.' ">View Source</a></div>';
             $result .= '<div class="sg-source sg-expandable">';
-            $result .= '<pre class="language-markup"><code>';
-            $result .= htmlspecialchars(file_get_contents('patterns/'.$type.'/'.$file));
+            $result .= '<pre><code class="language-markup">';
+            $result .= $thesource;
             $result .= '</code></pre>';
           }
         $result .= '</div>';
@@ -90,15 +96,20 @@ class Pattern_model extends CI_Model {
             $result .= htmlspecialchars_decode(file_get_contents($documentation));
             $result .= '</div>';
           }*/
-
       $result .= htmlspecialchars_decode(read_file($file));
       $result .= '</div>';
       $result .= '<hr>';
       if($showsource) {
+          $thesource = read_file($file);
+          $thesource = htmlentities($thesource);
+          // Preserve html comments
+          $thesource = str_replace('&amp;lt;!--', '&lt;!--', $thesource);
+          $thesource = str_replace('--&amp;gt;', '--&gt;', $thesource);
+
           //$result .= '<div class="sg-markup-controls"><a class="sg-btn sg-btn--source" href="#">View Source</a></div>';
           $result .= '<div class="sg-source sg-animated">';
-          $result .= '<pre class="language-markup linenums"><code>';
-          $result .= htmlspecialchars(read_file($file));
+          $result .= '<pre><code class="language-markup">';
+          $result .= $thesource;
           $result .= '</code></pre>';
           $result .= '</div>';
         }

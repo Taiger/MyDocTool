@@ -50,6 +50,7 @@ class Patterns extends CI_Controller {
 
     // Show
     $data['content'] = $this->pattern_model->showItem($page);
+    //die($data['content']);
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);
 
