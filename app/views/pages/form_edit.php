@@ -3,7 +3,7 @@
   <h2><?php //print $title; ?></h2>
 
   <h1>Edit Page</h1>
-  <div><em>Now editing file <?php echo $file_to_edit; ?>.html </em><a class="" href="<?php echo $base_url . $file_to_edit; ?>">cancel</a></div>
+  <div><em>Now editing file <?php echo $file_to_edit; ?>.html </em><a class="" href="<?php echo $base_url . 'pattern/' .$file_to_edit; ?>">cancel</a></div>
   <hr>
 
   <?php echo validation_errors(); ?>

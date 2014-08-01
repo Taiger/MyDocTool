@@ -124,7 +124,7 @@ class Patterns extends CI_Controller {
         // Silently clear cache
         $this->wrapper_model->clearCache();
         // Redirect to newly created page
-       redirect('/' . $thefile);
+       redirect('/pattern/' . $thefile);
 
      } else {
         // Permission issue
@@ -232,7 +232,7 @@ public function editpat($file_to_edit) {
         // Silently clear cache
         $this->wrapper_model->clearCache();
         // Redirect to created page
-       redirect('/' . $item);
+       redirect('/pattern/' . $item);
 
      } else {
         // Otherwise show message with message how to retain changes.

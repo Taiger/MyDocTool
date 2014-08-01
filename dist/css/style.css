@@ -6873,6 +6873,8 @@ All classes should be namespaced off of "sg-".
   display: inline-block;
   font-size: 18px;
   line-height: 20px;
+  position: relative;
+  z-index: 1;
 }
 .sg-navbar {
   float: right;
@@ -7065,7 +7067,6 @@ All classes should be namespaced off of "sg-".
   border-top-right-radius: 0;
 }
 /* Styleguide Patterns */
-/* Styleguide Patterns Edit Page */
 /* Ace html editor */
 .ace_search_field {
   color: #333333;
