@@ -1,5 +1,5 @@
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-16">
   <h2><?php //print $title; ?></h2>
 
   <h1>Edit Page</h1>

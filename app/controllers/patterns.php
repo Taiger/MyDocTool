@@ -42,9 +42,12 @@ class Patterns extends CI_Controller {
     $this->load->view('templates/htmltpl', $data);
 
   } else {
-    //
-    $data['title'] = 'Pattern ' . $page;
-    $data['body_class'] = $page . '-page';
+    // Video Hero Kaltura script
+    if($page == 'videohero') {
+      $data['scripts'] = array(
+        ///'kaltura_demo' => 'http://www.kaltura.com/p/423851/sp/42385100/embedIframeJs/uiconf_id/11598752/partner_id/423851?autoembed=true&entry_id=1_znvt6hgh&playerId=kaltura_player&width=1100&height=550'
+        );
+    }
     $data['admin_links']['edit'] = $data['base_url'].'pattern/edit/' .$page;
     $data['admin_links']['delete'] = $data['base_url'].'pattern/delete/' .$page;
 
@@ -112,6 +115,7 @@ class Patterns extends CI_Controller {
       // Code Ignitor does not clean post data by default.
       $title = $this->security->xss_clean($this->input->post('title'));
       $text  = $this->security->xss_clean($this->input->post('text'));
+      $text  = $this->input->post('text'); //RAW INPUT (allow scripts)
       $type  = $this->security->xss_clean($this->input->post('type'));
 
       // CI function replaces spaces with dashes
@@ -261,7 +265,7 @@ public function deletepat($file_to_delete) {
     $data['menus']['patterns']['state'] = TRUE;
     //$data['general_links'] = $this->pattern_model->listFilesAsLinks('general');
     //$data['tech_links'] = $this->pattern_model->listFilesAsLinks('tech');
-    $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3"><h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a class="btn btn-sm btn-primary" href="'.base_url('/pattern/deletepat_yes/'.$file_to_delete).'"> Yes </a> <a class="btn btn-sm btn-default" href="'.base_url('/pattern/'.$file_to_delete).'"> No </a></div></div>';
+    $data['content'] = '<div class="row"><div class="col-md-8 col-md-offset-4"><h3>Are you sure you want to delete ' . $file_to_delete . '.html permanently? </h3><a class="btn btn-sm btn-primary" href="'.base_url('/pattern/deletepat_yes/'.$file_to_delete).'"> Yes </a> <a class="btn btn-sm btn-default" href="'.base_url('/pattern/'.$file_to_delete).'"> No </a></div></div>';
     // Show
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);
@@ -291,7 +295,7 @@ public function deletepat_yes($file_to_delete) {
     // Silently clear cache
     $this->wrapper_model->clearCache();
 
-    $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3">'.$data['content'].'</div></div>';
+    $data['content'] = '<div class="row"><div class="col-md-8 col-md-offset-4">'.$data['content'].'</div></div>';
     // Show
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);

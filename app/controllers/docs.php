@@ -69,7 +69,11 @@ class Docs extends CI_Controller {
       $data['general_links'] = $this->docs_model->listFilesAsLinks('general');
       $data['tech_links'] = $this->docs_model->listFilesAsLinks('tech');
       $data['title'] = '<br/>Add to the Information Directory';
-      $data['scripts'] = array('ckeditor' => '/vendor/ckeditor/ckeditor.js', 'add_ckeditor' => '/js/sg-ckcustom.js');
+      $data['scripts'] = array(
+        'ckeditor' => '/vendor/ckeditor/ckeditor.js',
+        //'ckeditor_plugin_insertpre' => '/vendor/ckeditor-plugins/insertpre/plugin.js',
+        'add_ckeditor' => '/js/sg-ckcustom.js',
+        );
 
       // Create Form
       if($this->input->post('text')){
@@ -259,7 +263,7 @@ public function deletedoc_yes($file_to_delete) {
     $this->wrapper_model->clearCache();
 
 
-    $data['content'] = '<div class="row"><div class="col-md-6 col-md-offset-3">'.$data['content'].'</div></div>';
+    $data['content'] = '<div class="row"><div class="col-md-8 col-md-offset-4">'.$data['content'].'</div></div>';
     // Show
     $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
     $this->load->view('templates/htmltpl', $data);

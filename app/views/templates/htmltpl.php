@@ -12,14 +12,14 @@
   <link rel="stylesheet" href="/drupal/system/system.base.css?v1">
   <link rel="stylesheet" href="/drupal/field/field.css?v1">
 
-  <link rel="stylesheet" href="/vendor/bootstrap-accessibility-plugin/plugins/dist/css/bootstrap-accessibility-theme.css?v1">
+  <!-- <link rel="stylesheet" href="/vendor/bootstrap-accessibility-plugin/plugins/dist/css/bootstrap-accessibility-theme.css?v1"> -->
 
   <link rel="stylesheet" href="/vendor/prism/themes/prism.css?v1">
 
   <!-- processed from less/style.less -->
   <link rel="stylesheet" href="/dist/css/style.css?v1">
 
-  <!-- CLIENTSIDE PREPROCESSING: uncomment to enable  
+  <!-- CLIENTSIDE PREPROCESSING: uncomment to enable
   <link rel="stylesheet/less" type="text/css" href="less/style.less">
   <script>
   /*documentation: http://lesscss.org/usage/#using-less-in-the-browser*/
@@ -35,7 +35,7 @@
   </script>
   <script src="vendor/less.js/dist/less-1.7.3.min.js"></script>-->
 
- 
+
 
 </head>
 <body>
