@@ -1,9 +1,17 @@
-// Drupal stylesheets for AF1
-@import "/drupal/customthemes/af1/variables.less"; // Base custom colors, font-sizes, etc
-// Drupal stylesheets for ASP3
-@import "/drupal/customthemes/asp3/variables.less"; // Site-specific theming
+// !! THIS FILE IS UNUSED IN STYLEGUIDE !!
+// This file exists as a base to build the base af1 theme off of.
+// It is not site-specific, but can hold on its own. That is why this file exists.
 
-// CORE LIBRARY BELOW
+// (The only difference between this and the ASP bootstrap.less is that the asp files are commented out.)
+
+// Drupal stylesheets for AF1
+@import "/drupal/customthemes/af1/variables.less"; // Based on Bootstrap version 3.2.0
+// Drupal stylesheets for ASP3
+//@import "/drupal/customthemes/asp3/variables.less"; // Site-specific theming
+
+// ======= CORE BOOTSTRAP LIBRARY BELOW ======
+// ====== DO NOT EDIT BELOW THIS LINE ========
+
 @import "/vendor/bootstrap/less/mixins.less";
 
 // Reset and dependencies
@@ -53,9 +61,14 @@
 @import "/vendor/bootstrap/less/utilities.less";
 @import "/vendor/bootstrap/less/responsive-utilities.less";
 
-// Specific
+// ======= CORE BOOTSTRAP LIBRARY END ======
+// ====== DO NOT EDIT ABOVE THIS LINE ========
+
+// Drupal Specific
 @import "/drupal/bootstraptheme/overrides.less";// Bootstrap base theme file
 @import "/drupal/customthemes/af1/afoverrides.less";// AF1 platform modifications
-@import "/drupal/customthemes/asp3/aspoverrides.less";// ASP3 platform-specific modifications
+// Platform Specific
+//@import "/drupal/customthemes/asp3/aspoverrides.less";// ASP3 platform-specific modifications
+// Site Specific
 @import "/drupal/customthemes/af1/afmain.less";// AF1 platform-specific theming
-@import "/drupal/customthemes/asp3/aspmain.less";// ASP3 site-specific theming
+//@import "/drupal/customthemes/asp3/aspmain.less";// ASP3 site-specific theming
