@@ -1377,39 +1377,39 @@ pre code {
 .container {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 11.25px;
-  padding-right: 11.25px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 @media (min-width: 768px) {
   .container {
-    width: 742.5px;
+    width: 750px;
   }
 }
 @media (min-width: 992px) {
   .container {
-    width: 962.5px;
+    width: 970px;
   }
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1162.5px;
+    width: 1170px;
   }
 }
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 11.25px;
-  padding-right: 11.25px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .row {
-  margin-left: -11.25px;
-  margin-right: -11.25px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12, .col-xs-13, .col-sm-13, .col-md-13, .col-lg-13, .col-xs-14, .col-sm-14, .col-md-14, .col-lg-14, .col-xs-15, .col-sm-15, .col-md-15, .col-lg-15, .col-xs-16, .col-sm-16, .col-md-16, .col-lg-16 {
   position: relative;
   min-height: 1px;
-  padding-left: 11.25px;
-  padding-right: 11.25px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-13, .col-xs-14, .col-xs-15, .col-xs-16 {
   float: left;
@@ -2880,8 +2880,8 @@ select[multiple].input-lg {
   min-height: 27px;
 }
 .form-horizontal .form-group {
-  margin-left: -11.25px;
-  margin-right: -11.25px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 @media (min-width: 768px) {
   .form-horizontal .control-label {
@@ -2892,7 +2892,7 @@ select[multiple].input-lg {
 }
 .form-horizontal .has-feedback .form-control-feedback {
   top: 0;
-  right: 11.25px;
+  right: 15px;
 }
 @media (min-width: 768px) {
   .form-horizontal .form-group-lg .control-label {
@@ -3973,8 +3973,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-collapse {
   overflow-x: visible;
-  padding-right: 11px;
-  padding-left: 11px;
+  padding-right: 15px;
+  padding-left: 15px;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-overflow-scrolling: touch;
@@ -4018,8 +4018,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .container-fluid > .navbar-header,
 .container > .navbar-collapse,
 .container-fluid > .navbar-collapse {
-  margin-right: -11px;
-  margin-left: -11px;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 @media (min-width: 768px) {
   .container > .navbar-header,
@@ -4065,7 +4065,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand {
   float: left;
-  padding: 15px 11px;
+  padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
   height: 50px;
@@ -4077,13 +4077,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
-    margin-left: -11px;
+    margin-left: -15px;
   }
 }
 .navbar-toggle {
   position: relative;
   float: right;
-  margin-right: 11px;
+  margin-right: 15px;
   padding: 9px 10px;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -4110,7 +4110,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-nav {
-  margin: 7.5px -11px;
+  margin: 7.5px -15px;
 }
 .navbar-nav > li > a {
   padding-top: 10px;
@@ -4152,7 +4152,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     padding-bottom: 15px;
   }
   .navbar-nav.navbar-right:last-child {
-    margin-right: -11px;
+    margin-right: -15px;
   }
 }
 @media (min-width: 768px) {
@@ -4164,9 +4164,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-form {
-  margin-left: -11px;
-  margin-right: -11px;
-  padding: 10px 11px;
+  margin-left: -15px;
+  margin-right: -15px;
+  padding: 10px 15px;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -4240,7 +4240,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     box-shadow: none;
   }
   .navbar-form.navbar-right:last-child {
-    margin-right: -11px;
+    margin-right: -15px;
   }
 }
 .navbar-nav > li > .dropdown-menu {
@@ -4271,8 +4271,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar-text {
     float: left;
-    margin-left: 11px;
-    margin-right: 11px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
   .navbar-text.navbar-right:last-child {
     margin-right: 0;
@@ -6448,17 +6448,17 @@ body #admin-menu .dropdown li {
 }
 @media screen and (min-width: 768px) {
   .navbar.container {
-    max-width: 712.5px;
+    max-width: 720px;
   }
 }
 @media screen and (min-width: 992px) {
   .navbar.container {
-    max-width: 932.5px;
+    max-width: 940px;
   }
 }
 @media screen and (min-width: 1200px) {
   .navbar.container {
-    max-width: 1132.5px;
+    max-width: 1140px;
   }
 }
 .navbar.container > .container {
@@ -6930,8 +6930,8 @@ table .checkbox input[type="checkbox"] {
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 7px;
-  padding-left: 11.25px;
-  padding-right: 11.25px;
+  padding-left: 15px;
+  padding-right: 15px;
   text-align: right;
 }
 @media (min-width: 768px) {
@@ -6955,6 +6955,239 @@ table .checkbox input[type="checkbox"] {
 .alert-danger a {
   color: #843534;
 }
+.page-admin-structure-types-manage-page-display .tab-content > .tab-pane,
+.page-admin-structure-types-manage-page-display .tab-content > .tab-pane * {
+  display: block;
+  opacity: 1;
+}
+.tab-content > .tab-pane {
+  display: block;
+}
+.tab-content > .tab-pane.fade {
+  display: none;
+}
+.tab-content > .tab-pane.fade.in {
+  display: block;
+}
+.form-wrapper.vertical-tabs-pane,
+.tab-content .fade {
+  display: block;
+  opacity: 1;
+}
+/* #1
+ * Component
+ */
+/* #2
+ * Component
+ */
+/* #3
+ * Component
+ */
+/* #4
+ * Component
+ */
+/* #5
+ * Component
+ */
+/* #6
+ * Component
+ */
+/* #7
+ * Component
+ */
+/* #8
+ * Component
+ */
+/* #9
+ * Component
+ */
+/* #10
+ * Component
+ */
+/* #11
+ * Component
+ */
+/* #12
+ * Component
+ */
+/* #13
+ * Component
+ */
+/* #14
+ * Component
+ */
+/* #15
+ * Component
+ */
+/* #16
+ * Component
+ */
+/* #17
+ * Component
+ */
+/* #18
+ * Component
+ */
+/* #19
+ * Component
+ */
+/* #20
+ * Component
+ */
+/* #21
+ * Component
+ */
+/* #22
+ * Component
+ */
+/* #23
+ * Component
+ */
+/* #24
+ * Component
+ */
+/* #25
+ * Component
+ */
+/* #26
+ * Component
+ */
+/* #27
+ * Component
+ */
+/* #28
+ * Component
+ */
+/* #29
+ * Component
+ */
+/* #30
+ * Component
+ */
+/* #31
+ * Component
+ */
+/* #32
+ * Component
+ */
+/* Molecule */
+/* #33
+ * Component
+ */
+/* Templates */
+/* #34
+ * Component
+ */
+/* #35
+ * Component
+ */
+/* #1
+ * Component
+ */
+/* #2
+ * Component
+ */
+/* #3
+ * Component
+ */
+/* #4
+ * Component
+ */
+/* #5
+ * Component
+ */
+/* #6
+ * Component
+ */
+/* #7
+ * Component
+ */
+/* #8
+ * Component
+ */
+/* #9
+ * Component
+ */
+/* #10
+ * Component
+ */
+/* #11
+ * Component
+ */
+/* #12
+ * Component
+ */
+/* #13
+ * Component
+ */
+/* #14
+ * Component
+ */
+/* #15
+ * Component
+ */
+/* #16
+ * Component
+ */
+/* #17
+ * Component
+ */
+/* #18
+ * Component
+ */
+/* #19
+ * Component
+ */
+/* #20
+ * Component
+ */
+/* #21
+ * Component
+ */
+/* #22
+ * Component
+ */
+/* #23
+ * Component
+ */
+/* #24
+ * Component
+ */
+/* #25
+ * Component
+ */
+/* #26
+ * Component
+ */
+/* #27
+ * Component
+ */
+/* #28
+ * Component
+ */
+/* #29
+ * Component
+ */
+/* #30
+ * Component
+ */
+/* #31
+ * Component
+ */
+/* #32
+ * Component
+ */
+/* Molecule */
+/* #33
+ * Component
+ */
+/* Templates */
+/* #34
+ * Component
+ */
+/* #35
+ * Component
+ */
 /*
 ==================================
            STYLEGUIDE
