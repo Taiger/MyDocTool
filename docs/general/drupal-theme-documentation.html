@@ -1,0 +1,41 @@
+<h1>Drupal Theme Documentation</h1>
+
+<p><em>Living documentation for the platform theme, AF1, and site-specific themes such as ASP3</em></p>
+
+<hr />
+<p>&nbsp;</p>
+
+<p>To process all less files in both the platform and site-specific themes, add this as an alias:</p>
+
+<pre>
+alias makecss = &quot;pushd sites/all/themes/af1; grunt;cd ../asp3;grunt;echo &#39;done.&#39;;popd;&quot;</pre>
+
+<p><br />
+&nbsp;</p>
+
+<h2>Annenberg Foundation v1 - AF1</h2>
+
+<p><em>Platform Theme</em></p>
+
+<hr />
+<p>&nbsp;</p>
+
+<h3>Structure of Less/Css</h3>
+
+<p>Style.less contains all of the less files, including the Bootstrap library. Overrides.less is copied directly from the current starterkit for the official Drupal Bootstrap theme.<br />
+<br />
+<br />
+&nbsp;</p>
+
+<h2>Annenberg Space for Photography v3 - ASP3</h2>
+
+<p><em>Site Theme for the Annenberg Space for Photography</em></p>
+
+<hr />
+<p>&nbsp;</p>
+
+<h3>Structure of Less/Css</h3>
+
+<p>Style.less contains all of the less files, including the Bootstrap library. The platform less files from AF1 are also included. This is preferable as they can be processed together.</p>
+
+<p>&nbsp;</p>
