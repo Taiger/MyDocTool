@@ -26,9 +26,14 @@
 
       // Code Ignitor Help Link
       if($data['isAdmin']){
+        $this->load->helper('url');
+
         $data['admin_links']['create_doc'] = $data['base_url'].'guide/create';
         $data['admin_links']['create_pattern'] = $data['base_url'].'pattern/create';
         $data['admin_links']['codeignitor_help'] = '/user_guide';
+        $data['admin_links']['clear_cache'] = $data['base_url'] . 'clearcache/' . uri_string();
+        // clearCacheRedirect
+
       }
 
       // LINKS FOR DEFAULT MENU

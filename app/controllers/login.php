@@ -95,6 +95,36 @@ class Login extends CI_Controller {
       $this->index();
     }
 
+  public function clearCacheRedirect($path1 = '', $path2  = '', $path3  = '') {
+    $content = '';
+    $redirectPath = '';
+    if(!empty($path1)) {
+      $redirectPath = $path1;
+      if(!empty($path2)) $redirectPath .= '/' . $path2;
+      if(!empty($path3)) $redirectPath .= '/' . $path2 . '/' . $path3;
+    } else {
+      // if there is no path defined just use the allpatterns page.
+      $redirectPath = 'pattern';
+    }
+    $trytoClearCache = $this->wrapper_model->clearCache();
+
+    if($trytoClearCache == TRUE) {
+      redirect($redirectPath);
+    } else {
+      $content = '<h2>Could not clear cache.</h2><em><a href="'.$path.'">Return to last page.</a></em>';
+
+        $page = 'clearcache';
+        // Defaults
+        $data = $this->wrapper_model->pageDefaults(array(), $page);
+        $data['error'] = $show_error;
+
+        // Display
+        $data['content'] = $content;
+        $data['pagetpl'] = $this->load->view('templates/pagetpl', $data, TRUE);
+        $this->load->view('templates/htmltpl', $data);
+        }
+  }
+
     public function showphpinfo() {
         echo phpinfo();
     }

@@ -70,6 +70,11 @@ $route['pattern/tech'] = 'patterns/view/index';
 $route['pattern/(:any)/(:any)'] = 'patterns/view/$2/$1';
 $route['pattern/(:any)'] = 'patterns/view/$1';
 
+$route['clearcache'] = 'login/clearCacheRedirect';
+$route['clearcache/(:any)'] = 'login/clearCacheRedirect/$1';
+$route['clearcache/(:any)'] = 'login/clearCacheRedirect/$1/$2';
+$route['clearcache/(:any)'] = 'login/clearCacheRedirect/$1/$2/$3';
+$route['clearcache/(:any)'] = 'login/clearCacheRedirect/$1/$2/$3/$4';
 
 // TODO - Make generic
 //$route['(:any)'] = 'patterns/view/$1';
