@@ -1,7 +1,14 @@
-// Drupal stylesheets for AF1
-@import "/drupal/customthemes/af1/variables.less"; // Based on Bootstrap version 3.2.0
 // Drupal stylesheets for ASP3
-@import "/drupal/customthemes/asp3/variables.less"; // Site-specific theming
+
+
+// -Platform-specific theming-
+// Based on Bootstrap version 3.2.0
+@import "/drupal/customthemes/af1/variables.less";
+
+// -Site-specific theming-
+// Based on Bootstrap version 3.2.0
+@import "variables.less";
+
 
 // ======= CORE BOOTSTRAP LIBRARY BELOW ======
 // ====== DO NOT EDIT BELOW THIS LINE ========
@@ -57,11 +64,20 @@
 // ======= CORE BOOTSTRAP LIBRARY END ======
 // ====== DO NOT EDIT ABOVE THIS LINE ========
 
-// Drupal Specific
-@import "/drupal/bootstraptheme/overrides.less";// Bootstrap base theme file
-// Platform Specific
-@import "/drupal/customthemes/af1/afoverrides.less";// AF1 platform modifications
-@import "/drupal/customthemes/asp3/aspoverrides.less";// ASP3 platform-specific modifications
-// Site Specific
-@import "/drupal/customthemes/af1/afmain.less";// AF1 platform-specific theming
-@import "/drupal/customthemes/asp3/aspmain.less";// ASP3 site-specific theming
+
+
+// -Platform Specific-
+// AF1 platform modifications are simply a clone of drupal theme bootstrap starterkit overrides.less
+@import "/drupal/customthemes/af1/overrides.less";
+
+// -Site Specific-
+// ASP3 site-specific modifications
+@import "/drupal/customthemes/asp3/overrides.less";
+
+// -Platform Specific-
+// AF1 platform-specific theming
+@import "/drupal/customthemes/af1/main.less";
+
+// -Site Specific-
+// ASP3 site-specific theming
+@import "/drupal/customthemes/asp3/main.less";

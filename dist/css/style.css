@@ -6382,10 +6382,26 @@ html.overlay-open .navbar-fixed-top {
   z-index: 400;
 }
 html.js fieldset.collapsed {
+  border-left-width: 1px;
+  border-right-width: 1px;
   height: auto;
 }
 html.js input.form-autocomplete {
   background-image: none;
+}
+html.js input.form-autocomplete {
+  background-image: none;
+}
+html.js .autocomplete-throbber {
+  background-position: 100% 2px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 15px;
+  margin: 2px 0 0 2px;
+  width: 15px;
+}
+html.js .autocomplete-throbber.throbbing {
+  background-position: 100% -18px;
 }
 body {
   position: relative;
@@ -6479,6 +6495,10 @@ body #admin-menu .dropdown li {
 }
 .modal-dialog {
   z-index: 1630;
+}
+.ctools-modal-dialog .modal-body {
+  width: 100% !important;
+  overflow: auto;
 }
 .modal-backdrop {
   z-index: 1610;
@@ -6575,6 +6595,7 @@ fieldset legend.panel-heading {
 }
 fieldset .panel-body {
   clear: both;
+  display: inherit;
 }
 fieldset .panel-heading a.panel-title {
   color: inherit;
@@ -6584,6 +6605,14 @@ fieldset .panel-heading a.panel-title {
 }
 fieldset .panel-heading a.panel-title:hover {
   text-decoration: none;
+}
+.form-group:last-child,
+.panel:last-child {
+  margin-bottom: 0;
+}
+.form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
 }
 .form-actions {
   clear: both;
@@ -6621,27 +6650,32 @@ table tr.error {
   background-color: #f2dede;
   color: #a94442;
 }
-.control-group.error {
+.form-group.error,
+.form-group.has-error {
   background: none;
 }
-.control-group.error label,
-.control-group.error .control-label {
+.form-group.error label,
+.form-group.has-error label,
+.form-group.error .control-label,
+.form-group.has-error .control-label {
   color: #a94442;
   font-weight: 600;
 }
-.control-group.error input,
-.control-group.error textarea,
-.control-group.error select,
-.control-group.error .uneditable-input {
+.form-group.error input,
+.form-group.has-error input,
+.form-group.error textarea,
+.form-group.has-error textarea,
+.form-group.error select,
+.form-group.has-error select,
+.form-group.error .uneditable-input,
+.form-group.has-error .uneditable-input {
   color: #555555;
-  border: 1px solid #cccccc;
 }
-.control-group.error .help-block,
-.control-group.error .help-inline {
-  color: #333333;
-}
-.list-inline > li.first {
-  padding-left: 0;
+.form-group.error .help-block,
+.form-group.has-error .help-block,
+.form-group.error .help-inline,
+.form-group.has-error .help-inline {
+  color: #777777;
 }
 .nav-tabs {
   margin-bottom: 10px;
@@ -6661,60 +6695,37 @@ ul li.leaf {
   font-weight: normal;
   color: #777;
 }
-.password-strength {
-  width: 17em;
-  float: right;
-  /* LTR */
-  margin-top: 1.4em;
+.form-type-password-confirm {
+  position: relative;
 }
-.password-strength-title {
-  display: inline;
-}
-.password-strength-text {
-  float: right;
-  /* LTR */
-  font-weight: bold;
-}
-.password-indicator {
-  background-color: #727272;
-  height: 0.3em;
-  width: 100%;
-}
-.password-indicator div {
-  height: 100%;
-  width: 0%;
-  background-color: #777777;
-}
-input.password-confirm,
-input.password-field {
-  width: 16em;
-  margin-bottom: 0.4em;
-}
-div.password-confirm {
-  float: right;
-  /* LTR */
-  margin-top: 1.5em;
-  visibility: hidden;
-  width: 17em;
-}
-div.form-item div.password-suggestions {
-  padding: 0.2em 0.5em;
-  margin: 0.7em 0;
-  width: 38.5em;
-  border: 1px solid #B4B4B4;
-}
-div.password-suggestions ul {
-  margin-bottom: 0;
-}
-.confirm-parent,
-.password-parent {
+.form-type-password-confirm .form-type-password {
   clear: left;
-  /* LTR */
-  margin: 0;
-  width: 36.3em;
 }
-.progress-wrapper .progress {
-  margin-bottom: 10px;
+.form-type-password-confirm label {
+  display: block;
+}
+.form-type-password-confirm label .label {
+  float: right;
+}
+.form-type-password-confirm .help-block {
+  border-left: 1px solid #dddddd;
+  display: inline-block;
+  margin-left: 2em;
+  padding-left: 2em;
+}
+.form-type-password-confirm .progress {
+  background: transparent;
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  height: 4px;
+  margin: -5px 0px 0;
+}
+.form-type-password-confirm .form-control-feedback {
+  right: 15px;
 }
 .pagination ul > li > a.progress-disabled {
   float: left;
@@ -6920,6 +6931,9 @@ td.radio {
   padding: 0;
   margin: 4px 0 0 0;
 }
+.views-exposed-form .views-exposed-widget .btn {
+  margin-top: 1.8em;
+}
 table .radio input[type="radio"],
 table .checkbox input[type="checkbox"] {
   max-width: inherit;
@@ -6955,24 +6969,83 @@ table .checkbox input[type="checkbox"] {
 .alert-danger a {
   color: #843534;
 }
-.page-admin-structure-types-manage-page-display .tab-content > .tab-pane,
-.page-admin-structure-types-manage-page-display .tab-content > .tab-pane * {
-  display: block;
-  opacity: 1;
-}
-.tab-content > .tab-pane {
+div.image-style-new,
+div.image-style-new div {
   display: block;
 }
-.tab-content > .tab-pane.fade {
-  display: none;
+div.image-style-new div.input-group {
+  display: table;
 }
-.tab-content > .tab-pane.fade.in {
-  display: block;
+td.module,
+.table-striped > tbody > tr:nth-child(odd) > td.module,
+.table > tbody > tr > td.module {
+  background: #dddddd;
+  font-weight: 700;
 }
-.form-wrapper.vertical-tabs-pane,
-.tab-content .fade {
+.book-toc > .dropdown-menu {
+  overflow: hidden;
+}
+.book-toc > .dropdown-menu > .dropdown-header {
+  white-space: nowrap;
+}
+.book-toc > .dropdown-menu > li:nth-child(1) > a {
+  font-weight: bold;
+}
+.book-toc > .dropdown-menu .dropdown-menu {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: 0;
   display: block;
-  opacity: 1;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  position: static;
+  width: 100%;
+}
+.book-toc > .dropdown-menu .dropdown-menu > li {
+  padding-left: 20px;
+}
+.book-toc > .dropdown-menu .dropdown-menu > li > a {
+  margin-left: -40px;
+  padding-left: 60px;
+}
+#features-filter .form-item.form-type-checkbox {
+  padding-left: 20px;
+}
+fieldset.features-export-component {
+  font-size: 12px;
+}
+html.js #features-export-form fieldset.features-export-component,
+fieldset.features-export-component {
+  margin: 0 0 10px;
+}
+fieldset.features-export-component .panel-heading {
+  padding: 5px 10px;
+}
+fieldset.features-export-component .panel-heading a.panel-title {
+  font-size: 12px;
+  font-weight: 500;
+  margin: -5px -10px;
+  padding: 5px 10px;
+}
+fieldset.features-export-component .panel-body {
+  padding: 0 10px;
+}
+div.features-export-list {
+  margin: -11px 0 10px;
+  padding: 0 10px;
+}
+fieldset.features-export-component .component-select .form-type-checkbox,
+div.features-export-list .form-type-checkbox {
+  line-height: 1em;
+  margin: 5px 5px 5px 0 !important;
+  min-height: 0;
+  padding: 3px 3px 3px 25px!important;
+}
+fieldset.features-export-component .component-select .form-type-checkbox input[type=checkbox],
+div.features-export-list .form-type-checkbox input[type=checkbox] {
+  margin-top: 0;
 }
 /* #1
  * Component
