@@ -1,0 +1,75 @@
+// AF1 Platform Mixins
+
+/*///////////////
+///  MIXINS   ///
+///////////////*/
+
+// MEDIA QUERIES
+/* REQUIRES LESS v1.70 (unported to php) */
+
+// =====>> Mobile First Breakpoints <<=====
+.breakpointMinXs(@rules) {
+  @media (min-width: @screen-xs-min) { @rules(); }
+}
+.breakpointMinSm(@rules) {
+  @media (min-width: @screen-sm-min) { @rules(); }
+}
+.breakpointMinMd(@rules) {
+  @media (min-width: @screen-md-min) { @rules(); }
+}
+.breakpointMinLg(@rules) {
+  @media (min-width: @screen-lg-min) { @rules(); }
+}
+
+// ====>> Breakpoints for specific targeting <<=====
+.breakpointXs(@rules) {
+  @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) { @rules(); }
+}
+.breakpointSm(@rules) {
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { @rules(); }
+}
+.breakpointMd(@rules) {
+  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { @rules(); }
+}
+.breakpointLg(@rules) {
+  @media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) { @rules(); }
+}
+
+// ====>> SPECIAL MIXINS <<====
+// (These a variable widths as the first argument.)
+// (These should only be used for fixing broken elements.)
+.breakpointMaxCustom(@maxWidth, @rules) {
+  @media (max-width: @maxWidth) { @rules(); }
+}
+/* Custom Min width. */
+.breakpointMinCustom(@minWidth, @rules) {
+  @media (min-width: @minWidth) { @rules(); }
+}
+
+
+// ==== special gradient mixin ====
+.bgGradientLinear(@startStop:0% 50%; @firstColor:#C6C6C6; @firstPosition: 20%; @secondColor:#F5F5F5; @secondPosition: 70%) {
+  background: -moz-linear-gradient(@startStop, @firstColor @firstPosition, @secondColor @secondPosition);
+  background: -webkit-linear-gradient(@startStop, @firstColor @firstPosition, @secondColor @secondPosition);
+  background: linear-gradient(@startStop, @firstColor @firstPosition, @secondColor @secondPosition);
+
+  .ie11 &,
+  .ie10 & {
+    background: linear-gradient(to bottom, @firstColor @firstPosition, @secondColor @secondPosition); // IE10 and IE11
+  }
+  .ie9 & {
+     background-color:@secondColor;
+  }
+}
+
+// ==== special radial gradient mixin ====
+.bgGradientRadial(@startStop:at center center; @firstColor:#E1F0F5; @firstPosition: 0%; @secondColor:#FFFFFF; @secondPosition: 100%) {
+  background: radial-gradient(@startStop, @firstColor @firstPosition, @secondColor @secondPosition);
+
+    // Fallback
+  .ie9 & {
+  background-color: @firstColor;
+  zoom: 1;
+  }
+
+}

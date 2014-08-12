@@ -5,6 +5,11 @@
  *=====================================================================================
  *=====================================================================================
  */
+/*///////////////
+///  MIXINS   ///
+///////////////*/
+/* REQUIRES LESS v1.70 (unported to php) */
+/* Custom Min width. */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6869,7 +6874,35 @@ div.features-export-list .form-type-checkbox input[type=checkbox] {
  * Function: N/A
  * Optional Function: Link
  */
+.ImageHero .ImageHero-inner {
+  position: relative;
+}
+.ImageHero .ImageHero-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 10px 20px 20px 30px;
+  z-index: 1;
+  color: black;
+}
+@media (min-width: 992px) {
+  .ImageHero .ImageHero-caption {
+    max-width: 70%;
+  }
+}
+@media (min-width: 1200px) {
+  .ImageHero .ImageHero-caption {
+    max-width: 70%;
+  }
+}
+.ImageHero .ImageHero-image img {
+  display: block;
+  width: 100% \9;
+  max-width: 100%;
+  height: auto;
+}
 /* #2
+// ======== VideoHero =============
  *  = Component =
  * Includes: Video
  * Optional: Headline, Caption

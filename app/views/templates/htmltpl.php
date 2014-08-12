@@ -54,6 +54,9 @@
   <script src="/vendor/prism/components/prism-core.min.js?v1"></script>
   <script src="/vendor/prism/components/prism-markup.min.js?v1"></script>
 
+<script src="//asp-sg.eggdude.dev:35729/livereload.js"></script>
+
+
   <!-- extra scripts -->
   <?php if(isset($scripts)) {
     foreach($scripts as $script){

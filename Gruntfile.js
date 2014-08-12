@@ -31,8 +31,11 @@ module.exports = function (grunt) {
                 less: {
             // if any .less file changes in directory "less/" run the "less"-task.
                   files: '**/*.less',
-                  tasks: 'less'
-                }
+                  tasks: 'less',
+                },
+                options: {
+                  livereload: true, // refresh on default port 35729
+                },
         },
         // "less"-task configuration
         less: {
