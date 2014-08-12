@@ -1,11 +1,11 @@
 'use strict';
- 
+
 module.exports = function (grunt) {
     // load all grunt tasks
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    
+
     grunt.initConfig({
       // Metadata.
       pkg: grunt.file.readJSON('package.json'),
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
         watch: {
                 less: {
             // if any .less file changes in directory "less/" run the "less"-task.
-                  files: 'less/*.less',
+                  files: '**/*.less',
                   tasks: 'less'
                 }
         },
