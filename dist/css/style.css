@@ -6890,11 +6890,6 @@ div.features-export-list .form-type-checkbox input[type=checkbox] {
     max-width: 70%;
   }
 }
-@media (min-width: 1200px) {
-  .ImageHero .ImageHero-caption {
-    max-width: 70%;
-  }
-}
 .ImageHero .ImageHero-image img {
   display: block;
   width: 100% \9;
@@ -6923,6 +6918,12 @@ div.features-export-list .form-type-checkbox input[type=checkbox] {
  * Function: N/A
  * Optional Function: Link
  */
+.Alert {
+  border: 1px solid #dddddd;
+}
+.Alert .Alert-inner {
+  padding: 10px 20px 20px 30px;
+}
 /* #5
  *  = Component =
  * Includes: Text
