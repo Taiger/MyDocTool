@@ -129,7 +129,50 @@
  * Function: N/A
  * Optional Function: Link
  */
-.EventInfo {}
+.EventInfo {
+    border: 1px solid #dddddd;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    display: table;
+     > .col {
+/*      border: 1px solid #dddddd;*/
+      padding: 20px;
+      display: table-row;
+      border-left: 2px solid;
+
+    }
+  > .col:after {
+
+    background-color: #eee;
+    border: 1px solid #555555;
+    bottom: 0;
+    content: "";
+    display: table-cell;
+    float: left;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 33.33%;
+    z-index: -1;
+  }
+     > .col:nth-child(1n+1) {
+      left: 0;
+    }
+    > .col:nth-child(1n+2) {
+      left: 0;
+    }
+    > .col:nth-child(1n+3) {
+      left: 0;
+    }
+  .EventInfo-hours {}
+  .EventInfo-date {}
+  .EventInfo-location {}
+}
 // =====================
 
 // ======== InteractiveMap =============
@@ -239,7 +282,19 @@
  * Optional: N/A
  * Function: N/A
  */
-.Events1 {}
+.Events1 {
+  .Events1-inner {}
+  .Events1-img {
+    img { .img-responsive(); }
+  }
+  .Events1-details {}
+  .Events1-headline {
+    h1 { font-size: 20px; }
+  }
+  .Events1-location {}
+  .Events1-description {}
+  .Events1-btn {}
+}
 // =====================
 
 // ======== Events2 =============

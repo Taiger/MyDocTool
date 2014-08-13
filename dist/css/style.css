@@ -6959,6 +6959,45 @@ div.features-export-list .form-type-checkbox input[type=checkbox] {
  * Function: N/A
  * Optional Function: Link
  */
+.EventInfo {
+  border: 1px solid #dddddd;
+  margin-left: 1px;
+  margin-right: 1px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  display: table;
+}
+.EventInfo > .col {
+  /*      border: 1px solid #dddddd;*/
+  padding: 20px;
+  display: table-row;
+  border-left: 2px solid;
+}
+.EventInfo > .col:after {
+  background-color: #eee;
+  border: 1px solid #555555;
+  bottom: 0;
+  content: "";
+  display: table-cell;
+  float: left;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 33.33%;
+  z-index: -1;
+}
+.EventInfo > .col:nth-child(1n+1) {
+  left: 0;
+}
+.EventInfo > .col:nth-child(1n+2) {
+  left: 0;
+}
+.EventInfo > .col:nth-child(1n+3) {
+  left: 0;
+}
 /* #10
  *  = Component =
  * Includes: Google Map
@@ -7029,6 +7068,15 @@ div.features-export-list .form-type-checkbox input[type=checkbox] {
  * Optional: N/A
  * Function: N/A
  */
+.Events1 .Events1-img img {
+  display: block;
+  width: 100% \9;
+  max-width: 100%;
+  height: auto;
+}
+.Events1 .Events1-headline h1 {
+  font-size: 20px;
+}
 /* #20
  *  = Component =
  * Includes: Headline, Subhead, Date, Hours, Location,
