@@ -22,6 +22,7 @@
       $data['title'] = ucfirst($page);
       $data['isLoggedIn'] = $this->session->userdata('isLoggedIn');
       $data['isAdmin'] = $this->session->userdata('isAdmin');
+      $data['body_class'] .= ($data['isAdmin'])? ' user-admin': '';
       $data['admin_links'] = array();
 
       // Code Ignitor Help Link
