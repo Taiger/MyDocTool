@@ -1,5 +1,23 @@
 // AF1 main.less
 
+// ==>> Dev <<==
+// Temp Dev helpers
+.user-admin .sg-body:before {
+  color: #fb8989;
+  display: block;
+  font-size: 18px;
+  outline: 1px dashed #f2bbbb;
+  padding: 5px 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  content: "default";
+  //.breakpointMinXs({});
+  .breakpointMinXs({content: "XS";});
+  .breakpointMinSm({content: "SM";});
+  .breakpointMinMd({content: "MD";});
+  .breakpointMinLg({content: "LG";});
+}
 // ==>> General <<==
 
 // Styling for generalized components
@@ -130,48 +148,43 @@
  * Optional Function: Link
  */
 .EventInfo {
+
+  //margin: 0 -15px;
+  .clearfix();
+  .EventInfo-inner {
+    .make-row();
     border: 1px solid #dddddd;
-    margin-left: 1px;
-    margin-right: 1px;
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+    margin: 0;
+    height: 100%;
+    width: 100%;
     display: table;
-     > .col {
-/*      border: 1px solid #dddddd;*/
-      padding: 20px;
-      display: table-row;
-      border-left: 2px solid;
-
-    }
-  > .col:after {
-
-    background-color: #eee;
-    border: 1px solid #555555;
-    bottom: 0;
-    content: "";
-    display: table-cell;
-    float: left;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 33.33%;
-    z-index: -1;
+    table-layout: fixed;
+    border-spacing: 10px 15px;
   }
-     > .col:nth-child(1n+1) {
-      left: 0;
+   .col {
+    .make-sm-column(4);
+
+    border: 1px solid #dddddd;
+    .breakpointMinSm({
+      display: table-cell;
+      vertical-align: middle;
+      float: none !important; // for table-cell display
+    });
+    dl { padding: 5px; }
+
+    &:nth-child(1) {}
+    &:nth-child(2) {}
+    &:nth-child(3) {
+.breakpointMinSm({
+//width: 100%;
+  });
     }
-    > .col:nth-child(1n+2) {
-      left: 0;
-    }
-    > .col:nth-child(1n+3) {
-      left: 0;
-    }
+  }
+
   .EventInfo-hours {}
   .EventInfo-date {}
   .EventInfo-location {}
+
 }
 // =====================
 
