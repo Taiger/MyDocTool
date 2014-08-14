@@ -19,6 +19,9 @@
   <!-- processed from less/style.less -->
   <link rel="stylesheet" href="/dist/css/style.css?v1">
 
+  <!-- Flexslider -->
+  <link rel="stylesheet" href="/vendor/flexslider/flexslider.css">
+
   <!-- CLIENTSIDE PREPROCESSING: uncomment to enable
   <link rel="stylesheet/less" type="text/css" href="less/style.less">
   <script>
@@ -35,7 +38,14 @@
   </script>
   <script src="vendor/less.js/dist/less-1.7.3.min.js"></script>-->
 
-
+<!-- jQuery -->
+<script src="/vendor/jquery/dist/jquery.min.js?v1"></script>
+<!-- Flexslider -->
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider();
+  });
+</script>
 
 </head>
 <body class="<?php if(isset($body_class)) echo $body_class; ?>">
@@ -43,12 +53,15 @@
 <?php if(isset($pagetpl)) echo $pagetpl; ?>
 
   <!-- SCRIPTS -->
-  <script src="/vendor/jquery/dist/jquery.min.js?v1"></script>
+
   <script src="/vendor/bootstrap/dist/js/bootstrap.min.js?v1"></script>
   <script src="/vendor/bootstrap-accessibility-plugin/plugins/js/bootstrap-accessibility.min.js?v1"></script>
 
   <!-- Styleguide toggling -->
   <script src="/js/sg-scripts.js"></script>
+
+  <!-- Flexslider -->
+  <script src="/vendor/flexslider/jquery.flexslider.js"></script>
 
   <!-- syntax highlighting -->
   <script src="/vendor/prism/components/prism-core.min.js?v1"></script>
