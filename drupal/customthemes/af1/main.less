@@ -148,36 +148,23 @@
  * Optional Function: Link
  */
 .EventInfo {
-
-  //margin: 0 -15px;
-  .clearfix();
   .EventInfo-inner {
     .make-row();
-    border: 1px solid #dddddd;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    display: table;
-    table-layout: fixed;
-    border-spacing: 10px 15px;
+    padding: 10px 15px;
   }
    .col {
-    .make-sm-column(4);
-
-    border: 1px solid #dddddd;
-    .breakpointMinSm({
-      display: table-cell;
-      vertical-align: middle;
-      float: none !important; // for table-cell display
-    });
-    dl { padding: 5px; }
+    .make-sm-column(6);
+    .make-md-column(4);
+    padding: 15px;
 
     &:nth-child(1) {}
     &:nth-child(2) {}
     &:nth-child(3) {
-.breakpointMinSm({
-//width: 100%;
-  });
+      width: auto;
+      // creates second row
+      .breakpointSm({
+        width: 100%;
+      });
     }
   }
 
@@ -284,7 +271,12 @@
  * Function: Link
  * Optional Function: N/A
  */
-.Profile2 {}
+.Profile2 {
+  .Profile2-profileimage {
+    img { }
+  }
+
+}
 // =====================
 
 // ======== Events1 =============
