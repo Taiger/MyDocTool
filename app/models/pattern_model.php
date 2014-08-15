@@ -85,8 +85,8 @@ class Pattern_model extends CI_Model {
 
     foreach ($files as $file) {
       $result .= '<div class="sg-markup sg-section">';
-      $result .= '<div class="sg-display">';
       $result .= '<h1 class="sg-h1"><a id="sg-'.$item.'" class="sg-anchor">'.$title.'</a></h1>';
+      $result .= '<div class="sg-display">';
 
       // TODO add documentation support
       //$documentation = 'doc/'.$type.'/'.$file;

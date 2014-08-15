@@ -7,7 +7,14 @@ All classes should be namespaced off of "sg-".
 
 */
 
+// Background color
+@SgBgColor: #E7E7E7;
+// Content area color
+@SgBgContentColor: white;
 
+/*body {
+  background-color: @SgBgColor;
+}*/
 /* -------------------------------------------------------------------------
  Styleguide Layout
  ---------------------------------------------------------------------------- */
@@ -74,6 +81,7 @@ All classes should be namespaced off of "sg-".
 }
 
 .sg-footer {
+  .clearfix();
   margin: 40px 0 0 0;
   padding: 0;
   background-color: #eee;
@@ -227,6 +235,17 @@ All classes should be namespaced off of "sg-".
   }
 }
 
+/* Styleguide Content Area */
+
+.sg-display {
+  border: 1px solid #ddd;
+  // no border on all patterns page
+  .allpatterns-page & {
+    border-width: 0;
+  }
+}
+
+
 /* Styleguide Sections
 ---------------------------------------------------------------------------- */
 .sg-section {
@@ -234,6 +253,9 @@ All classes should be namespaced off of "sg-".
   overflow: hidden;
 }
 
+.sg-section hr {
+  //border-color: #F5F5F5;
+}
 .sg-anchor {
   display: block;
   padding-top: 1em;
