@@ -272,8 +272,26 @@
  * Optional Function: N/A
  */
 .Profile2 {
-  .Profile2-profileimage {
-    img { }
+  padding: 20px;
+  .Profile2-header {
+    .make-row();
+  }
+    .Profile2-profileimage {
+      padding-right: 10px;
+      .make-xs-column(2);
+      img {
+        .img-rounded;
+      }
+    }
+    .Profile2-name {
+      .make-xs-column(10);
+    }
+  .Profile2-profiletext {
+    margin: 20px 0;
+  }
+  .Profile2-btn {
+    .btn-sm;
+    .btn-default;
   }
 
 }
