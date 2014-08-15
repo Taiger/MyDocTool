@@ -10,23 +10,23 @@
     <div class="control-group">
       <label for="type" class="control-label">Category: </label>
       <div class="form-control">
-        <label for="type-0" class="radio radio-inline">
+        <label for="type-0" class="radio-inline">
           <input type="radio" checked="checked" value="atoms" id="type-0" name="type">
           Atom
         </label>
-        <label for="type-1" class="radio radio-inline">
+        <label for="type-1" class="radio-inline">
           <input type="radio" value="molecules" id="type-1" name="type">
           Molecule
         </label>
-        <label for="type-2" class="radio radio-inline">
+        <label for="type-2" class="radio-inline">
           <input type="radio" value="components" id="type-2" name="type">
           Component
         </label>
-        <label for="type-3" class="radio radio-inline">
+        <label for="type-3" class="radio-inline">
           <input type="radio" value="templates" id="type-3" name="type">
           Template
         </label>
-        <label for="type-4" class="radio radio-inline">
+        <label for="type-4" class="radio-inline">
           <input type="radio" value="pages" id="type-4" name="type">
           Page
         </label>

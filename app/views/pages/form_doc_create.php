@@ -10,11 +10,11 @@
     <div class="control-group">
       <label for="type" class="control-label">Category: </label>
       <div class="form-control">
-        <label for="type-0" class="radio radio-inline">
+        <label for="type-0" class="radio-inline">
           <input type="radio" checked="checked" value="general" id="type-0" name="type">
           General
         </label>
-        <label for="type-1" class="radio radio-inline">
+        <label for="type-1" class="radio-inline">
           <input type="radio" value="tech" id="type-1" name="type">
           Tech
         </label>
