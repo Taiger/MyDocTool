@@ -1,0 +1,129 @@
+<h2><br />
+<br />
+# .bash_profile</h2>
+
+<p><em>This is what I use everywhere.</em></p>
+
+<pre class="language-markup">
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+
+export PATH
+
+# Git AutoCompletion
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+# show git branchname in terminal with color
+function parse_git_branch {
+git branch --no-color 2&gt; /dev/null | sed -e &#39;/^[^*]/d&#39; -e &#39;s/* \(.*\)/ \[\1\]/&#39;
+}
+function proml {
+local BLUE=&quot;\[\033[0;34m\]&quot;
+# OPTIONAL - if you want to use any of these other colors:
+local RED=&quot;\[\033[0;31m\]&quot;
+local LIGHT_RED=&quot;\[\033[1;31m\]&quot;
+local GREEN=&quot;\[\033[0;32m\]&quot;
+local LIGHT_GREEN=&quot;\[\033[1;32m\]&quot;
+local LIGHT_GREEN=&quot;\[\033[1;32m\]&quot;
+local WHITE=&quot;\[\033[1;37m\]&quot;
+local LIGHT_GRAY=&quot;\[\033[0;37m\]&quot;
+# END OPTIONAL
+local DEFAULT=&quot;\[\033[0m\]&quot;
+PS1=&quot;\h:\W \u$BLUE\$(parse_git_branch) $DEFAULT\$&quot;
+}
+proml
+
+#-------------------
+# Personnal Aliases
+#-------------------
+
+#-------------------------------------------------------------
+# The &#39;ls&#39; family (this assumes you use a recent GNU ls).
+#-------------------------------------------------------------
+# Add colors for filetype and  human-readable sizes by default on &#39;ls&#39;:
+alias ls=&#39;ls -h --color&#39;
+alias lx=&#39;ls -lXB&#39;         #  Sort by extension.
+alias lk=&#39;ls -lSr&#39;         #  Sort by size, biggest last.
+alias lt=&#39;ls -ltr&#39;         #  Sort by date, most recent last.
+alias lc=&#39;ls -ltcr&#39;        #  Sort by/show change time,most recent last.
+alias lu=&#39;ls -ltur&#39;        #  Sort by/show access time,most recent last.
+
+# The ubiquitous &#39;ll&#39;: directories first, with alphanumeric sorting:
+alias ll=&quot;ls -lv --group-directories-first&quot;
+alias lm=&#39;ll |more&#39;        #  Pipe through &#39;more&#39;
+alias lr=&#39;ll -R&#39;           #  Recursive ls.
+alias la=&#39;ll -A&#39;           #  Show hidden files.
+alias tree=&#39;tree -Csuh&#39;    #  Nice alternative to &#39;recursive ls&#39; ...
+
+#-------------------------------------------------------------
+# Tailoring &#39;less&#39;
+#-------------------------------------------------------------
+
+alias more=&#39;less&#39;
+export PAGER=less
+export LESSCHARSET=&#39;latin1&#39;
+export LESSOPEN=&#39;|/usr/bin/lesspipe.sh %s 2&gt;&amp;-&#39;
+                # Use this if lesspipe.sh exists.
+export LESS=&#39;-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
+:stdin .?pb%pb\%:?lbLine %lb:?bbByte �:-...&#39;
+
+# LESS man page colors (makes Man pages more readable).
+export LESS_TERMCAP_mb=$&#39;\E[01;31m&#39;
+export LESS_TERMCAP_md=$&#39;\E[01;31m&#39;
+export LESS_TERMCAP_me=$&#39;\E[0m&#39;
+export LESS_TERMCAP_se=$&#39;\E[0m&#39;
+export LESS_TERMCAP_so=$&#39;\E[01;44;33m&#39;
+export LESS_TERMCAP_ue=$&#39;\E[0m&#39;
+export LESS_TERMCAP_us=$&#39;\E[01;32m&#39;
+
+#-------------------------------------------------------------
+# Spelling typos - highly personnal and keyboard-dependent :-)
+#-------------------------------------------------------------
+
+alias xs=&#39;cd&#39;
+alias vf=&#39;cd&#39;
+alias moer=&#39;more&#39;
+alias moew=&#39;more&#39;
+alias kk=&#39;ll&#39;
+
+#-------------------------------------------------------------
+# File &amp; strings related functions:
+#-------------------------------------------------------------
+
+function extract()      # Handy Extract Program
+{
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xvjf $1     ;;
+            *.tar.gz)    tar xvzf $1     ;;
+            *.bz2)       bunzip2 $1      ;;
+            *.rar)       unrar x $1      ;;
+            *.gz)        gunzip $1       ;;
+            *.tar)       tar xvf $1      ;;
+            *.tbz2)      tar xvjf $1     ;;
+            *.tgz)       tar xvzf $1     ;;
+            *.zip)       unzip $1        ;;
+            *.Z)         uncompress $1   ;;
+            *.7z)        7z x $1         ;;
+            *)           echo &quot;&#39;$1&#39; cannot be extracted via &gt;extract&lt;&quot; ;;
+        esac
+    else
+        echo &quot;&#39;$1&#39; is not a valid file!&quot;
+    fi
+}
+
+# Creates an archive (*.tar.gz) from given directory.
+function maketar() { tar cvzf &quot;${1%%/}.tar.gz&quot;  &quot;${1%%/}/&quot;; }
+
+# Create a ZIP archive of a file or folder.
+function makezip() { zip -r &quot;${1%%/}.zip&quot; &quot;$1&quot; ; }</pre>
+
+<p>&nbsp;</p>
