@@ -23,3 +23,8 @@ app/config/database.php
 
 system/cache
 system/cache/*
+
+#patterns
+!/patterns
+!/patterns/components
+!patterns/components/*
