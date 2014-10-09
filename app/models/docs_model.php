@@ -18,7 +18,7 @@ class docs_model extends CI_Model {
         return FALSE;
       } else {
         // Try to set permissions or return FALSE
-        if(!chmod('docs/' . $type . '/' . $filename, 0764)) return FALSE;
+        if(!chmod('docs/' . $type . '/' . $filename, 0777)) return FALSE;
         // We are good
         return TRUE;
       }
