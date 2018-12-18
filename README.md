@@ -1,7 +1,8 @@
-ASP3 Styleguide and Documentation website
+Styleguide and Documentation website tool
 ==========
 
-This site is powered by Codeignitor 2.2. I uses a number of components borrowed from the Styleguide Biolerplate.
+This site is powered by Codeignitor 2.2.
+It uses a number of components borrowed from the Styleguide Biolerplate Project (MIT License https://github.com/bjankord/Style-Guide-Boilerplate/blob/master/LICENSE.txt )
 
 Features:
 
