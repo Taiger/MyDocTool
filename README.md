@@ -1,7 +1,7 @@
 Styleguide and Documentation website tool
 ==========
 
-The tool is pretty simple. It just displays snippets of html styled to the the website styling. It collected these snippits and displays them by category in the main menu. It makes it easier to present and document design patterns.
+The tool is pretty simple. It just displays snippets of html styled to the the website styling. It collects these snippits and displays them by category in the main menu. It makes it easier to present and document design patterns.
 
 The overall goal is make the frontend architecture have uniformity and make html more modular. Using this philosophy, it should be possible to pull a section (block) off the homepage, and have it appear exactly the same on any page of the site.
 
